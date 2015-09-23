@@ -76,6 +76,6 @@
 	</select>
 	
 	<select id="getArticle" resultType="org.apache.ibatis.submitted.automapping.Article">
-		select 9 as version from INFORMATION_SCHEMA.SYSTEM_USERS
+		select 9 as version
 	</select>	
 </mapper>

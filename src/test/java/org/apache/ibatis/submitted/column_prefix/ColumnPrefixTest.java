@@ -19,7 +19,6 @@ import static org.junit.Assert.*;
 
 import java.io.Reader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -36,28 +35,20 @@ public class ColumnPrefixTest {
 
   @Before
   public void setUp() throws Exception {
-    Connection conn = null;
+    // create a SqlSessionFactory
+    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/column_prefix/Config.xml");
+    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+    reader.close();
 
-    try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:clmpfx", "sa", "");
-      Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/column_prefix/CreateDB.sql");
-      ScriptRunner runner = new ScriptRunner(conn);
-      runner.setLogWriter(null);
-      runner.setErrorLogWriter(null);
-      runner.runScript(reader);
-      conn.commit();
-      reader.close();
-
-      reader = Resources.getResourceAsReader(getConfigPath());
-      sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      reader.close();
-
-    } finally {
-      if (conn != null) {
-        conn.close();
-      }
-    }
+    // populate in-memory database
+    SqlSession session = sqlSessionFactory.openSession();
+    Connection conn = session.getConnection();
+    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/column_prefix/CreateDB.sql");
+    ScriptRunner runner = new ScriptRunner(conn);
+    runner.setLogWriter(null);
+    runner.runScript(reader);
+    reader.close();
+    session.close();
   }
 
   @Test

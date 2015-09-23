@@ -20,9 +20,14 @@
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
-				<property name="driver" value="org.hsqldb.jdbc.JDBCDriver" />
-				<property name="url" value="jdbc:hsqldb:mem:association_nested" />
-				<property name="username" value="SA" />
+				<!--<property name="driver" value="com.mysql.jdbc.Driver"/>-->
+				<!--<property name="url" value="jdbc:mysql://localhost:3306/test" />-->
+				<!--<property name="username" value="test" />-->
+				<!--<property name="password" value="test" />-->
+
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://127.0.0.1:4000/test" />
+				<property name="username" value="root" />
 				<property name="password" value="" />
 			</dataSource>
 		</environment>

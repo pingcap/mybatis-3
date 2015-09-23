@@ -77,8 +77,8 @@ name varchar(32)
 -- make columns case sensitive
 drop table if exists product;
 create table product (
-"product_id" int,
-"product_name" varchar(32),
+product_id int,
+product_name varchar(32),
 brand_id int
 );
 
@@ -115,5 +115,5 @@ insert into person (id, name, billing_address_id, shipping_address_id, room_id) 
 
 insert into brand (id, name) values (1, 'alpha');
 
-insert into product ("product_id", "product_name", brand_id) values (10, 'alpha', 1);
-insert into product ("product_id", "product_name", brand_id) values (20, 'beta', 1);
+insert into product (product_id, product_name, brand_id) values (10, 'alpha', 1);
+insert into product (product_id, product_name, brand_id) values (20, 'beta', 1);
