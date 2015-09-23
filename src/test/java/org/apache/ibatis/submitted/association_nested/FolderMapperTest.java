@@ -16,13 +16,16 @@
 package org.apache.ibatis.submitted.association_nested;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -35,11 +38,12 @@ public class FolderMapperTest {
 
   @Test
   public void testFindWithChildren() throws Exception {
-    Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:association_nested", "SA", "");
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
     Statement stmt = conn.createStatement();
+
+    stmt.execute("drop table if exists folder");
     stmt.execute("create table folder (id int, name varchar(100), parent_id int)");
-
-
     stmt.execute("insert into folder (id, name) values(1, 'Root')");
     stmt.execute("insert into folder values(2, 'Folder 1', 1)");
     stmt.execute("insert into folder values(3, 'Folder 2', 1)");
@@ -67,5 +71,4 @@ public class FolderMapperTest {
 
     session.close();
   }
-
 }

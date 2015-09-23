@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
+drop table if exists users;
 
 create table users (
   id int,
@@ -22,9 +22,9 @@ create table users (
   dept_id int
 );
 
-insert into users (id, name,dept_id) values(1, 'User1',1);
+insert into users (id, name, dept_id) values(1, 'User1', 1);
 
-drop table depts if exists;
+drop table if exists depts;
 
 create table depts (
   id int,

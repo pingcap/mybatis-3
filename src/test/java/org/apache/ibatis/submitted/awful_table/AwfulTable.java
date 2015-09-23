@@ -19,7 +19,6 @@ public class AwfulTable {
     private Integer customerId;
     private String firstFirstName;
     private String secondFirstName;
-    private String thirdFirstName;
     private String lastName;
     private String eMail;
     private Integer id1;
@@ -28,8 +27,8 @@ public class AwfulTable {
     private Integer id6;
     private Integer id7;
     private String emailaddress;
-    private String from;
-    private boolean active;
+    private String fromm;
+    private Integer active;
     public Integer getCustomerId() {
         return customerId;
     }
@@ -47,12 +46,6 @@ public class AwfulTable {
     }
     public void setSecondFirstName(String secondFirstName) {
         this.secondFirstName = secondFirstName;
-    }
-    public String getThirdFirstName() {
-        return thirdFirstName;
-    }
-    public void setThirdFirstName(String thirdFirstName) {
-        this.thirdFirstName = thirdFirstName;
     }
     public String getLastName() {
         return lastName;
@@ -102,16 +95,16 @@ public class AwfulTable {
     public void setEmailaddress(String emailaddress) {
         this.emailaddress = emailaddress;
     }
-    public String getFrom() {
-        return from;
+    public String getFromm() {
+        return fromm;
     }
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFromm(String fromm) {
+        this.fromm = fromm;
     }
-    public boolean isActive() {
+    public Integer isActive() {
         return active;
     }
-    public void setActive(boolean active) {
+    public void setActive(Integer active) {
         this.active = active;
     }
 

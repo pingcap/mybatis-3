@@ -14,9 +14,13 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
+drop table if exists users;
 
-drop table books if exists;
+drop table if exists books;
+
+drop table if exists pets;
+
+drop table if exists breeder;
 
 create table users (
   id int,

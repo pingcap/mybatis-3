@@ -24,7 +24,7 @@
 
   <insert id="insert">
     <selectKey keyProperty="id" resultType="int" order="AFTER">
-    select top 1 50 from INFORMATION_SCHEMA.SYSTEM_TABLES
+    select 1, 50;
     </selectKey>
   	insert into users values(#{id}, #{name})
   </insert>

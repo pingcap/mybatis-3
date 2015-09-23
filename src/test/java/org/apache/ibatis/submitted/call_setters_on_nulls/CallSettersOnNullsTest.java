@@ -83,7 +83,7 @@ public class CallSettersOnNullsTest {
     try {
       Mapper mapper = sqlSession.getMapper(Mapper.class);
       Map user = mapper.getUserInMap(1);
-      Assert.assertTrue(user.containsKey("NAME"));
+      Assert.assertTrue(user.containsKey("name"));
     } finally {
       sqlSession.close();
     }
