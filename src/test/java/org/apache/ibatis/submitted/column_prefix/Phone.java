@@ -45,4 +45,13 @@ public class Phone {
   public void setAreaCode(String areaCode) {
     this.areaCode = areaCode;
   }
+
+  @Override
+  public String toString() {
+    return "Phone{" +
+            "id=" + id +
+            ", phone='" + phone + '\'' +
+            ", areaCode='" + areaCode + '\'' +
+            '}';
+  }
 }

@@ -77,4 +77,16 @@ public class Person {
   public void setPets(List<Pet> pets) {
     this.pets = pets;
   }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", billingAddress=" + billingAddress +
+            ", shippingAddress=" + shippingAddress +
+            ", room=" + room +
+            ", pets=" + pets +
+            '}';
+  }
 }

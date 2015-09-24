@@ -45,4 +45,13 @@ public class Zip {
   public void setZipCode(int zipCode) {
     this.zipCode = zipCode;
   }
+
+  @Override
+  public String toString() {
+    return "Zip{" +
+            "state='" + state + '\'' +
+            ", city='" + city + '\'' +
+            ", zipCode=" + zipCode +
+            '}';
+  }
 }

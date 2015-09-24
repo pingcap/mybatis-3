@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-// Not supported.
 public class ColumnPrefixNestedQueryTest extends ColumnPrefixTest {
   protected List<Pet> getPetAndRoom(SqlSession sqlSession) {
     List<Pet> pets = sqlSession.selectList("org.apache.ibatis.submitted.column_prefix.MapperNestedQuery.selectPets");

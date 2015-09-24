@@ -20,9 +20,9 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Ignore;
 import org.junit.Test;
 
-// Not supported.
 public class ColumnPrefixAutoMappingTest extends ColumnPrefixTest {
   protected List<Pet> getPetAndRoom(SqlSession sqlSession) {
     List<Pet> pets = sqlSession.selectList("org.apache.ibatis.submitted.column_prefix.MapperAutoMapping.selectPets");

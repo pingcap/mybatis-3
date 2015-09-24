@@ -29,4 +29,11 @@ public class AddressWithCaution extends Address {
   public void setCaution(String caution) {
     this.caution = caution;
   }
+
+  @Override
+  public String toString() {
+    return "AddressWithCaution{" +
+            "caution='" + caution + '\'' +
+            '}';
+  }
 }

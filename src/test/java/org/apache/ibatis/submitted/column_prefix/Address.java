@@ -101,4 +101,18 @@ public class Address {
   public void setZip(Zip zip) {
     this.zip = zip;
   }
+
+  @Override
+  public String toString() {
+    return "Address{" +
+            "id=" + id +
+            ", state='" + state + '\'' +
+            ", city='" + city + '\'' +
+            ", phone1=" + phone1 +
+            ", phone2=" + phone2 +
+            ", hasPhone=" + hasPhone +
+            ", stateBird='" + stateBird + '\'' +
+            ", zip=" + zip +
+            '}';
+  }
 }

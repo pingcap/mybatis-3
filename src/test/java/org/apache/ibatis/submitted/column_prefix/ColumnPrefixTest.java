@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
 
 import java.io.Reader;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -35,20 +36,28 @@ public class ColumnPrefixTest {
 
   @Before
   public void setUp() throws Exception {
-    // create a SqlSessionFactory
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/column_prefix/Config.xml");
-    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-    reader.close();
+    Connection conn = null;
 
-    // populate in-memory database
-    SqlSession session = sqlSessionFactory.openSession();
-    Connection conn = session.getConnection();
-    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/column_prefix/CreateDB.sql");
-    ScriptRunner runner = new ScriptRunner(conn);
-    runner.setLogWriter(null);
-    runner.runScript(reader);
-    reader.close();
-    session.close();
+    try {
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
+      Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/column_prefix/CreateDB.sql");
+      ScriptRunner runner = new ScriptRunner(conn);
+      runner.setLogWriter(null);
+      runner.setErrorLogWriter(null);
+      runner.runScript(reader);
+      conn.commit();
+      reader.close();
+
+      reader = Resources.getResourceAsReader(getConfigPath());
+      sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+      reader.close();
+
+    } finally {
+      if (conn != null) {
+        conn.close();
+      }
+    }
   }
 
   @Test
@@ -70,6 +79,10 @@ public class ColumnPrefixTest {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
       List<Person> list = getPersons(sqlSession);
+      System.out.println(list.size());
+      System.out.println(list.get(0));
+      System.out.println(list.get(1));
+      System.out.println(list.get(2));
       Person person1 = list.get(0);
       assertEquals(Integer.valueOf(1), person1.getId());
       assertEquals(Address.class, person1.getBillingAddress().getClass());
