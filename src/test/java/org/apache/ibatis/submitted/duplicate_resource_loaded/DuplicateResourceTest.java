@@ -45,7 +45,7 @@ public class DuplicateResourceTest extends BaseDataTest {
     try {
       final Mapper mapper = sqlSession.getMapper(Mapper.class);
       final List<Map<String, Object>> list = mapper.selectAllBlogs();
-      Assert.assertEquals(2,list.size());
+      Assert.assertEquals(2, list.size());
     } finally {
       sqlSession.close();
     }
