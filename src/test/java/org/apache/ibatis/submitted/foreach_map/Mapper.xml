@@ -21,7 +21,7 @@
 <mapper namespace="org.apache.ibatis.submitted.foreach_map.Mapper">
 
     <insert id="ins_string_string">
-        insert into string_string (key, value) values
+        insert into string_string (kkey, vvalue) values
         <foreach item="item" index="key" collection="map"
             open="" separator="," close="">(#{key}, #{item})</foreach>
     </insert>
@@ -31,7 +31,7 @@
 	</select>
 
     <insert id="ins_int_bool">
-        insert into int_bool (key, value) values
+        insert into int_bool (kkey, vvalue) values
         <foreach item="item" index="key" collection="map"
                  open="" separator="," close="">(#{key}, #{item})</foreach>
     </insert>

@@ -14,8 +14,8 @@
 --    limitations under the License.
 --
 
-drop table user_profile if exists;
-drop table user_account if exists;
+drop table if exists user_profile;
+drop table if exists user_account;
 
 create table user_profile (
   id int,

@@ -22,6 +22,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.Reader;
@@ -53,6 +54,7 @@ public class IncludeTest {
     session.close();
   }
 
+  @Ignore   // Not support VALUES(1)
   @Test
   public void testIncludes() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -69,7 +71,7 @@ public class IncludeTest {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
       final Map<String, Object> result = sqlSession.selectOne("org.apache.ibatis.submitted.includes.mapper.select");
-      //Assert.assertEquals(Integer.valueOf(1), result);
+      Assert.assertEquals(3l, result.size());
     } finally {
       sqlSession.close();
     }

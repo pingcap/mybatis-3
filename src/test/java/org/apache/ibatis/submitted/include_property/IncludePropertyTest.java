@@ -73,8 +73,8 @@ public class IncludePropertyTest {
       List<Map<String, String>> results = sqlSession.selectList("org.apache.ibatis.submitted.include_property.Mapper.selectPropertyContext");
       Map<String, String> map = results.get(0);
       assertEquals(2, map.size());
-      assertEquals("col_a value", map.get("COL_A"));
-      assertEquals("col_b value", map.get("COL_B"));
+      assertEquals("col_a value", map.get("col_a"));
+      assertEquals("col_b value", map.get("col_b"));
     } finally {
       sqlSession.close();
     }

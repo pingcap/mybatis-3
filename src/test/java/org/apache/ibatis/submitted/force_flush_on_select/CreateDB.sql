@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
- DROP TABLE person;
+ DROP TABLE if exists person;
 
  CREATE TABLE person (
   id int,

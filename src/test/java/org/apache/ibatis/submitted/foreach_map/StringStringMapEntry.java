@@ -20,24 +20,24 @@ public class StringStringMapEntry {
   }
 
   public StringStringMapEntry(String key, String value) {
-    this.key = key;
-    this.value = value;
+    this.kkey = key;
+    this.vvalue = value;
   }
 
   public Object getKey() {
-    return key;
+    return kkey;
   }
 
   public void setKey(String key) {
-    this.key = key;
+    this.kkey = key;
   }
 
   public String getValue() {
-    return value;
+    return vvalue;
   }
 
   public void setValue(String value) {
-    this.value = value;
+    this.vvalue = value;
   }
 
   @Override
@@ -49,9 +49,9 @@ public class StringStringMapEntry {
 
     StringStringMapEntry mapEntry = (StringStringMapEntry) o;
 
-    if (key != null ? !key.equals(mapEntry.key) : mapEntry.key != null)
+    if (kkey != null ? !kkey.equals(mapEntry.kkey) : mapEntry.kkey != null)
       return false;
-    if (value != null ? !value.equals(mapEntry.value) : mapEntry.value != null)
+    if (vvalue != null ? !vvalue.equals(mapEntry.vvalue) : mapEntry.vvalue != null)
       return false;
 
     return true;
@@ -59,16 +59,16 @@ public class StringStringMapEntry {
 
   @Override
   public int hashCode() {
-    int result = key != null ? key.hashCode() : 0;
-    result = 31 * result + (value != null ? value.hashCode() : 0);
+    int result = kkey != null ? kkey.hashCode() : 0;
+    result = 31 * result + (vvalue != null ? vvalue.hashCode() : 0);
     return result;
   }
 
   @Override
   public String toString() {
-    return '{' + key.toString() + '=' + value + '}';
+    return '{' + kkey.toString() + '=' + vvalue + '}';
   }
 
-  private String key;
-  private String value;
+  private String kkey;
+  private String vvalue;
 }
