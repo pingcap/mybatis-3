@@ -43,6 +43,7 @@ import org.junit.Test;
 @Ignore("See setupdb.txt for instructions on how to run the tests in this class")
 public class InsertTest {
 
+  @Ignore // Not test PostgreSQL
   @Test
   public void testInsertAnnotated() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/keycolumn/MapperConfig.xml");
@@ -63,6 +64,7 @@ public class InsertTest {
     }
   }
 
+  @Ignore // Not test PostgreSQL
   @Test
   public void testInsertMapped() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/keycolumn/MapperConfig.xml");
@@ -83,7 +85,7 @@ public class InsertTest {
     }
   }
 
-  @Ignore // Not supported yet in PostgreSQL
+  @Ignore // Not test PostgreSQL
   @Test
   public void testInsertMappedBatch() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/keycolumn/MapperConfig.xml");
