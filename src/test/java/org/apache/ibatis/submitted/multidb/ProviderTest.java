@@ -23,10 +23,12 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ProviderTest {
 
+  @Ignore // Not support _databaseId.
   @Test
   public void shouldUseDefaultId() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/multidb/MultiDbConfig.xml");

@@ -27,6 +27,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class MultiDbTest {
@@ -39,8 +40,8 @@ public class MultiDbTest {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:multidb", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/multidb/CreateDB.sql");
 
@@ -61,6 +62,7 @@ public class MultiDbTest {
     }
   }
 
+  @Ignore // Not support _databaseId.
   @Test
   public void shouldExecuteHsqlQuery() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -84,7 +86,8 @@ public class MultiDbTest {
       sqlSession.close();
     }
   }
-  
+
+  @Ignore // Not support _databaseId.
   @Test
   public void shouldExecuteHsqlQueryWithDynamicIf() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -97,6 +100,7 @@ public class MultiDbTest {
     }
   }
 
+  @Ignore // Not support _databaseId.
   @Test
   public void shouldExecuteHsqlQueryWithInclude() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
