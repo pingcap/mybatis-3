@@ -42,8 +42,8 @@ public class EncodingTest {
     Charset charset = Resources.getCharset();
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:encoding", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       // make sure that the SQL file has been saved in UTF-8!
       Resources.setCharset(Charset.forName("utf-8"));

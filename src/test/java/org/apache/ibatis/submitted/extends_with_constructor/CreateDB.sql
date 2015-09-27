@@ -14,11 +14,14 @@
 --    limitations under the License.
 --
 
+drop table if exists student;
 create table student (
   id int,
   name varchar(100),
   teacher_id int
 );
+
+drop table if exists teacher;
 create table teacher (
   id int,
   name varchar(100)

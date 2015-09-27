@@ -46,9 +46,8 @@ public class NpeExtendsTest {
         Connection conn = null;
 
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:extends_with_constructor", "sa",
-                    "");
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
             Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/extends_with_constructor/CreateDB.sql");
 
@@ -83,9 +82,10 @@ public class NpeExtendsTest {
     private SqlSessionFactory getSqlSessionFactoryWithConstructor() {
         UnpooledDataSourceFactory unpooledDataSourceFactory = new UnpooledDataSourceFactory();
         Properties properties = new Properties();
-        properties.setProperty("driver", "org.hsqldb.jdbcDriver");
-        properties.setProperty("url", "jdbc:hsqldb:mem:extends_with_constructor");
-        properties.setProperty("username", "sa");
+        properties.setProperty("driver", "com.mysql.jdbc.Driver");
+        properties.setProperty("url", "jdbc:mysql://127.0.0.1:4000/test");
+        properties.setProperty("username", "root");
+        properties.setProperty("password", "");
         unpooledDataSourceFactory.setProperties(properties);
         Environment environment = new Environment("extends_with_constructor", new JdbcTransactionFactory(), unpooledDataSourceFactory.getDataSource());
         

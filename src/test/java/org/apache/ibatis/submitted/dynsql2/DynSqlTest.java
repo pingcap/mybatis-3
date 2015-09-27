@@ -43,9 +43,8 @@ public class DynSqlTest {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:bname", "sa",
-          "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/dynsql2/CreateDB.sql");
 
@@ -100,9 +99,9 @@ public class DynSqlTest {
     try {
       Map<String, Object> answer = (Map<String, Object>) sqlSession.selectOne("org.apache.ibatis.submitted.dynsql2.simpleSelect", 1);
 
-      assertEquals(answer.get("ID"), 1);
-      assertEquals(answer.get("FIRSTNAME"), "Fred");
-      assertEquals(answer.get("LASTNAME"), "Flintstone");
+      assertEquals(answer.get("id"), 1);
+      assertEquals(answer.get("firstName"), "Fred");
+      assertEquals(answer.get("lastName"), "Flintstone");
     } finally {
       sqlSession.close();
     }
