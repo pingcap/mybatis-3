@@ -45,6 +45,7 @@ import org.junit.Test;
  */
 @Ignore("See setupdb.txt for instructions on how to run the tests in this class")
 public class RefCursorTest {
+    @Ignore // Not support PostgreSQL.
     @SuppressWarnings("unchecked")
     @Test
     public void testRefCursor1() throws IOException {
@@ -67,6 +68,7 @@ public class RefCursorTest {
         }
     }
 
+    @Ignore // Not support PostgreSQL.
     @SuppressWarnings("unchecked")
     @Test
     public void testRefCursor2() throws IOException {

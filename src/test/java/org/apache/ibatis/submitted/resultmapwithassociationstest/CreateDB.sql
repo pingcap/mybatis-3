@@ -14,13 +14,13 @@
 --    limitations under the License.
 --
 
-drop table person if exists;
-drop table address if exists;
+drop table if exists person;
+drop table if exists address;
 
 CREATE TABLE address
 (
     id int NOT NULL,
-    CONSTRAINT pk_address PRIMARY KEY (id),
+    CONSTRAINT pk_address PRIMARY KEY (id)
 )
 ;
 
@@ -29,8 +29,8 @@ CREATE TABLE person
 (
     id int NOT NULL,
     id_address integer NOT NULL,
-    CONSTRAINT pk_person PRIMARY KEY (id),
-    CONSTRAINT fk_person_id_address FOREIGN KEY (id_address) REFERENCES address (id) ON UPDATE RESTRICT ON DELETE RESTRICT
+    CONSTRAINT pk_person PRIMARY KEY (id)
+--    CONSTRAINT fk_person_id_address FOREIGN KEY (id_address) REFERENCES address (id) ON UPDATE RESTRICT ON DELETE RESTRICT
 )
 ;
 

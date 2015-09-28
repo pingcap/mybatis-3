@@ -40,8 +40,9 @@ public class SubstitutionInAnnotsTest {
 
   @BeforeClass
   public static void setUp() throws Exception {
-    Class.forName("org.hsqldb.jdbcDriver");
-    Connection c = DriverManager.getConnection("jdbc:hsqldb:mem:annots", "sa", "");
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
+
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/substitution_in_annots/CreateDB.sql");
     ScriptRunner runner = new ScriptRunner(c);
     runner.setLogWriter(null);
@@ -51,7 +52,7 @@ public class SubstitutionInAnnotsTest {
     reader.close();
 
     Configuration configuration = new Configuration();
-    Environment environment = new Environment("test", new JdbcTransactionFactory(), new UnpooledDataSource("org.hsqldb.jdbcDriver", "jdbc:hsqldb:mem:annots", null));
+    Environment environment = new Environment("test", new JdbcTransactionFactory(), new UnpooledDataSource("com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1:4000/test", "root", ""));
     configuration.setEnvironment(environment);
     
     configuration.addMapper(SubstitutionInAnnotsMapper.class);

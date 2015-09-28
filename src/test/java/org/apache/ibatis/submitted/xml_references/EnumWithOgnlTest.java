@@ -34,9 +34,10 @@ public class EnumWithOgnlTest {
     public void testConfiguration() {
         UnpooledDataSourceFactory dataSourceFactory = new UnpooledDataSourceFactory();
         Properties dataSourceProperties = new Properties();
-        dataSourceProperties.put("driver", "org.hsqldb.jdbcDriver");
-        dataSourceProperties.put("url", "jdbc:hsqldb:mem:xml_references");
-        dataSourceProperties.put("username", "sa");
+        dataSourceProperties.put("driver", "com.mysql.jdbc.Driver");
+        dataSourceProperties.put("url", "jdbc:mysql://127.0.0.1:4000/test");
+        dataSourceProperties.put("username", "root");
+        dataSourceProperties.put("password", "");
         dataSourceFactory.setProperties(dataSourceProperties);
         Environment environment = new Environment("test", new JdbcTransactionFactory(), dataSourceFactory.getDataSource());
         Configuration configuration = new Configuration();
