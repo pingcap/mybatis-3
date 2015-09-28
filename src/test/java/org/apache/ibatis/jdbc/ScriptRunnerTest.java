@@ -39,7 +39,6 @@ import java.util.Properties;
 public class ScriptRunnerTest extends BaseDataTest {
 
   @Test
-  @Ignore("This fails with HSQLDB 2.0 due to the create index statements in the schema script")
   public void shouldRunScriptsBySendingFullScriptAtOnce() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -185,7 +184,7 @@ public class ScriptRunnerTest extends BaseDataTest {
 
     assertEquals(
             "select userid from account where userid = 'j2ee'" + System.getProperty("line.separator")
-                    + System.getProperty("line.separator") + "USERID\t" + System.getProperty("line.separator")
+                    + System.getProperty("line.separator") + "userid\t" + System.getProperty("line.separator")
                     + "j2ee\t" + System.getProperty("line.separator"), sw.toString());
   }
 
@@ -207,7 +206,7 @@ public class ScriptRunnerTest extends BaseDataTest {
 
     assertEquals(
             "select userid from account where userid = 'j2ee';" + System.getProperty("line.separator")
-                    + System.getProperty("line.separator") + "USERID\t" + System.getProperty("line.separator")
+                    + System.getProperty("line.separator") + "userid\t" + System.getProperty("line.separator")
                     + "j2ee\t" + System.getProperty("line.separator"), sw.toString());
   }
 

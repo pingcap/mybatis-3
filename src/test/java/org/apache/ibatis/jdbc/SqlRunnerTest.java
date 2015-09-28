@@ -62,7 +62,6 @@ public class SqlRunnerTest extends BaseDataTest {
     exec.setUseGeneratedKeySupport(true);
     int id = exec.insert("INSERT INTO author (username, password, email, bio) VALUES (?,?,?,?)", "someone", "******", "someone@apache.org", Null.LONGVARCHAR);
     Map<String,Object> row = exec.selectOne("SELECT * FROM author WHERE username = ?", "someone");
-    connection.rollback();
     connection.close();
     assertTrue(SqlRunner.NO_GENERATED_KEY != id);
     assertEquals("someone", row.get("USERNAME"));

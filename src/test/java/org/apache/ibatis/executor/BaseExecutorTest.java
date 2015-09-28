@@ -39,6 +39,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.jdbc.JdbcTransaction;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class BaseExecutorTest extends BaseDataTest {
@@ -60,6 +61,7 @@ public class BaseExecutorTest extends BaseDataTest {
     config.setDefaultFetchSize(100);
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldInsertNewAuthorWithBeforeAutoKey() throws Exception {
     
@@ -87,6 +89,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldInsertNewAuthor() throws Exception {
     
@@ -108,6 +111,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldSelectAllAuthorsAutoMapped() throws Exception {
     
@@ -130,6 +134,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldInsertNewAuthorWithAutoKey() throws Exception {
     
@@ -157,6 +162,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldInsertNewAuthorByProc() throws Exception {
     
@@ -177,6 +183,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldInsertNewAuthorUsingSimpleNonPreparedStatements() throws Exception {
     
@@ -198,6 +205,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldUpdateAuthor() throws Exception {
     
@@ -219,6 +227,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldDeleteAuthor() throws Exception {
     
@@ -239,6 +248,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldSelectDiscriminatedPost() throws Exception {
     
@@ -259,6 +269,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldSelect2DiscriminatedPosts() throws Exception {
     
@@ -280,6 +291,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldSelectTwoSetsOfAuthorsViaProc() throws Exception {
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -304,7 +316,8 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test 
+  @Ignore // Not support PROCEDURE.
+  @Test
   public void shouldSelectAuthorViaOutParams() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -329,6 +342,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldFetchPostsForBlog() throws Exception {
     
@@ -351,6 +365,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldFetchOneOrphanedPostWithNoBlog() throws Exception {
     
@@ -372,6 +387,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldFetchPostWithBlogWithCompositeKey() throws Exception {
     
@@ -394,6 +410,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldFetchComplexBlogs() throws Exception {
     
@@ -416,6 +433,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldMapConstructorResults() throws Exception {
     
@@ -435,6 +453,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
+  @Ignore // Not support PROCEDURE.
   @Test
   public void shouldClearDeferredLoads() throws Exception {
     
