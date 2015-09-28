@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
-drop table permissions if exists;
+drop table if exists permissions;
 
 create table permissions (
   resourceName varchar(20),

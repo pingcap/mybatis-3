@@ -14,9 +14,9 @@
 --    limitations under the License.
 --
 
-DROP TABLE blog;
-DROP TABLE post;
-DROP TABLE comment;
+DROP TABLE IF EXISTS blog;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS comment;
 
 CREATE TABLE blog (
 id          INT,
