@@ -26,6 +26,7 @@ create table child(
 	value varchar(20)
 );
 
+DROP TABLE if exists parent_child;
 create table parent_child(
 	idparent integer, 
 	idchild_from integer, 
