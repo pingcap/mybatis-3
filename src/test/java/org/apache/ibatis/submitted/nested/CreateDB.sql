@@ -14,6 +14,7 @@
 --    limitations under the License.
 --
 
+drop table if exists names;
 create table names (
 id int,
 firstName varchar(20),

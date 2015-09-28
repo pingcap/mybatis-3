@@ -14,8 +14,8 @@
 --    limitations under the License.
 --
 
-DROP TABLE parent if exists;
-DROP TABLE child if exists;
+DROP TABLE if exists parent;
+DROP TABLE if exists child;
 create table parent(
 	id integer, 
 	value varchar(20)

@@ -14,8 +14,8 @@
 --    limitations under the License.
 --
 
-drop table persons if exists;
-drop table items if exists;
+drop table if exists persons;
+drop table if exists items;
 
 create table persons (
   id int,
