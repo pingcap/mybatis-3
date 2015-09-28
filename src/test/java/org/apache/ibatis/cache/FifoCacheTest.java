@@ -17,12 +17,13 @@ package org.apache.ibatis.cache;
 
 import org.apache.ibatis.cache.decorators.FifoCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.*;
-import org.junit.Test;
 
 public class FifoCacheTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRemoveFirstItemInBeyondFiveEntries() {
     FifoCache cache = new FifoCache(new PerpetualCache("default"));
     cache.setSize(5);
@@ -35,7 +36,7 @@ public class FifoCacheTest {
     assertEquals(5, cache.getSize());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRemoveItemOnDemand() {
     FifoCache cache = new FifoCache(new PerpetualCache("default"));
     cache.putObject(0, 0);
@@ -44,7 +45,7 @@ public class FifoCacheTest {
     assertNull(cache.getObject(0));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFlushAllItemsOnDemand() {
     FifoCache cache = new FifoCache(new PerpetualCache("default"));
     for (int i = 0; i < 5; i++) {

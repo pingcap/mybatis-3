@@ -15,14 +15,15 @@
  */
 package org.apache.ibatis.cache;
 
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.*;
-import org.junit.Test;
 
 import java.util.Date;
 
 public class CacheKeyTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldTestCacheKeysEqual() {
     Date date = new Date();
     CacheKey key1 = new CacheKey(new Object[] { 1, "hello", null, new Date(date.getTime()) });
@@ -33,7 +34,7 @@ public class CacheKeyTest {
     assertTrue(key1.toString().equals(key2.toString()));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldTestCacheKeysNotEqualDueToDateDifference() throws Exception {
     CacheKey key1 = new CacheKey(new Object[] { 1, "hello", null, new Date() });
     Thread.sleep(1000);
@@ -44,7 +45,7 @@ public class CacheKeyTest {
     assertFalse(key1.toString().equals(key2.toString()));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldTestCacheKeysNotEqualDueToOrder() throws Exception {
     CacheKey key1 = new CacheKey(new Object[] { 1, "hello", null });
     Thread.sleep(1000);
@@ -55,7 +56,7 @@ public class CacheKeyTest {
     assertFalse(key1.toString().equals(key2.toString()));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateEmptyAndNullKeysAreEqual() {
     CacheKey key1 = new CacheKey();
     CacheKey key2 = new CacheKey();
@@ -71,7 +72,7 @@ public class CacheKeyTest {
     assertEquals(key2, key1);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldTestCacheKeysWithBinaryArrays() throws Exception {
     byte[] array1 = new byte[] { 1 };
     byte[] array2 = new byte[] { 1 };

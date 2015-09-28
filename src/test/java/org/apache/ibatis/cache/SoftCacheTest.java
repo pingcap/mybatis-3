@@ -18,12 +18,13 @@ package org.apache.ibatis.cache;
 import org.apache.ibatis.cache.decorators.SerializedCache;
 import org.apache.ibatis.cache.decorators.SoftCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.*;
-import org.junit.Test;
 
 public class SoftCacheTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateObjectsBeingCollectedAsNeeded() throws Exception {
     final int N = 3000000;
     SoftCache cache = new SoftCache(new PerpetualCache("default"));
@@ -41,7 +42,7 @@ public class SoftCacheTest {
   }
 
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateCopiesAreEqual() {
     Cache cache = new SoftCache(new PerpetualCache("default"));
     cache = new SerializedCache(cache);
@@ -52,7 +53,7 @@ public class SoftCacheTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRemoveItemOnDemand() {
     Cache cache = new SoftCache(new PerpetualCache("default"));
     cache.putObject(0, 0);
@@ -61,7 +62,7 @@ public class SoftCacheTest {
     assertNull(cache.getObject(0));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFlushAllItemsOnDemand() {
     Cache cache = new SoftCache(new PerpetualCache("default"));
     for (int i = 0; i < 5; i++) {

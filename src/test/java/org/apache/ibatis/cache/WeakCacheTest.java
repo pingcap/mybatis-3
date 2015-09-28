@@ -22,11 +22,11 @@ import static org.junit.Assert.assertTrue;
 import org.apache.ibatis.cache.decorators.SerializedCache;
 import org.apache.ibatis.cache.decorators.WeakCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class WeakCacheTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateObjectsBeingCollectedAsNeeded() {
     final int N = 3000000;
     WeakCache cache = new WeakCache(new PerpetualCache("default"));
@@ -41,7 +41,7 @@ public class WeakCacheTest {
   }
 
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateCopiesAreEqual() {
     Cache cache = new WeakCache(new PerpetualCache("default"));
     cache = new SerializedCache(cache);
@@ -52,7 +52,7 @@ public class WeakCacheTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRemoveItemOnDemand() {
     WeakCache cache = new WeakCache(new PerpetualCache("default"));
     cache.putObject(0, 0);
@@ -61,7 +61,7 @@ public class WeakCacheTest {
     assertNull(cache.getObject(0));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFlushAllItemsOnDemand() {
     WeakCache cache = new WeakCache(new PerpetualCache("default"));
     for (int i = 0; i < 5; i++) {
