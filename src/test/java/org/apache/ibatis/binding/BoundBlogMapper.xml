@@ -24,7 +24,7 @@
 <mapper namespace="org.apache.ibatis.binding.BoundBlogMapper">
 
     <select id="selectRandom" resultType="int">
-    select CAST(RANDOM()*1000000 as INTEGER) a from SYSIBM.SYSDUMMY1
+    select CAST(RAND()*1000000 as SIGNED) a from DUAL
   </select>
 
     <select id="selectBlogsFromXML" resultType="org.apache.ibatis.domain.blog.Blog">
