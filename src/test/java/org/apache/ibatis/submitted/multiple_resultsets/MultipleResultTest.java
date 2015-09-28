@@ -53,6 +53,7 @@ public class MultipleResultTest {
     reader.close();
   }
 
+  @Ignore // Not test PostgreSQL
   @Test
   public void shouldGetMultipleResultSetsWithOneStatement() throws IOException {
     SqlSession sqlSession = sqlSessionFactory.openSession();
