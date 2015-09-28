@@ -584,7 +584,7 @@ public class BindingTest {
     }
   }
 
-  @Test(expectedExceptions = {Exception.class})
+  @Test(groups = {"tidb"}, expectedExceptions = {Exception.class})
   public void shouldFailWhenSelectingOneBlogWithNonExistentParam() {
     SqlSession session = sqlSessionFactory.openSession();
     try {

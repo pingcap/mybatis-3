@@ -16,10 +16,11 @@
 package org.apache.ibatis.binding;
 
 import org.apache.ibatis.session.Configuration;
+import org.testng.annotations.Test;
 
 public class WrongMapperTest {
 
-  @org.testng.annotations.Test(groups = {"tidb"}, expectedExceptions = RuntimeException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = RuntimeException.class)
   public void shouldFailForBothOneAndMany() throws Exception {
     Configuration configuration = new Configuration();
     configuration.addMapper(MapperWithOneAndMany.class);
