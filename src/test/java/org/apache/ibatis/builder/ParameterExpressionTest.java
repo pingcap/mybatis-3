@@ -17,11 +17,11 @@ package org.apache.ibatis.builder;
 
 import java.util.Map;
 import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ParameterExpressionTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void simpleProperty() {
     Map<String, String> result = new ParameterExpression("id");
     Assert.assertEquals(1, result.size());
@@ -34,7 +34,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("with spaces", result.get("property"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void simplePropertyWithOldStyleJdbcType() {
     Map<String, String> result = new ParameterExpression("id:VARCHAR");
     Assert.assertEquals(2, result.size());
@@ -42,7 +42,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("VARCHAR", result.get("jdbcType"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void oldStyleJdbcTypeWithExtraWhitespaces() {
     Map<String, String> result = new ParameterExpression(" id :  VARCHAR ");
     Assert.assertEquals(2, result.size());
@@ -50,7 +50,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("VARCHAR", result.get("jdbcType"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void expressionWithOldStyleJdbcType() {
     Map<String, String> result = new ParameterExpression("(id.toString()):VARCHAR");
     Assert.assertEquals(2, result.size());
@@ -58,7 +58,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("VARCHAR", result.get("jdbcType"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void simplePropertyWithOneAttribute() {
     Map<String, String> result = new ParameterExpression("id,name=value");
     Assert.assertEquals(2, result.size());
@@ -66,7 +66,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("value", result.get("name"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void expressionWithOneAttribute() {
     Map<String, String> result = new ParameterExpression("(id.toString()),name=value");
     Assert.assertEquals(2, result.size());
@@ -74,7 +74,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("value", result.get("name"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void simplePropertyWithManyAttributes() {
     Map<String, String> result = new ParameterExpression("id, attr1=val1, attr2=val2, attr3=val3");
     Assert.assertEquals(4, result.size());
@@ -84,7 +84,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("val3", result.get("attr3"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void expressionWithManyAttributes() {
     Map<String, String> result = new ParameterExpression("(id.toString()), attr1=val1, attr2=val2, attr3=val3");
     Assert.assertEquals(4, result.size());
@@ -94,7 +94,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("val3", result.get("attr3"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void simplePropertyWithOldStyleJdbcTypeAndAttributes() {
     Map<String, String> result = new ParameterExpression("id:VARCHAR, attr1=val1, attr2=val2");
     Assert.assertEquals(4, result.size());
@@ -104,7 +104,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("val2", result.get("attr2"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void simplePropertyWithSpaceAndManyAttributes() {
     Map<String, String> result = new ParameterExpression("user name, attr1=val1, attr2=val2, attr3=val3");
     Assert.assertEquals(4, result.size());
@@ -114,7 +114,7 @@ public class ParameterExpressionTest {
     Assert.assertEquals("val3", result.get("attr3"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldIgnoreLeadingAndTrailingSpaces() {
     Map<String, String> result = new ParameterExpression(" id , jdbcType =  VARCHAR,  attr1 = val1 ,  attr2 = val2 ");
     Assert.assertEquals(4, result.size());
