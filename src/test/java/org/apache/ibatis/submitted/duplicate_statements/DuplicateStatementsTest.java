@@ -26,15 +26,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class DuplicateStatementsTest {
 
   private SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setupDb() throws Exception {
       // create a SqlSessionFactory
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/duplicate_statements/mybatis-config.xml");
@@ -52,7 +51,7 @@ public class DuplicateStatementsTest {
       session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAllUsers() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -64,7 +63,7 @@ public class DuplicateStatementsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetFirstFourUsers() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -76,8 +75,7 @@ public class DuplicateStatementsTest {
     }
   }
 
-  @Test
-  @Ignore("fails currently - issue 507")
+  @Test(groups={"tidb-todo"}, enabled = false) // "fails currently - issue 507"
   public void shouldGetAllUsers_Annotated() {
     sqlSessionFactory.getConfiguration().addMapper(AnnotatedMapper.class);
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -90,8 +88,7 @@ public class DuplicateStatementsTest {
     }
   }
 
-  @Test
-  @Ignore("fails currently - issue 507")
+  @Test(groups={"tidb-todo"}, enabled = false) // "fails currently - issue 507"
   public void shouldGetFirstFourUsers_Annotated() {
     sqlSessionFactory.getConfiguration().addMapper(AnnotatedMapper.class);
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -104,7 +101,7 @@ public class DuplicateStatementsTest {
     }
   }
 
-  @Test(expected=IllegalArgumentException.class)
+  @Test(groups={"tidb"}, expectedExceptions=IllegalArgumentException.class)
   public void shouldFailForDuplicateMethod() {
     sqlSessionFactory.getConfiguration().addMapper(AnnotatedMapperExtended.class);
   }

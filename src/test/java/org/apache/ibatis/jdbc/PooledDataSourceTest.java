@@ -82,7 +82,7 @@ public class PooledDataSourceTest extends BaseDataTest {
   }
 
   // TODO: java.lang.ClassCastException: com.mysql.jdbc.JDBC4Connection cannot be cast to org.hsqldb.jdbc.JDBCConnection
-  @Test(enabled = false)
+  @Test(groups = {"tidb-todo"}, enabled = false)
   public void ShouldReturnRealConnection() throws Exception {
     PooledDataSource ds = createPooledDataSource(JPETSTORE_PROPERTIES);
     Connection c = ds.getConnection();

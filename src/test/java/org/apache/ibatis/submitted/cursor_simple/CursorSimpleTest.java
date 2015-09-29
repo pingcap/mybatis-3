@@ -24,8 +24,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -54,7 +54,7 @@ public class CursorSimpleTest {
         session.close();
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void shouldGetAllUser() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         Mapper mapper = sqlSession.getMapper(Mapper.class);
@@ -100,7 +100,7 @@ public class CursorSimpleTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testCursorClosedOnSessionClose() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         Mapper mapper = sqlSession.getMapper(Mapper.class);
@@ -134,7 +134,7 @@ public class CursorSimpleTest {
         Assert.assertFalse(usersCursor.isConsumed());
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testCursorWithRowBound() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -160,7 +160,7 @@ public class CursorSimpleTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testCursorWithBadRowBound() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -177,7 +177,7 @@ public class CursorSimpleTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testCursorMultipleHasNextCall() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         Mapper mapper = sqlSession.getMapper(Mapper.class);
@@ -202,7 +202,7 @@ public class CursorSimpleTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testCursorMultipleIteratorCall() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         Mapper mapper = sqlSession.getMapper(Mapper.class);
@@ -227,7 +227,7 @@ public class CursorSimpleTest {
         Assert.fail("Should have returned earlier");
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testCursorMultipleCloseCall() throws IOException {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         Mapper mapper = sqlSession.getMapper(Mapper.class);
@@ -259,7 +259,7 @@ public class CursorSimpleTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testCursorUsageAfterClose() throws IOException {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         Mapper mapper = sqlSession.getMapper(Mapper.class);

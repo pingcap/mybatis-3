@@ -25,7 +25,7 @@ import java.util.Map;
 
 import org.apache.ibatis.domain.misc.RichType;
 import org.apache.ibatis.domain.misc.generics.GenericConcrete;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class MetaClassTest {
 
@@ -40,7 +40,7 @@ public class MetaClassTest {
     rich.setRichType(new RichType());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldTestDataTypeOfGenericMethod() {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     MetaClass meta = MetaClass.forClass(GenericConcrete.class, reflectorFactory);
@@ -48,7 +48,7 @@ public class MetaClassTest {
     assertEquals(Long.class, meta.getSetterType("id"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCheckGetterExistance() {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     MetaClass meta = MetaClass.forClass(RichType.class, reflectorFactory);
@@ -68,7 +68,7 @@ public class MetaClassTest {
     assertFalse(meta.hasGetter("[0]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCheckSetterExistance() {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     MetaClass meta = MetaClass.forClass(RichType.class, reflectorFactory);
@@ -88,7 +88,7 @@ public class MetaClassTest {
     assertFalse(meta.hasSetter("[0]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCheckTypeForEachGetter() {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     MetaClass meta = MetaClass.forClass(RichType.class, reflectorFactory);
@@ -106,7 +106,7 @@ public class MetaClassTest {
     assertEquals(List.class, meta.getGetterType("richType.richList[0]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCheckTypeForEachSetter() {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     MetaClass meta = MetaClass.forClass(RichType.class, reflectorFactory);
@@ -124,7 +124,7 @@ public class MetaClassTest {
     assertEquals(List.class, meta.getSetterType("richType.richList[0]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCheckGetterAndSetterNames() {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     MetaClass meta = MetaClass.forClass(RichType.class, reflectorFactory);
@@ -132,7 +132,7 @@ public class MetaClassTest {
     assertEquals(5, meta.getSetterNames().length);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPropertyName() {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     MetaClass meta = MetaClass.forClass(RichType.class, reflectorFactory);

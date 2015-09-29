@@ -27,8 +27,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class EncodingTest {
 
@@ -70,7 +70,7 @@ public class EncodingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testEncoding1() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -82,7 +82,7 @@ public class EncodingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testEncoding2() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

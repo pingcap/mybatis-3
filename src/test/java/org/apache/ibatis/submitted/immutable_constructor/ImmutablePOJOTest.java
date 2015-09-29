@@ -26,11 +26,11 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public final class ImmutablePOJOTest {
 
@@ -66,7 +66,7 @@ public final class ImmutablePOJOTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldLoadImmutablePOJOBySignature() {
     final SqlSession session = factory.openSession();
     try {
@@ -81,7 +81,7 @@ public final class ImmutablePOJOTest {
   }
 
 
-  @Test(expected=PersistenceException.class)
+  @Test(groups={"tidb"}, expectedExceptions=PersistenceException.class)
   public void shouldFailLoadingImmutablePOJO() {
     final SqlSession session = factory.openSession();
     try {

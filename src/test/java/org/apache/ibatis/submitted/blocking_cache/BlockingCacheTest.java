@@ -26,15 +26,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 // issue #524
 public class BlockingCacheTest {
 
   private static SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     // create a SqlSessionFactory
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/blocking_cache/mybatis-config.xml");
@@ -52,7 +52,7 @@ public class BlockingCacheTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testBlockingCache() {
     ExecutorService defaultThreadPool = Executors.newFixedThreadPool(2);
 

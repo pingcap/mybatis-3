@@ -25,13 +25,13 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class AwfulTableTest {
   protected SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     // create a SqlSessionFactory
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/awful_table/MapperConfig.xml");
@@ -49,7 +49,7 @@ public class AwfulTableTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testAwfulTableInsert() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
 

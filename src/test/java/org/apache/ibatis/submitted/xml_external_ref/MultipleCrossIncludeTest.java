@@ -34,21 +34,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class MultipleCrossIncludeTest {
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMultipleCrossIncludeXmlConfig() throws Exception {
     testCrossReference(getSqlSessionFactoryXmlConfig());
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMultipleCrossIncludeJavaConfig() throws Exception {
     testCrossReference(getSqlSessionFactoryJavaConfig());
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMappedStatementCache() throws Exception {
     Reader configReader = Resources
     .getResourceAsReader("org/apache/ibatis/submitted/xml_external_ref/MultipleCrossIncludeMapperConfig.xml");

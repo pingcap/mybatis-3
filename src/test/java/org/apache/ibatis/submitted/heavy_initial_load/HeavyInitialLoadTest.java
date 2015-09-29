@@ -27,8 +27,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class HeavyInitialLoadTest {
 
@@ -68,7 +68,7 @@ public class HeavyInitialLoadTest {
    * translated to a 'null' value, which is used to invoke the 'equals' method on 
    * (hence the 'target is null for method equals' exception).
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectThingsConcurrently_mybatis_issue_224() throws Exception {
     final List<Throwable> throwables = Collections.synchronizedList(new ArrayList<Throwable>());
 

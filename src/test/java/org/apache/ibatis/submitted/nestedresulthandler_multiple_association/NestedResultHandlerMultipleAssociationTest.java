@@ -25,8 +25,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class NestedResultHandlerMultipleAssociationTest {
 
@@ -52,7 +52,7 @@ public class NestedResultHandlerMultipleAssociationTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void failure() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -74,7 +74,7 @@ public class NestedResultHandlerMultipleAssociationTest {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void success() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
 

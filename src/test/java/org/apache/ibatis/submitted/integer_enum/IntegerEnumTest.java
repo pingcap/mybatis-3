@@ -20,11 +20,11 @@ import java.io.Reader;
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class IntegerEnumTest extends BaseDataTest {
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldParseMapWithIntegerJdbcType() throws Exception {
     String resource = "org/apache/ibatis/submitted/integer_enum/MapperConfig.xml";
     Reader reader = Resources.getResourceAsReader(resource);

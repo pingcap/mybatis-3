@@ -30,9 +30,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class SubstitutionInAnnotsTest {
 
@@ -60,7 +59,7 @@ public class SubstitutionInAnnotsTest {
     sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSubstitutionWithXml() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -71,7 +70,7 @@ public class SubstitutionInAnnotsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSubstitutionWithAnnotsValue() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -81,8 +80,8 @@ public class SubstitutionInAnnotsTest {
       sqlSession.close();
     }
   }
-  
-  @Test
+
+  @Test(groups={"tidb"})
   public void testSubstitutionWithAnnotsParameter() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -93,7 +92,7 @@ public class SubstitutionInAnnotsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSubstitutionWithAnnotsParamAnnot() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

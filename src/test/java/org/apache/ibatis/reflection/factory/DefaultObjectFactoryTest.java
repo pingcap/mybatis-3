@@ -20,7 +20,7 @@ import java.util.Collections;
 
 import org.apache.ibatis.reflection.ReflectionException;
 import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 /**
  * DefaultObjectFactoryTest
@@ -29,7 +29,7 @@ import org.junit.Test;
  */
 public class DefaultObjectFactoryTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void instantiateClass() throws Exception {
     DefaultObjectFactory defaultObjectFactory = new DefaultObjectFactory();
     TestClass testClass = defaultObjectFactory.instantiateClass(TestClass.class,
@@ -39,7 +39,7 @@ public class DefaultObjectFactoryTest {
     Assert.assertEquals("myString didn't match expected", "foo", testClass.myString);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void instantiateClassThrowsProperErrorMsg() {
     DefaultObjectFactory defaultObjectFactory = new DefaultObjectFactory();
     try {

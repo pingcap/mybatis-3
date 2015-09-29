@@ -29,11 +29,11 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class DefaultResultHandlerTypeTest {
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectList() throws Exception {
     String xmlConfig = "org/apache/ibatis/submitted/result_handler_type/MapperConfig.xml";
     SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryXmlConfig(xmlConfig);
@@ -48,7 +48,7 @@ public class DefaultResultHandlerTypeTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectMap() throws Exception {
     String xmlConfig = "org/apache/ibatis/submitted/result_handler_type/MapperConfig.xml";
     SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryXmlConfig(xmlConfig);
@@ -63,7 +63,7 @@ public class DefaultResultHandlerTypeTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectMapAnnotation() throws Exception {
     String xmlConfig = "org/apache/ibatis/submitted/result_handler_type/MapperConfig.xml";
     SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryXmlConfig(xmlConfig);

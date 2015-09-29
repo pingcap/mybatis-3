@@ -21,8 +21,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -39,8 +39,7 @@ public class ComponentTest {
     runDBScript();
   }
 
-
-  @Test
+  @Test(groups={"tidb"})
   public void shouldInsertNestedPasswordFieldOfComplexType() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

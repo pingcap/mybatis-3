@@ -26,8 +26,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ExtendTest {
 
@@ -60,7 +60,7 @@ public class ExtendTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testExtend() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -71,5 +71,4 @@ public class ExtendTest {
       sqlSession.close();
     }
   }
-
 }

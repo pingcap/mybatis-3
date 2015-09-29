@@ -20,10 +20,10 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import java.io.Reader;
 import java.sql.Connection;
@@ -67,53 +67,53 @@ public class DmlMapperReturnTypesTest {
     }
   }
 
-  @Before
+  @BeforeMethod
   public void openSession() {
     sqlSession = sqlSessionFactory.openSession();
     mapper = sqlSession.getMapper(Mapper.class);
   }
 
-  @After
+  @AfterMethod
   public void closeSession() {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void updateShouldReturnVoid() {
       mapper.updateReturnsVoid(new User(1, "updateShouldReturnVoid"));
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldReturnPrimitiveInteger() {
     final int rows = mapper.updateReturnsPrimitiveInteger(new User(1, "shouldReturnPrimitiveInteger"));
     assertEquals(1, rows);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldReturnInteger() {
     final Integer rows = mapper.updateReturnsInteger(new User(1, "shouldReturnInteger"));
     assertEquals(Integer.valueOf(1), rows);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldReturnPrimitiveLong() {
     final long rows = mapper.updateReturnsPrimitiveLong(new User(1, "shouldReturnPrimitiveLong"));
     assertEquals(1L, rows);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldReturnLong() {
     final Long rows = mapper.updateReturnsLong(new User(1, "shouldReturnLong"));
     assertEquals(Long.valueOf(1), rows);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldReturnPrimitiveBoolean() {
     final boolean rows = mapper.updateReturnsPrimitiveBoolean(new User(1, "shouldReturnPrimitiveBoolean"));
     assertEquals(true, rows);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldReturnBoolean() {
     final Boolean rows = mapper.updateReturnsBoolean(new User(1, "shouldReturnBoolean"));
     assertEquals(Boolean.TRUE, rows);

@@ -26,8 +26,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 
 public class AutomappingTest {
 
@@ -51,7 +52,7 @@ public class AutomappingTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAUser() {
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.NONE);
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -64,7 +65,7 @@ public class AutomappingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldNotInheritAutoMappingInherited_InlineNestedResultMap() {
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.NONE);
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -79,8 +80,8 @@ public class AutomappingTest {
       sqlSession.close();
     }
   }
-  
-  @Test
+
+  @Test(groups={"tidb"})
   public void shouldNotInheritAutoMappingInherited_ExternalNestedResultMap() {
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.NONE);
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -96,7 +97,7 @@ public class AutomappingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldIgnorePartialAutoMappingBehavior_InlineNestedResultMap() {
     // For nested resultMaps, PARTIAL works the same as NONE
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.PARTIAL);
@@ -113,7 +114,7 @@ public class AutomappingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldRespectFullAutoMappingBehavior_InlineNestedResultMap() {
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.FULL);
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -129,7 +130,7 @@ public class AutomappingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldIgnorePartialAutoMappingBehavior_ExternalNestedResultMap() {
     // For nested resultMaps, PARTIAL works the same as NONE
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.PARTIAL);
@@ -146,7 +147,7 @@ public class AutomappingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldRespectFullAutoMappingBehavior_ExternalNestedResultMap() {
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.FULL);
     SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -162,7 +163,7 @@ public class AutomappingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetBooks() {
     // set automapping to default partial
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.PARTIAL);
@@ -177,7 +178,7 @@ public class AutomappingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldUpdateFinalField() {
     // set automapping to default partial
     sqlSessionFactory.getConfiguration().setAutoMappingBehavior(AutoMappingBehavior.PARTIAL);

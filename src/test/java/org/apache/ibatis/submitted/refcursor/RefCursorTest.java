@@ -28,8 +28,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 /*
  * This class contains tests for refcursors.  The tests require a
@@ -43,11 +42,9 @@ import org.junit.Test;
  * @author Jeff Butler
  *
  */
-@Ignore("See setupdb.txt for instructions on how to run the tests in this class")
 public class RefCursorTest {
-    @Ignore // Not support PostgreSQL.
     @SuppressWarnings("unchecked")
-    @Test
+    @Test(groups={"tidb-todo"}, enabled = false) // Not support PostgreSQL.
     public void testRefCursor1() throws IOException {
         Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/refcursor/MapperConfig.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
@@ -68,9 +65,8 @@ public class RefCursorTest {
         }
     }
 
-    @Ignore // Not support PostgreSQL.
     @SuppressWarnings("unchecked")
-    @Test
+    @Test(groups={"tidb-todo"}, enabled = false) // Not support PostgreSQL.
     public void testRefCursor2() throws IOException {
         Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/refcursor/MapperConfig.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

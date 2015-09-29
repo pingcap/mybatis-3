@@ -24,8 +24,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class CglibNPELazyTest {
 
@@ -51,7 +51,7 @@ public class CglibNPELazyTest {
         session.close();
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testNoParent() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -62,7 +62,7 @@ public class CglibNPELazyTest {
         sqlSession.close();
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testAncestorSelf() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -73,7 +73,7 @@ public class CglibNPELazyTest {
         sqlSession.close();
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testAncestorAfterQueryingParents() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -87,7 +87,7 @@ public class CglibNPELazyTest {
         sqlSession.close();
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testGrandParent() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -102,7 +102,7 @@ public class CglibNPELazyTest {
         sqlSession.close();
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testAncestor() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);

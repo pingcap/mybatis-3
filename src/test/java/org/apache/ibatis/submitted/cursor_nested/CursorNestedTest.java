@@ -23,8 +23,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import java.io.Reader;
 import java.sql.Connection;
@@ -52,7 +52,7 @@ public class CursorNestedTest {
         session.close();
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void shouldGetAllUser() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         Mapper mapper = sqlSession.getMapper(Mapper.class);
@@ -94,7 +94,7 @@ public class CursorNestedTest {
         Assert.assertFalse(usersCursor.isOpen());
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testCursorWithRowBound() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 

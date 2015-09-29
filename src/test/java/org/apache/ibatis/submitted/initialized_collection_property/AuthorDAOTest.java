@@ -20,11 +20,11 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 import static org.junit.Assert.assertEquals;
 
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
 
 import java.io.Reader;
 import java.sql.Connection;
@@ -51,7 +51,7 @@ public class AuthorDAOTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldNotOverwriteCollectionOnNestedResultMap() {
     SqlSession session = factory.openSession();
     try {
@@ -63,8 +63,7 @@ public class AuthorDAOTest {
     }
   }
 
-  @Ignore // issue #75 nested selects overwrite collections
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // issue #75 nested selects overwrite collections
   public void shouldNotOverwriteCollectionOnNestedQuery() {
     SqlSession session = factory.openSession();
     try {

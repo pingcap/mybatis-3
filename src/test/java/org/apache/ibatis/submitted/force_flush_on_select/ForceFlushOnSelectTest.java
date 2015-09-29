@@ -31,14 +31,14 @@ import org.apache.ibatis.session.LocalCacheScope;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class ForceFlushOnSelectTest {
 
   private static SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void initDatabase() throws Exception {
     Connection conn = null;
 
@@ -64,7 +64,7 @@ public class ForceFlushOnSelectTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldFlushLocalSessionCacheOnQuery() throws SQLException {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
     try {
@@ -79,7 +79,7 @@ public class ForceFlushOnSelectTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldNotFlushLocalSessionCacheOnQuery() throws SQLException {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
     try {
@@ -94,7 +94,7 @@ public class ForceFlushOnSelectTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldFlushLocalSessionCacheOnQueryForList() throws SQLException {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
     try {
@@ -109,7 +109,7 @@ public class ForceFlushOnSelectTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldNotFlushLocalSessionCacheOnQueryForList() throws SQLException {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
     try {
@@ -130,7 +130,7 @@ public class ForceFlushOnSelectTest {
     stmt.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testUpdateShouldFlushLocalCache() throws SQLException {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
     try {
@@ -147,7 +147,7 @@ public class ForceFlushOnSelectTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectShouldFlushLocalCacheIfFlushLocalCacheAtferEachStatementIsTrue() throws SQLException {
     sqlSessionFactory.getConfiguration().setLocalCacheScope(LocalCacheScope.STATEMENT);
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);

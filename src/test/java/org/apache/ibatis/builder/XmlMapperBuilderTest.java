@@ -34,7 +34,7 @@ public class XmlMapperBuilderTest {
   }
 
   // TODO: Not supported.
-  @Test(enabled = false)
+  @Test(groups = {"tidb-todo"}, enabled = false)
   public void shouldNotLoadTheSameNamespaceFromTwoResourcesWithDifferentNames() throws Exception {
     Configuration configuration = new Configuration();
     String resource = "org/apache/ibatis/builder/AuthorMapper.xml";

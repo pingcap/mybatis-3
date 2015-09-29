@@ -25,14 +25,12 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-//@Ignore("see issue #614")
 public class SerializeCircularTest {
 
-  @Test
-  public void serializeAndDeserializeObjectsWithAggressiveLazyLoadingWithoutPreloadingAttribute() 
+  @Test(groups={"tidb"})
+  public void serializeAndDeserializeObjectsWithAggressiveLazyLoadingWithoutPreloadingAttribute()
   throws Exception {
     SqlSession sqlSession = createSessionWithAggressiveLazyLoading();
     try {
@@ -41,8 +39,8 @@ public class SerializeCircularTest {
         sqlSession.close();
       }
   }
-  
-  @Test
+
+  @Test(groups={"tidb"})
   public void serializeAndDeserializeObjectsWithAggressiveLazyLoadingWithPreloadingAttribute() 
   throws Exception {
     SqlSession sqlSession = createSessionWithAggressiveLazyLoading();
@@ -53,8 +51,7 @@ public class SerializeCircularTest {
       }
   }
 
-//  @Ignore("See http://code.google.com/p/mybatis/issues/detail?id=614")
-  @Test
+  @Test(groups={"tidb"})
   public void serializeAndDeserializeObjectsWithoutAggressiveLazyLoadingWithoutPreloadingAttribute() 
   throws Exception {
     SqlSession sqlSession = createSessionWithoutAggressiveLazyLoading();
@@ -66,7 +63,7 @@ public class SerializeCircularTest {
       }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void serializeAndDeserializeObjectsWithoutAggressiveLazyLoadingWithPreloadingAttribute() 
   throws Exception {
     SqlSession sqlSession = createSessionWithoutAggressiveLazyLoading();

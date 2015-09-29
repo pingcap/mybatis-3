@@ -30,10 +30,10 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
-public class CommonPropertyDeferLoadError {
+public class CommonPropertyDeferLoadErrorTest {
 
     private static SqlSessionFactory sqlSessionFactory;
     private static SqlSessionFactory lazyLoadSqlSessionFactory;
@@ -67,7 +67,7 @@ public class CommonPropertyDeferLoadError {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testDeferLoadAfterResultHandler() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
@@ -88,7 +88,7 @@ public class CommonPropertyDeferLoadError {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testDeferLoadDuringResultHandler() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
@@ -104,7 +104,7 @@ public class CommonPropertyDeferLoadError {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testDeferLoadAfterResultHandlerWithLazyLoad() {
         SqlSession sqlSession = lazyLoadSqlSessionFactory.openSession();
         try {
@@ -125,7 +125,7 @@ public class CommonPropertyDeferLoadError {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testDeferLoadDuringResultHandlerWithLazyLoad() {
         SqlSession sqlSession = lazyLoadSqlSessionFactory.openSession();
         try {

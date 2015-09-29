@@ -27,14 +27,14 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class ColumnPrefixTest {
 
   protected SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     Connection conn = null;
 
@@ -60,7 +60,7 @@ public class ColumnPrefixTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectPetAndRoom() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -74,7 +74,7 @@ public class ColumnPrefixTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testComplexPerson() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

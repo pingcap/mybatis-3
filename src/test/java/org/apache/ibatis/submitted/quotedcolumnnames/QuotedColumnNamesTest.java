@@ -27,8 +27,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class QuotedColumnNamesTest {
 
@@ -61,7 +61,7 @@ public class QuotedColumnNamesTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testIt() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -73,7 +73,7 @@ public class QuotedColumnNamesTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testItWithResultMap() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

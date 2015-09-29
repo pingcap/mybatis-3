@@ -20,8 +20,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ColumnPrefixAutoMappingTest extends ColumnPrefixTest {
   protected List<Pet> getPetAndRoom(SqlSession sqlSession) {
@@ -39,7 +38,7 @@ public class ColumnPrefixAutoMappingTest extends ColumnPrefixTest {
     return "org/apache/ibatis/submitted/column_prefix/ConfigAutoMapping.xml";
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testCaseInsensitivity() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

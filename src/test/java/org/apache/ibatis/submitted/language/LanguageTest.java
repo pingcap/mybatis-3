@@ -26,10 +26,11 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * Just a test case. Not a real Velocity implementation.
@@ -65,7 +66,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testDynamicSelectWithPropertyParams() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -96,7 +97,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testDynamicSelectWithExpressionParams() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -127,7 +128,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testDynamicSelectWithIteration() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -146,7 +147,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testLangRaw() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -161,7 +162,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testLangRawWithInclude() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -175,7 +176,8 @@ public class LanguageTest {
       sqlSession.close();
     }
   }
-  @Test
+
+  @Test(groups={"tidb"})
   public void testLangRawWithIncludeAndCData() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -189,8 +191,8 @@ public class LanguageTest {
       sqlSession.close();
     }
   }
-  
-  @Test
+
+  @Test(groups={"tidb"})
   public void testLangXmlTags() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -205,7 +207,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testLangRawWithMapper() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -221,7 +223,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testLangVelocityWithMapper() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -237,7 +239,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testLangXmlWithMapper() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -253,7 +255,7 @@ public class LanguageTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testLangXmlWithMapperAndSqlSymbols() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

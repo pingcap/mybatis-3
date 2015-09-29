@@ -24,16 +24,16 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class SimpleObjectTest {
   private SimpleChildObjectMapper simpleChildObjectMapper;
   private SqlSession sqlSession;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/bringrags/mybatis-config.xml");
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
@@ -53,12 +53,12 @@ public class SimpleObjectTest {
     simpleChildObjectMapper = (SimpleChildObjectMapper) sqlSession.getMapper(SimpleChildObjectMapper.class);
   }
 
-  @After
+  @AfterMethod
   public void tearDown() throws Exception {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testGetById() throws Exception {
     SimpleChildObject sc = simpleChildObjectMapper.getSimpleChildObjectById("20000");
     Assert.assertNotNull(sc);

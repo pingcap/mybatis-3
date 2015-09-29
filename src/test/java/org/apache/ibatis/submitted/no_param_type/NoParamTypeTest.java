@@ -28,8 +28,8 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class NoParamTypeTest {
 
@@ -53,7 +53,7 @@ public class NoParamTypeTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldAcceptDifferentTypeInTheSameBatch() {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
     try {

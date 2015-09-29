@@ -32,8 +32,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 /*
  * Test for NPE when using extends.
@@ -63,15 +63,16 @@ public class NpeExtendsTest {
             }
         }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testNoConstructorConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addMapper(StudentMapper.class);
         configuration.addMapper(TeacherMapper.class);
         configuration.getMappedStatementNames();
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testWithConstructorConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addMapper(StudentConstructorMapper.class);
@@ -98,7 +99,8 @@ public class NpeExtendsTest {
         
         return new DefaultSqlSessionFactory(configuration);
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testSelectWithTeacher() {
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryWithConstructor();
         SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -111,7 +113,8 @@ public class NpeExtendsTest {
             sqlSession.close();
         }
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testSelectNoName() {
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryWithConstructor();
         SqlSession sqlSession = sqlSessionFactory.openSession();

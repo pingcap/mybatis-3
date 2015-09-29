@@ -25,8 +25,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ComplexColumnTest {
     
@@ -49,8 +49,8 @@ public class ComplexColumnTest {
         reader.close();
         session.close();
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testWithoutComplex() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -64,8 +64,8 @@ public class ComplexColumnTest {
         Assert.assertEquals("Smith", parent.getLastName());
       sqlSession.close();
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testWithComplex() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -81,7 +81,7 @@ public class ComplexColumnTest {
 
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testWithComplex2() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -97,7 +97,7 @@ public class ComplexColumnTest {
 
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testWithComplex3() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -113,7 +113,7 @@ public class ComplexColumnTest {
 
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testWithComplex4() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);

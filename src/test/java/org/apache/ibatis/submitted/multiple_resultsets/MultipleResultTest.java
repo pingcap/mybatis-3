@@ -24,9 +24,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 /*
  * This class contains tests for multiple results.  
@@ -41,7 +40,6 @@ import org.junit.Test;
  * the @Ignore annotation to enable the tests.
  *
  */
-@Ignore("See setupdb.txt for instructions on how to run the tests in this class")
 public class MultipleResultTest {
 
   private static SqlSessionFactory sqlSessionFactory;
@@ -53,8 +51,7 @@ public class MultipleResultTest {
     reader.close();
   }
 
-  @Ignore // Not test PostgreSQL
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not test PostgreSQL
   public void shouldGetMultipleResultSetsWithOneStatement() throws IOException {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

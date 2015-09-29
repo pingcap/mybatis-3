@@ -26,9 +26,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 /*
  * This class contains tests for multiple result sets with an association mapping.
@@ -71,8 +70,7 @@ public class MultipleResultSetTest {
     runner.runScript(reader);
   }
 
-  @Ignore // Not support PROCEDURE.
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldGetOrderDetailsEachHavingAnOrderHeader() throws IOException {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

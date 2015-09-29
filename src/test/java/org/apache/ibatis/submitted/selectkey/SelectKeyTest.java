@@ -24,9 +24,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.io.Reader;
 import java.sql.Connection;
@@ -38,7 +37,7 @@ public class SelectKeyTest {
 
   protected static SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     Connection conn = null;
 
@@ -110,7 +109,7 @@ public class SelectKeyTest {
     }
   }
 
-  @Test(expected=PersistenceException.class)
+  @Test(expectedExceptions=PersistenceException.class)
   public void testSeleckKeyReturnsNoData() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -124,7 +123,7 @@ public class SelectKeyTest {
     }
   }
 
-  @Test(expected=PersistenceException.class)
+  @Test(expectedExceptions=PersistenceException.class)
   public void testSeleckKeyReturnsTooManyData() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -170,8 +169,8 @@ public class SelectKeyTest {
       }
   }
 
-  @Test
-  @Ignore("HSQLDB is not returning the generated column after the update")
+  // "HSQLDB is not returning the generated column after the update"
+  @Test(enabled = false)
   public void testAnnotatedUpdateTable2WithGeneratedKey() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -194,8 +193,8 @@ public class SelectKeyTest {
       }
   }
 
-  @Test
-  @Ignore("HSQLDB is not returning the generated column after the update")
+  // "HSQLDB is not returning the generated column after the update"
+  @Test(enabled = false)
   public void testAnnotatedUpdateTable2WithGeneratedKeyXml() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -427,7 +426,7 @@ public class SelectKeyTest {
       }
   }
 
-  @Test(expected = PersistenceException.class)
+  @Test(expectedExceptions = PersistenceException.class)
   public void testSeleckKeyWithWrongKeyProperty() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

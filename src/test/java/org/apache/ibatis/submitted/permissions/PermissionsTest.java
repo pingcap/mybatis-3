@@ -25,8 +25,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class PermissionsTest {
 
@@ -52,7 +52,8 @@ public class PermissionsTest {
     reader.close();
   }
 
-  @Test // see issue #168
+  // see issue #168
+  @Test(groups={"tidb"})
   public void checkNestedResultMapLoop() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -78,7 +79,7 @@ public class PermissionsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void checkNestedSelectLoop() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

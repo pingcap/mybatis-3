@@ -24,11 +24,11 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ForEachMapTest {
 
@@ -52,17 +52,17 @@ public class ForEachMapTest {
     session.close();
   }
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     sqlSession = sqlSessionFactory.openSession();
   }
 
-  @After
+  @AfterMethod
   public void tearDown() throws Exception {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetStringKeyStringValueEntries() {
     MapParam mapParam = new MapParam();
     mapParam.getMap().put("key 1", "value 1");
@@ -74,7 +74,7 @@ public class ForEachMapTest {
     Assert.assertEquals(new StringStringMapEntry("key 2", "value 2"), entries.get(1));
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetIntKeyBoolValueEntries() throws Exception {
     MapParam mapParam = new MapParam();
     mapParam.getMap().put(12345, true);
@@ -86,7 +86,7 @@ public class ForEachMapTest {
     Assert.assertEquals(new IntBoolMapEntry(54321, false), entries.get(1));
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetNestedBeanKeyValueEntries() throws Exception {
     MapParam mapParam = new MapParam();
     mapParam.getMap().put(new NestedBean(12345, true), new NestedBean(54321, false));
@@ -97,8 +97,8 @@ public class ForEachMapTest {
     Assert.assertEquals(new NestedBeanMapEntry(12345, true, 54321, false), entries.get(0));
     Assert.assertEquals(new NestedBeanMapEntry(67890, true, 9876, false), entries.get(1));
   }
-  
-  @Test
+
+  @Test(groups={"tidb"})
   public void shouldSubstituteIndexWithKey() throws Exception {
     MapParam mapParam = new MapParam();
     mapParam.getMap().put("col_a", 22);

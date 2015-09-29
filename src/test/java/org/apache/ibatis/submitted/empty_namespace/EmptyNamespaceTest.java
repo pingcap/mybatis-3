@@ -20,10 +20,10 @@ import java.io.Reader;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class EmptyNamespaceTest {
-  @Test(expected = PersistenceException.class)
+  @Test(groups={"tidb"}, expectedExceptions = PersistenceException.class)
   public void testEmptyNamespace() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/empty_namespace/ibatisConfig.xml");
     try {

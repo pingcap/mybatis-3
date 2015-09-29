@@ -21,8 +21,8 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.io.Reader;
 import java.util.List;
@@ -30,12 +30,12 @@ import java.util.Map;
 
 public class DuplicateResourceTest extends BaseDataTest {
 
-  @Before
+  @BeforeMethod
   public void setup() throws Exception {
     BaseDataTest.createBlogDataSource();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldDemonstrateDuplicateResourceIssue() throws Exception {
     final String resource = "org/apache/ibatis/submitted/duplicate_resource_loaded/Config.xml";
     final Reader reader = Resources.getResourceAsReader(resource);

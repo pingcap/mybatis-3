@@ -27,8 +27,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class BlobTest {
     private static SqlSessionFactory sqlSessionFactory;
@@ -51,11 +51,11 @@ public class BlobTest {
         session.close();
     }
 
-    @Test
     /*
      * This test demonstrates the use of type aliases for primitive types
      * in constructor based result maps
      */
+    @Test(groups={"tidb"})
     public void testInsertBlobThenSelectAll() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
@@ -78,11 +78,11 @@ public class BlobTest {
         }
     }
 
-    @Test
     /*
      * This test demonstrates the use of type aliases for primitive types
      * in constructor based result maps
      */
+    @Test(groups={"tidb"})
     public void testInsertBlobObjectsThenSelectAll() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {

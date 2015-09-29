@@ -18,7 +18,11 @@ package org.apache.ibatis.submitted.overwritingproperties;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.*;
-import org.junit.*;
+import org.junit.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
 
 import java.io.Reader;
 import java.sql.Connection;
@@ -47,14 +51,14 @@ public class FooMapperTest {
     }
   }
 
-  @Before
+  @BeforeMethod
   public void setUp() {
     final FooMapper mapper = session.getMapper(FooMapper.class);
     mapper.deleteAllFoo();
     session.commit();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testOverwriteWithDefault() {
     final FooMapper mapper = session.getMapper(FooMapper.class);
     final Bar bar = new Bar(2L);

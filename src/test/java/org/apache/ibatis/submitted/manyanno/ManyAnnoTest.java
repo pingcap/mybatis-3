@@ -22,7 +22,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ManyAnnoTest extends BaseDataTest {
 
-  @Test
+  @Test(groups={"tidb"})
   public void testGetMessageForEmptyDatabase() throws Exception {
     final Environment environment = new Environment("test", new JdbcTransactionFactory(), BaseDataTest.createBlogDataSource());
     final Configuration config = new Configuration(environment);

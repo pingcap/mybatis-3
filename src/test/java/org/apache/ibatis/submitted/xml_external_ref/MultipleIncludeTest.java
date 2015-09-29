@@ -32,16 +32,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class MultipleIncludeTest {
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMultipleIncludeXmlConfig() throws Exception {
     testMultipleIncludes(getSqlSessionFactoryXmlConfig());
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMultipleIncludeJavaConfig() throws Exception {
     testMultipleIncludes(getSqlSessionFactoryJavaConfig());
   }
