@@ -288,7 +288,7 @@
               <value>target/derby.log</value>
             </property>
           </systemProperties>
-          <groups>tidb</groups>
+          <!--<groups>tidb</groups>-->
         </configuration>
       </plugin>
       <plugin>
