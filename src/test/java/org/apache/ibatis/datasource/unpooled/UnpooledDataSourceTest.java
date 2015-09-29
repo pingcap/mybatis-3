@@ -23,8 +23,7 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.util.Enumeration;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class UnpooledDataSourceTest {
 
@@ -40,8 +39,7 @@ public class UnpooledDataSourceTest {
     assertEquals(before, countRegisteredDrivers());
   }
 
-  @Ignore("Requires MySQL server and a driver.")
-  @Test
+  @Test(enabled = false) // "Requires MySQL server and a driver."
   public void shouldRegisterDynamicallyLoadedDriver() throws Exception {
     int before = countRegisteredDrivers();
     ClassLoader driverClassLoader = null;

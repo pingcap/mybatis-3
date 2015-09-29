@@ -15,8 +15,9 @@
  */
 package org.apache.ibatis.parsing;
 
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class GenericTokenParserTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateGenericTokenReplacement() {
     GenericTokenParser parser = new GenericTokenParser("${", "}", new VariableTokenHandler(new HashMap<String, String>() {
       {
@@ -67,7 +68,7 @@ public class GenericTokenParserTest {
     assertEquals("Hello } ${ this is a test.", parser.parse("Hello } ${ this is a test."));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shallNotInterpolateSkippedVaiables() {
     GenericTokenParser parser = new GenericTokenParser("${", "}", new VariableTokenHandler(new HashMap<String, String>()));
 
@@ -77,7 +78,7 @@ public class GenericTokenParserTest {
     assertEquals("The null is ${skipped} variable", parser.parse("The ${skipped} is \\${skipped} variable"));
   }
 
-  @Test(timeout = 1000)
+  @Test(groups = {"tidb"}, timeOut = 1000)
   public void shouldParseFastOnJdk7u6() {
     // issue #760
     GenericTokenParser parser = new GenericTokenParser("${", "}", new VariableTokenHandler(new HashMap<String, String>() {

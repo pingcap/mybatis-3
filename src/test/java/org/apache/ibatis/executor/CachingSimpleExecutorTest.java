@@ -16,11 +16,11 @@
 package org.apache.ibatis.executor;
 
 import org.apache.ibatis.transaction.Transaction;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class CachingSimpleExecutorTest extends BaseExecutorTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void dummy() {
   }
 

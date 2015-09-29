@@ -42,12 +42,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
 public class DefaultResultSetHandlerTest {
 
   @Mock
@@ -61,12 +60,12 @@ public class DefaultResultSetHandlerTest {
   @Mock
   private DatabaseMetaData dbmd;
 
-  /**
-   * Contrary to the spec, some drivers require case-sensitive column names when getting result.
-   * 
-   * @see <a href="http://code.google.com/p/mybatis/issues/detail?id=557">Issue 557</a>
-   */
-  @Test
+  @BeforeMethod
+  public void setup() {
+    MockitoAnnotations.initMocks(this);
+  }
+
+  @Test(groups = {"tidb"})
   public void shouldRetainColumnNameCase() throws Exception {
 
     final MappedStatement ms = getMappedStatement();
@@ -97,7 +96,7 @@ public class DefaultResultSetHandlerTest {
     assertEquals(Integer.valueOf(100), ((HashMap) results.get(0)).get("cOlUmN1"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldThrowExceptionWithColumnName() throws Exception {
     final MappedStatement ms = getMappedStatement();
     final RowBounds rowBounds = new RowBounds(0, 100);

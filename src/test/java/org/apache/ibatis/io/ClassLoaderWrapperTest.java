@@ -16,10 +16,11 @@
 package org.apache.ibatis.io;
 
 import org.apache.ibatis.BaseDataTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import org.junit.Before;
-import org.junit.Test;
 
 public class ClassLoaderWrapperTest extends BaseDataTest {
 
@@ -30,53 +31,53 @@ public class ClassLoaderWrapperTest extends BaseDataTest {
   private final String CLASS_FOUND = "java.lang.Object";
 
 
-  @Before
+  @BeforeMethod
   public void beforeClassLoaderWrapperTest() {
     wrapper = new ClassLoaderWrapper();
     loader = getClass().getClassLoader();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void classForName() throws ClassNotFoundException {
     assertNotNull(wrapper.classForName(CLASS_FOUND));
   }
 
-  @Test(expected = ClassNotFoundException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = ClassNotFoundException.class)
   public void classForNameNotFound() throws ClassNotFoundException {
     assertNotNull(wrapper.classForName(CLASS_NOT_FOUND));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void classForNameWithClassLoader() throws ClassNotFoundException {
     assertNotNull(wrapper.classForName(CLASS_FOUND, loader));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void getResourceAsURL() {
     assertNotNull(wrapper.getResourceAsURL(JPETSTORE_PROPERTIES));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void getResourceAsURLNotFound() {
     assertNull(wrapper.getResourceAsURL(RESOURCE_NOT_FOUND));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void getResourceAsURLWithClassLoader() {
     assertNotNull(wrapper.getResourceAsURL(JPETSTORE_PROPERTIES, loader));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void getResourceAsStream() {
     assertNotNull(wrapper.getResourceAsStream(JPETSTORE_PROPERTIES));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void getResourceAsStreamNotFound() {
     assertNull(wrapper.getResourceAsStream(RESOURCE_NOT_FOUND));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void getResourceAsStreamWithClassLoader() {
     assertNotNull(wrapper.getResourceAsStream(JPETSTORE_PROPERTIES, loader));
   }

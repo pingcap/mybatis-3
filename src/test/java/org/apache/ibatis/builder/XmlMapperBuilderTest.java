@@ -33,6 +33,7 @@ public class XmlMapperBuilderTest {
     builder.parse();
   }
 
+  // TODO: Not supported.
   @Test(enabled = false)
   public void shouldNotLoadTheSameNamespaceFromTwoResourcesWithDifferentNames() throws Exception {
     Configuration configuration = new Configuration();

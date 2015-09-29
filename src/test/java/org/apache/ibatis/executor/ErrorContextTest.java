@@ -15,11 +15,11 @@
  */
 package org.apache.ibatis.executor;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ErrorContextTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldShowProgressiveErrorContextBuilding() {
     ErrorContext context = ErrorContext.instance();
     context.resource("somefile.xml").activity("some activity").object("some object").message("Here's more info.");

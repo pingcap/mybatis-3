@@ -18,11 +18,10 @@ package org.apache.ibatis.executor;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.session.Configuration;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.testng.annotations.Test;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.*;
 
@@ -30,7 +29,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
 public class ResultExtractorTest {
 
   private ResultExtractor resultExtractor;
@@ -40,18 +38,19 @@ public class ResultExtractorTest {
   @Mock
   private ObjectFactory objectFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
+    MockitoAnnotations.initMocks(this);
     resultExtractor = new ResultExtractor(configuration, objectFactory);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExtractNullForNullTargetType() {
     final Object result = resultExtractor.extractObjectFromList(null, null);
     assertThat(result, nullValue());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExtractList() {
     final List list = Arrays.asList(1, 2, 3);
     final Object result = resultExtractor.extractObjectFromList(list, List.class);
@@ -60,7 +59,7 @@ public class ResultExtractorTest {
     assertThat(resultList, equalTo(list));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExtractArray() {
     final List list = Arrays.asList(1, 2, 3);
     final Object result = resultExtractor.extractObjectFromList(list, Integer[].class);
@@ -69,7 +68,7 @@ public class ResultExtractorTest {
     assertThat(resultArray, equalTo(new Integer[]{1, 2, 3}));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExtractSet() {
     final List list = Arrays.asList(1, 2, 3);
     final Class<Set> targetType = Set.class;
@@ -85,7 +84,7 @@ public class ResultExtractorTest {
     verify(metaObject).addAll(list);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExtractSingleObject() {
     final List list = Collections.singletonList("single object");
     assertThat((String) resultExtractor.extractObjectFromList(list, String.class), equalTo("single object"));
@@ -93,7 +92,7 @@ public class ResultExtractorTest {
     assertThat((String) resultExtractor.extractObjectFromList(list, Integer.class), equalTo("single object"));
   }
 
-  @Test(expected = ExecutorException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = ExecutorException.class)
   public void shouldFailWhenMutipleItemsInList() {
     final List list = Arrays.asList("first object", "second object");
     assertThat((String) resultExtractor.extractObjectFromList(list, String.class), equalTo("single object"));

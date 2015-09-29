@@ -19,11 +19,11 @@ import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.StringTypeHandler;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class NullTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetTypeAndTypeHandlerForNullStringType() {
     assertEquals(JdbcType.VARCHAR, Null.STRING.getJdbcType());
     assertTrue(Null.STRING.getTypeHandler() instanceof StringTypeHandler);
