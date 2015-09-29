@@ -14,9 +14,9 @@
 --    limitations under the License.
 --
 
-drop table if exists product;
+drop table if exists product2;
 
-create table product (
+create table product2 (
 productid varchar(10) not null,
 category varchar(10) not null,
 name varchar(80) null,

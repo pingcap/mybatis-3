@@ -28,32 +28,32 @@ import java.nio.charset.Charset;
 import java.util.Properties;
 
 import org.apache.ibatis.BaseDataTest;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ResourcesTest extends BaseDataTest {
 
   private static final ClassLoader CLASS_LOADER = ResourcesTest.class.getClassLoader();
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetUrlForResource() throws Exception {
     URL url = Resources.getResourceURL(JPETSTORE_PROPERTIES);
     assertTrue(url.toString().endsWith("jpetstore/jpetstore-tidb.properties"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetUrlAsProperties() throws Exception {
     URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
     Properties props = Resources.getUrlAsProperties(url.toString());
     assertNotNull(props.getProperty("driver"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetResourceAsProperties() throws Exception {
     Properties props = Resources.getResourceAsProperties(CLASS_LOADER, JPETSTORE_PROPERTIES);
     assertNotNull(props.getProperty("driver"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetUrlAsStream() throws Exception {
     URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
     InputStream in = Resources.getUrlAsStream(url.toString());
@@ -61,7 +61,7 @@ public class ResourcesTest extends BaseDataTest {
     in.close();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetUrlAsReader() throws Exception {
     URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
     Reader in = Resources.getUrlAsReader(url.toString());
@@ -69,68 +69,68 @@ public class ResourcesTest extends BaseDataTest {
     in.close();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetResourceAsStream() throws Exception {
     InputStream in = Resources.getResourceAsStream(CLASS_LOADER, JPETSTORE_PROPERTIES);
     assertNotNull(in);
     in.close();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetResourceAsReader() throws Exception {
     Reader in = Resources.getResourceAsReader(CLASS_LOADER, JPETSTORE_PROPERTIES);
     assertNotNull(in);
     in.close();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetResourceAsFile() throws Exception {
     File file = Resources.getResourceAsFile(JPETSTORE_PROPERTIES);
     assertTrue(file.getAbsolutePath().replace('\\', '/').endsWith("jpetstore/jpetstore-tidb.properties"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetResourceAsFileWithClassloader() throws Exception {
     File file = Resources.getResourceAsFile(CLASS_LOADER, JPETSTORE_PROPERTIES);
     assertTrue(file.getAbsolutePath().replace('\\', '/').endsWith("jpetstore/jpetstore-tidb.properties"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetResourceAsPropertiesWithOutClassloader() throws Exception {
     Properties file = Resources.getResourceAsProperties(JPETSTORE_PROPERTIES);
     assertNotNull(file);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetResourceAsPropertiesWithClassloader() throws Exception {
     Properties file = Resources.getResourceAsProperties(CLASS_LOADER, JPETSTORE_PROPERTIES);
     assertNotNull(file);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldAllowDefaultClassLoaderToBeSet() {
     Resources.setDefaultClassLoader(this.getClass().getClassLoader());
     assertEquals(this.getClass().getClassLoader(), Resources.getDefaultClassLoader());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldAllowDefaultCharsetToBeSet() {
     Resources.setCharset(Charset.defaultCharset());
     assertEquals(Charset.defaultCharset(), Resources.getCharset());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetClassForName() throws Exception {
     Class<?> clazz = Resources.classForName(ResourcesTest.class.getName());
     assertNotNull(clazz);
   }
 
-  @Test(expected = ClassNotFoundException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = ClassNotFoundException.class)
   public void shouldNotFindThisClass() throws ClassNotFoundException {
     Resources.classForName("some.random.class.that.does.not.Exist");
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetReader() throws IOException {
 
     // save the value
@@ -149,7 +149,7 @@ public class ResourcesTest extends BaseDataTest {
 
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetReaderWithClassLoader() throws IOException {
 
     // save the value
@@ -168,7 +168,7 @@ public class ResourcesTest extends BaseDataTest {
 
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void stupidJustForCoverage() {
     assertNotNull(new Resources());
   }

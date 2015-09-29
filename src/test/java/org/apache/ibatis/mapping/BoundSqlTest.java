@@ -23,11 +23,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.Configuration;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class BoundSqlTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void testHasAdditionalParameter() throws Exception {
     List<ParameterMapping> params = Collections.emptyList();
     BoundSql boundSql = new BoundSql(new Configuration(), "some sql", params, new Object());

@@ -24,13 +24,10 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import org.apache.ibatis.logging.Log;
-import org.apache.ibatis.logging.jdbc.ResultSetLogger;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.Test;
 
-@RunWith(MockitoJUnitRunner.class)
 public class ResultSetLoggerTest {
 
   @Mock
@@ -43,6 +40,7 @@ public class ResultSetLoggerTest {
   private ResultSetMetaData metaData;
 
   public void setup(int type) throws SQLException {
+    MockitoAnnotations.initMocks(this);
     when(rs.next()).thenReturn(true);
     when(rs.getMetaData()).thenReturn(metaData);
     when(metaData.getColumnCount()).thenReturn(1);
@@ -54,14 +52,14 @@ public class ResultSetLoggerTest {
     resultSet.next();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotPrintBlobs() throws SQLException {
     setup(Types.LONGNVARCHAR);
     verify(log).trace("<==    Columns: ColumnName");
     verify(log).trace("<==        Row: <<BLOB>>");
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldPrintVarchars() throws SQLException {
     setup(Types.VARCHAR);
     verify(log).trace("<==    Columns: ColumnName");

@@ -15,14 +15,14 @@
  */
 package org.apache.ibatis.io;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
 
 import static org.junit.Assert.*;
 
@@ -36,7 +36,7 @@ public class ExternalResourcesTest {
   /*
    * @throws java.lang.Exception
    */
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     tempFile = File.createTempFile("migration", "properties");
     tempFile.canWrite();
@@ -44,7 +44,7 @@ public class ExternalResourcesTest {
     destFile = File.createTempFile("test2", "sql");
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void testcopyExternalResource() {
 
     try {
@@ -54,7 +54,7 @@ public class ExternalResourcesTest {
 
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void testcopyExternalResource_fileNotFound() {
 
     try {
@@ -66,7 +66,7 @@ public class ExternalResourcesTest {
 
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void testcopyExternalResource_emptyStringAsFile() {
 
     try {
@@ -93,7 +93,7 @@ public class ExternalResourcesTest {
     }
   }
 
-  @After
+  @AfterMethod
   public void cleanUp() {
     sourceFile.delete();
     destFile.delete();
