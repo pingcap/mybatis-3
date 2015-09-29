@@ -340,7 +340,7 @@ public class BindingTest {
     }
   }
 
-  @Test(groups = {"tidb"})
+  @Test(groups = {"tidb-todo"}, enabled = false) // Support where like.
   public void shouldSelectListOfPostsLikeTwoParameters() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
