@@ -29,8 +29,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class NestedForEachTest {
 
@@ -63,7 +63,7 @@ public class NestedForEachTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSimpleSelect() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -81,7 +81,7 @@ public class NestedForEachTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSimpleSelectWithPrimitives() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -98,7 +98,7 @@ public class NestedForEachTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSimpleSelectWithMapperAndPrimitives() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -109,8 +109,8 @@ public class NestedForEachTest {
       sqlSession.close();
     }
   }
-  
-  @Test
+
+  @Test(groups={"tidb"})
   public void testNestedSelect() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -131,7 +131,7 @@ public class NestedForEachTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testNestedSelect2() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

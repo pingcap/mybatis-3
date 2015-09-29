@@ -28,8 +28,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class NestedResultHandlerTest {
   private static SqlSessionFactory sqlSessionFactory;
@@ -52,7 +52,7 @@ public class NestedResultHandlerTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testGetPerson() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -81,8 +81,8 @@ public class NestedResultHandlerTest {
     }
   }
 
-  @Test
   // issue #542
+  @Test(groups={"tidb"})
   public void testGetPersonWithHandler() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -99,7 +99,7 @@ public class NestedResultHandlerTest {
     }
   }
 
-  @Test(expected=PersistenceException.class)
+  @Test(groups={"tidb"}, expectedExceptions=PersistenceException.class)
   public void testUnorderedGetPersonWithHandler() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -121,7 +121,7 @@ public class NestedResultHandlerTest {
    * nested result map attribute we can miss some records and end up with
    * duplicates instead.
    */
-  @Test
+  @Test(groups={"tidb"})
   public void testGetPersonOrderedByItem() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

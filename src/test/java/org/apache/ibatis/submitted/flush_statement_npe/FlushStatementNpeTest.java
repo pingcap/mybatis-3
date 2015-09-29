@@ -25,8 +25,8 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class FlushStatementNpeTest {
     
@@ -58,8 +58,8 @@ public class FlushStatementNpeTest {
             }
         }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testSameUpdateAfterCommitSimple() {
         SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
         try {
@@ -78,7 +78,8 @@ public class FlushStatementNpeTest {
             sqlSession.close();
         }
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testSameUpdateAfterCommitReuse() {
         SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.REUSE);
         try {
@@ -97,7 +98,8 @@ public class FlushStatementNpeTest {
             sqlSession.close();
         }
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testSameUpdateAfterCommitBatch() {
         SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
         try {

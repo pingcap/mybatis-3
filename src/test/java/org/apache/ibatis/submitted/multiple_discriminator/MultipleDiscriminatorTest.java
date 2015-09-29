@@ -25,8 +25,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class MultipleDiscriminatorTest {
     
@@ -58,8 +58,8 @@ public class MultipleDiscriminatorTest {
             }
         }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testMultipleDiscriminator() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -68,7 +68,8 @@ public class MultipleDiscriminatorTest {
         Assert.assertEquals("Person must be a director", Director.class, person.getClass());
       sqlSession.close();
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testMultipleDiscriminator2() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -77,7 +78,8 @@ public class MultipleDiscriminatorTest {
         Assert.assertEquals("Person must be a director", Director.class, person.getClass());
       sqlSession.close();
     }
-    @Test(timeout=20000)
+
+    @Test(groups={"tidb"}, timeOut = 20000)
     public void testMultipleDiscriminatorLoop() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);

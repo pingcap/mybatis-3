@@ -24,13 +24,14 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import org.apache.ibatis.session.Configuration;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 import static org.junit.Assert.*;
 
 /**
@@ -75,7 +76,7 @@ public final class LazyDeserializeTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testLoadLazyDeserialize() throws Exception {
         final SqlSession session = factory.openSession();
         try {

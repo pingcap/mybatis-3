@@ -27,8 +27,8 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class CacheOrderTest {
 
@@ -52,7 +52,7 @@ public class CacheOrderTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldResolveACacheRefNotYetRead() {
     MappedStatement ms = sqlSessionFactory.getConfiguration().getMappedStatement("getUser");
     Cache cache = ms.getCache();

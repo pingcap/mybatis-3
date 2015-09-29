@@ -27,8 +27,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class NonExistentVariablesTest {
 
@@ -62,7 +62,7 @@ public class NonExistentVariablesTest {
     }
   }
 
-  @Test(expected = PersistenceException.class)
+  @Test(groups={"tidb"}, expectedExceptions = PersistenceException.class)
   public void testWrongParameter() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

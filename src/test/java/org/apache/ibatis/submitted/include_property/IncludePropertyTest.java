@@ -28,8 +28,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class IncludePropertyTest {
 
@@ -53,7 +53,7 @@ public class IncludePropertyTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSimpleProperty() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -66,7 +66,7 @@ public class IncludePropertyTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testPropertyContext() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -80,7 +80,7 @@ public class IncludePropertyTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testNestedDynamicValue() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -91,7 +91,7 @@ public class IncludePropertyTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testEmptyString() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -102,7 +102,7 @@ public class IncludePropertyTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testPropertyInRefid() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -113,7 +113,7 @@ public class IncludePropertyTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testConfigVar() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -124,7 +124,7 @@ public class IncludePropertyTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testRuntimeVar() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -137,7 +137,7 @@ public class IncludePropertyTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testNestedInclude() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

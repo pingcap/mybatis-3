@@ -25,8 +25,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class DoNotCallSettersOnNullsTest {
 
@@ -50,7 +50,7 @@ public class DoNotCallSettersOnNullsTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldCallNullOnMappedProperty() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -62,7 +62,7 @@ public class DoNotCallSettersOnNullsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldCallNullOnAutomaticMapping() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -74,7 +74,7 @@ public class DoNotCallSettersOnNullsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldCallNullOnMap() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

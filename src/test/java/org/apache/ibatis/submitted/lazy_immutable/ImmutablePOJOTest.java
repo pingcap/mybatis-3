@@ -26,8 +26,8 @@ import java.sql.DriverManager;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import static org.junit.Assert.*;
 
@@ -63,7 +63,7 @@ public final class ImmutablePOJOTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testLoadLazyImmutablePOJO() {
         final SqlSession session = factory.openSession();
         try {

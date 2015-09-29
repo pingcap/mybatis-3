@@ -21,8 +21,8 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import java.io.Reader;
 
@@ -43,7 +43,7 @@ public class NestedQueryCacheTest extends BaseDataTest {
     createBlogDataSource();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testThatNestedQueryItemsAreRetrievedFromCache() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     final Author author;
@@ -70,8 +70,8 @@ public class NestedQueryCacheTest extends BaseDataTest {
       sqlSession.close();
     }
   }
-  
-  @Test
+
+  @Test(groups={"tidb"})
   public void testThatNestedQueryItemsAreRetrievedIfNotInCache() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     Author author = null;

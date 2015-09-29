@@ -27,10 +27,10 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
-public class OrderPrefixRemoved {
+public class OrderPrefixRemovedTest {
 
   private static SqlSessionFactory sqlSessionFactory;
 
@@ -61,7 +61,7 @@ public class OrderPrefixRemoved {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testOrderPrefixNotRemoved() {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
     try {

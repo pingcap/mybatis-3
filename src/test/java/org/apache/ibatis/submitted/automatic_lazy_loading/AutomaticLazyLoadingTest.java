@@ -31,8 +31,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 
 public class AutomaticLazyLoadingTest {
 
@@ -56,7 +57,7 @@ public class AutomaticLazyLoadingTest {
    * Load an element with 'default' configuration.
    * Expect an exception when none of the 'object methods' is called.
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectElementValue_default_nomethods()
   throws Exception {
     testScenario("default", true, noMethods);
@@ -66,7 +67,7 @@ public class AutomaticLazyLoadingTest {
    * Load an element with 'default' configuration.
    * Expect no exception when one of the 'object methods' is called.
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectElementValue_default_objectmethods()
   throws Exception {
   testScenario("default", false, objectMethods);
@@ -76,7 +77,7 @@ public class AutomaticLazyLoadingTest {
    * Load an element with 'disabled' configuration.
    * Expect an exception when none of the 'object methods' is called.
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectElementValue_disabled_nomethods()
   throws Exception {
     testScenario("disabled", true, noMethods);
@@ -87,7 +88,7 @@ public class AutomaticLazyLoadingTest {
    * Expect an exception when one of the 'object methods' is called.
    * (because calling object methods should not trigger lazy loading)
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectElementValue_disabled_objectmethods()
   throws Exception {
   testScenario("disabled", true, objectMethods);
@@ -97,7 +98,7 @@ public class AutomaticLazyLoadingTest {
    * Load an element with 'enabled' configuration.
    * Expect an exception when none of the 'object methods' is called.
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectElementValue_enabled_nomethods()
   throws Exception {
     testScenario("enabled", true, noMethods);
@@ -107,7 +108,7 @@ public class AutomaticLazyLoadingTest {
    * Load an element with 'enabled' configuration.
    * Expect no exception when one of the 'object methods' is called.
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectElementValue_enabled_objectmethods()
   throws Exception {
   testScenario("enabled", false, objectMethods);

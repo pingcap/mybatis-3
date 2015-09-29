@@ -27,14 +27,14 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class GenericTypesTest {
 
   private SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     Connection conn = null;
 
@@ -61,7 +61,7 @@ public class GenericTypesTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldGetAListOfMaps() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

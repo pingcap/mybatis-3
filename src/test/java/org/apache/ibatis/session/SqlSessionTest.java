@@ -51,8 +51,8 @@ import org.apache.ibatis.executor.result.DefaultResultHandler;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class SqlSessionTest extends BaseDataTest {
   private static SqlSessionFactory sqlMapper;
@@ -65,7 +65,7 @@ public class SqlSessionTest extends BaseDataTest {
     sqlMapper = new SqlSessionFactoryBuilder().build(reader);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldResolveBothSimpleNameAndFullyQualifiedName() {
     Configuration c = new Configuration();
     final String fullName = "com.mycache.MyCache";
@@ -76,7 +76,7 @@ public class SqlSessionTest extends BaseDataTest {
     assertEquals(cache, c.getCache(shortName));
   }
 
-  @Test(expected=IllegalArgumentException.class)
+  @Test(groups = {"tidb"}, expectedExceptions=IllegalArgumentException.class)
   public void shouldFailOverToMostApplicableSimpleName() {
     Configuration c = new Configuration();
     final String fullName = "com.mycache.MyCache";
@@ -87,7 +87,7 @@ public class SqlSessionTest extends BaseDataTest {
     assertEquals(cache, c.getCache(invalidName));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSucceedWhenFullyQualifiedButFailDueToAmbiguity() {
     Configuration c = new Configuration();
 
@@ -113,7 +113,7 @@ public class SqlSessionTest extends BaseDataTest {
 
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFailToAddDueToNameConflict() {
     Configuration c = new Configuration();
     final String fullName = "com.mycache.MyCache";
@@ -127,27 +127,27 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldOpenAndClose() throws Exception {
     SqlSession session = sqlMapper.openSession(TransactionIsolationLevel.SERIALIZABLE);
     session.close();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCommitAnUnUsedSqlSession() throws Exception {
     SqlSession session = sqlMapper.openSession(TransactionIsolationLevel.SERIALIZABLE);
     session.commit(true);
     session.close();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRollbackAnUnUsedSqlSession() throws Exception {
     SqlSession session = sqlMapper.openSession(TransactionIsolationLevel.SERIALIZABLE);
     session.rollback(true);
     session.close();
   }
 
-  @Test
+  @Test(groups = {"tidb-todo"}, enabled = false)
   public void shouldSelectAllAuthors() throws Exception {
     SqlSession session = sqlMapper.openSession(TransactionIsolationLevel.SERIALIZABLE);
     try {
@@ -158,7 +158,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test(expected=TooManyResultsException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = org.apache.ibatis.exceptions.PersistenceException.class)
   public void shouldFailWithTooManyResultsException() throws Exception {
     SqlSession session = sqlMapper.openSession(TransactionIsolationLevel.SERIALIZABLE);
     try {
@@ -167,8 +167,8 @@ public class SqlSessionTest extends BaseDataTest {
       session.close();
     }
   }
-  
-  @Test
+
+  @Test(groups = {"tidb-todo"}, enabled = false)
   public void shouldSelectAllAuthorsAsMap() throws Exception {
     SqlSession session = sqlMapper.openSession(TransactionIsolationLevel.SERIALIZABLE);
     try {
@@ -182,7 +182,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectCountOfPosts() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -193,7 +193,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldEnsureThatBothEarlyAndLateResolutionOfNesteDiscriminatorsResolesToUseNestedResultSetHandler() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -205,7 +205,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOneAuthor() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -218,7 +218,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOneAuthorAsList() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -231,7 +231,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOneImmutableAuthor() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -244,7 +244,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOneAuthorWithInlineParams() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -256,7 +256,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldInsertAuthor() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -275,7 +275,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb-todo"}, enabled = false)
   public void shouldUpdateAuthorImplicitRollback() throws Exception {
     SqlSession session = sqlMapper.openSession();
     Author original;
@@ -299,7 +299,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUpdateAuthorCommit() throws Exception {
     SqlSession session = sqlMapper.openSession();
     Author original;
@@ -324,7 +324,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUpdateAuthorIfNecessary() throws Exception {
     SqlSession session = sqlMapper.openSession();
     Author original;
@@ -350,7 +350,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDeleteAuthor() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -374,7 +374,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectBlogWithPostsAndAuthorUsingSubSelects() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -389,7 +389,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectBlogWithPostsAndAuthorUsingSubSelectsLazily() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -405,7 +405,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectBlogWithPostsAndAuthorUsingJoin() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -440,7 +440,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectNestedBlogWithPostsAndAuthorUsingJoin() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -475,7 +475,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldThrowExceptionIfMappedStatementDoesNotExist() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -488,7 +488,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldThrowExceptionIfTryingToAddStatementWithSameName() throws Exception {
     Configuration config = sqlMapper.getConfiguration();
     try {
@@ -499,7 +499,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCacheAllAuthors() throws Exception {
     int first = -1;
     int second = -1;
@@ -521,7 +521,7 @@ public class SqlSessionTest extends BaseDataTest {
     assertEquals(first, second);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotCacheAllAuthors() throws Exception {
     int first = -1;
     int second = -1;
@@ -542,7 +542,7 @@ public class SqlSessionTest extends BaseDataTest {
     assertTrue(first != second);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectAuthorsUsingMapperClass() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -554,7 +554,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteSelectOneAuthorUsingMapperClass() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -567,19 +567,19 @@ public class SqlSessionTest extends BaseDataTest {
   }
 
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteSelectOneAuthorUsingMapperClassThatReturnsALinedHashMap() {
     SqlSession session = sqlMapper.openSession();
     try {
       AuthorMapper mapper = session.getMapper(AuthorMapper.class);
       LinkedHashMap<String, Object> author = mapper.selectAuthorLinkedHashMap(101);
-      assertEquals(101, author.get("ID"));
+      assertEquals(101, author.get("id"));
     } finally {
       session.close();
     }
   }
-  
-  @Test
+
+  @Test(groups = {"tidb"})
   public void shouldExecuteSelectAllAuthorsUsingMapperClassThatReturnsSet() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -591,7 +591,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteSelectAllAuthorsUsingMapperClassThatReturnsVector() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -603,7 +603,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteSelectAllAuthorsUsingMapperClassThatReturnsLinkedList() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -615,7 +615,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteSelectAllAuthorsUsingMapperClassThatReturnsAnArray() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -627,7 +627,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteSelectOneAuthorUsingMapperClassWithResultHandler() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -641,7 +641,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test(expected=BindingException.class)
+  @Test(groups = {"tidb"}, expectedExceptions=BindingException.class)
   public void shouldFailExecutingAnAnnotatedMapperClassWithResultHandler() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -654,8 +654,8 @@ public class SqlSessionTest extends BaseDataTest {
       session.close();
     }
   }
-  
-  @Test
+
+  @Test(groups = {"tidb"})
   public void shouldSelectAuthorsUsingMapperClassWithResultHandler() {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -668,7 +668,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test(expected = BindingException.class)
+  @Test(groups = {"tidb"},expectedExceptions = BindingException.class)
   public void shouldFailSelectOneAuthorUsingMapperClassWithTwoResultHandlers() {
     Configuration configuration = new Configuration(sqlMapper.getConfiguration().getEnvironment());
     configuration.addMapper(AuthorMapperWithMultipleHandlers.class);
@@ -684,7 +684,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test(expected = BindingException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = BindingException.class)
   public void shouldFailSelectOneAuthorUsingMapperClassWithTwoRowBounds() {
     Configuration configuration = new Configuration(sqlMapper.getConfiguration().getEnvironment());
     configuration.addMapper(AuthorMapperWithRowBounds.class);
@@ -700,7 +700,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldInsertAuthorUsingMapperClass() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -719,7 +719,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDeleteAuthorUsingMapperClass() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -732,7 +732,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUpdateAuthorUsingMapperClass() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -748,7 +748,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectAllPostsUsingMapperClass() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -760,15 +760,15 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldLimitResultsUsingMapperClass() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
       BlogMapper mapper = session.getMapper(BlogMapper.class);
       List<Map> posts = mapper.selectAllPosts(new RowBounds(0, 2), null);
       assertEquals(2, posts.size());
-      assertEquals(1, posts.get(0).get("ID"));
-      assertEquals(2, posts.get(1).get("ID"));
+      assertEquals(1, posts.get(0).get("id"));
+      assertEquals(2, posts.get(1).get("id"));
     } finally {
       session.close();
     }
@@ -781,7 +781,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldHandleZeroParameters() throws Exception {
     SqlSession session = sqlMapper.openSession();
 
@@ -802,7 +802,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldStopResultHandler() throws Exception {
     SqlSession session = sqlMapper.openSession();
 
@@ -815,22 +815,22 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldOffsetAndLimitResultsUsingMapperClass() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
       BlogMapper mapper = session.getMapper(BlogMapper.class);
       List<Map> posts = mapper.selectAllPosts(new RowBounds(2, 3));
       assertEquals(3, posts.size());
-      assertEquals(3, posts.get(0).get("ID"));
-      assertEquals(4, posts.get(1).get("ID"));
-      assertEquals(5, posts.get(2).get("ID"));
+      assertEquals(3, posts.get(0).get("id"));
+      assertEquals(4, posts.get(1).get("id"));
+      assertEquals(5, posts.get(2).get("id"));
     } finally {
       session.close();
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostsAllPostsWithDynamicSql() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -841,7 +841,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostByIDWithDynamicSql() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -855,7 +855,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostsInSetOfIDsWithDynamicSql() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -873,7 +873,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostsWithBlogIdUsingDynamicSql() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -887,7 +887,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostsWithAuthorIdUsingDynamicSql() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -901,7 +901,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostsWithAuthorAndBlogIdUsingDynamicSql() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -920,7 +920,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostsInList() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -936,7 +936,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindOddPostsInList() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -958,7 +958,7 @@ public class SqlSessionTest extends BaseDataTest {
   }
 
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOddPostsInKeysList() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {

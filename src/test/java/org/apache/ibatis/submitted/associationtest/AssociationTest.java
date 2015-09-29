@@ -25,8 +25,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class AssociationTest {
 
@@ -50,7 +50,7 @@ public class AssociationTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAllCars() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -68,7 +68,7 @@ public class AssociationTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetOneCarWithOneEngineAndBrakes() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -82,7 +82,7 @@ public class AssociationTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAllCarsNonUnique() {
     // this is a little weird - we might expect 4 objects back, but there are only
     // 1 distinct carid, so we get one back.

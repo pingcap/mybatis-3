@@ -16,25 +16,25 @@
 package org.apache.ibatis.reflection;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ReflectorTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void testGetSetterType() throws Exception {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     Reflector reflector = reflectorFactory.findForClass(Section.class);
     Assert.assertEquals(Long.class, reflector.getSetterType("id"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void testGetGetterType() throws Exception {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     Reflector reflector = reflectorFactory.findForClass(Section.class);
     Assert.assertEquals(Long.class, reflector.getGetterType("id"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotGetClass() throws Exception {
     ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     Reflector reflector = reflectorFactory.findForClass(Section.class);

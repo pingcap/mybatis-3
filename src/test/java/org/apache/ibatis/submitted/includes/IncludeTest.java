@@ -19,11 +19,6 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
 
 import java.io.Reader;
 import java.sql.Connection;
@@ -31,6 +26,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class IncludeTest {
 
@@ -54,8 +51,7 @@ public class IncludeTest {
     session.close();
   }
 
-  @Ignore   // Not support VALUES(1)
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not support VALUES(1)
   public void testIncludes() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -65,8 +61,8 @@ public class IncludeTest {
       sqlSession.close();
     }
   }
-  
-  @Test
+
+  @Test(groups={"tidb"})
   public void testParametrizedIncludes() throws Exception {
     final SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

@@ -15,15 +15,16 @@
  */
 package org.apache.ibatis.reflection;
 
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.UndeclaredThrowableException;
 
 public class ExceptionUtilTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUnwrapThrowable() {
     Exception exception = new Exception();
     assertEquals(exception, ExceptionUtil.unwrapThrowable(exception));

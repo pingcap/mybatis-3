@@ -28,8 +28,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.submitted.ognl_enum.Person.Type;
 import org.apache.ibatis.submitted.ognl_enum.PersonMapper.PersonType;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class EnumWithOgnlTest {
     
@@ -61,8 +61,8 @@ public class EnumWithOgnlTest {
             }
         }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testEnumWithOgnl() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -71,7 +71,7 @@ public class EnumWithOgnlTest {
       sqlSession.close();
     }
 
-  @Test
+    @Test(groups={"tidb"})
     public void testEnumWithOgnlDirector() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -80,7 +80,7 @@ public class EnumWithOgnlTest {
     sqlSession.close();
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testEnumWithOgnlDirectorNameAttribute() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -89,7 +89,7 @@ public class EnumWithOgnlTest {
       sqlSession.close();
     }
 
-  @Test
+    @Test(groups={"tidb"})
     public void testEnumWithOgnlDirectorWithInterface() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -101,7 +101,8 @@ public class EnumWithOgnlTest {
         Assert.assertEquals("Persons must contain 1 persons", 1, persons.size());
     sqlSession.close();
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testEnumWithOgnlDirectorNameAttributeWithInterface() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);

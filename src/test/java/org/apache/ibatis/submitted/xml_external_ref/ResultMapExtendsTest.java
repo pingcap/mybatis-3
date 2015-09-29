@@ -32,16 +32,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ResultMapExtendsTest {
 
-  @Test
+  @Test(groups={"tidb"})
   public void testExternalExtendsXmlConfig() throws Exception {
     testCrossReference(getSqlSessionFactoryXmlConfig());
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testExternalExtendsJavaConfig() throws Exception {
     testCrossReference(getSqlSessionFactoryJavaConfig());
   }

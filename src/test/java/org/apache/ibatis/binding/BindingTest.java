@@ -191,8 +191,8 @@ public class BindingTest {
       session.close();
     }
   }
-  
-  @Test
+
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectMapOfBlogsById() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -418,7 +418,7 @@ public class BindingTest {
     }
   }
 
-  @Test(enabled = false) // issue #480 and #101
+  @Test(groups = {"tidb-todo"}, enabled = false) // issue #480 and #101
   public void shouldExecuteBoundSelectBlogUsingConstructorWithResultMapCollection() {
     SqlSession session = sqlSessionFactory.openSession();
     try {

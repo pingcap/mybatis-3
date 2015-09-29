@@ -25,18 +25,22 @@ import java.util.Properties;
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.TransactionFactory;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-@RunWith(MockitoJUnitRunner.class)
 public class ManagedTransactionFactoryTest extends BaseDataTest {
 
   @Mock
   private Connection conn;
 
-  @Test
+  @BeforeMethod
+  public void setup() {
+    MockitoAnnotations.initMocks(this);
+  }
+
+  @Test(groups={"tidb"})
   public void shouldEnsureThatCallsToManagedTransactionAPIDoNotForwardToManagedConnections() throws Exception {
     TransactionFactory tf = new ManagedTransactionFactory();
     tf.setProperties(new Properties());
@@ -48,7 +52,7 @@ public class ManagedTransactionFactoryTest extends BaseDataTest {
     verify(conn).close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldEnsureThatCallsToManagedTransactionAPIDoNotForwardToManagedConnectionsAndDoesNotCloseConnection() throws Exception {
     TransactionFactory tf = new ManagedTransactionFactory();
     Properties props = new Properties();

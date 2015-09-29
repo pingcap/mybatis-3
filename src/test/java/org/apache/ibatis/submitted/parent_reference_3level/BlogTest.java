@@ -27,8 +27,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class BlogTest {
 
@@ -38,7 +38,7 @@ public class BlogTest {
     return "org/apache/ibatis/submitted/parent_reference_3level/mybatis-config.xml";
   }
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     Connection conn = null;
 
@@ -65,7 +65,7 @@ public class BlogTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectBlogWithPosts() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -85,7 +85,7 @@ public class BlogTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectBlogWithoutPosts() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -99,7 +99,7 @@ public class BlogTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectBlogWithPostsColumnPrefix() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -119,7 +119,7 @@ public class BlogTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectBlogWithoutPostsColumnPrefix() {
     SqlSession session = sqlSessionFactory.openSession();
     try {

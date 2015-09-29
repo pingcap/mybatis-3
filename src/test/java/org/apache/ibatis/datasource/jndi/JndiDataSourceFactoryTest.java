@@ -45,7 +45,7 @@ public class JndiDataSourceFactoryTest extends BaseDataTest {
     expectedDataSource = createUnpooledDataSource(BLOG_PROPERTIES);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRetrieveDataSourceFromJNDI() throws Exception {
     createJndiDataSource();
     JndiDataSourceFactory factory = new JndiDataSourceFactory();

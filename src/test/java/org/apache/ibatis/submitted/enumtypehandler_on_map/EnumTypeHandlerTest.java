@@ -28,8 +28,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.submitted.enumtypehandler_on_map.Person.Type;
 import org.apache.ibatis.submitted.enumtypehandler_on_map.PersonMapper.TypeName;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class EnumTypeHandlerTest {
     
@@ -61,8 +61,8 @@ public class EnumTypeHandlerTest {
             }
         }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testEnumWithParam() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -71,7 +71,8 @@ public class EnumTypeHandlerTest {
         Assert.assertEquals("Persons must contain exactly 1 person", 1, persons.size());
       sqlSession.close();
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testEnumWithoutParam() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);

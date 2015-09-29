@@ -60,7 +60,7 @@ public class BaseExecutorTest extends BaseDataTest {
     config.setDefaultFetchSize(100);
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldInsertNewAuthorWithBeforeAutoKey() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -87,7 +87,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldInsertNewAuthor() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -108,7 +108,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldSelectAllAuthorsAutoMapped() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -130,7 +130,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldInsertNewAuthorWithAutoKey() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -157,7 +157,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldInsertNewAuthorByProc() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -177,7 +177,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldInsertNewAuthorUsingSimpleNonPreparedStatements() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -198,7 +198,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldUpdateAuthor() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -219,7 +219,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldDeleteAuthor() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -239,7 +239,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldSelectDiscriminatedPost() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -259,7 +259,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldSelect2DiscriminatedPosts() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -280,7 +280,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldSelectTwoSetsOfAuthorsViaProc() throws Exception {
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
     try {
@@ -304,7 +304,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldSelectAuthorViaOutParams() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -329,7 +329,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldFetchPostsForBlog() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -351,7 +351,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldFetchOneOrphanedPostWithNoBlog() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -372,7 +372,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldFetchPostWithBlogWithCompositeKey() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -394,7 +394,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldFetchComplexBlogs() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -416,7 +416,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldMapConstructorResults() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));
@@ -435,7 +435,7 @@ public class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  @Test(enabled = false) // Not support PROCEDURE.
+  @Test(groups = {"tidb-todo"}, enabled = false) // Not support PROCEDURE.
   public void shouldClearDeferredLoads() throws Exception {
     
     Executor executor = createExecutor(new JdbcTransaction(ds, null, false));

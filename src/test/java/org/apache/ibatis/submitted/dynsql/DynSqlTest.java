@@ -23,8 +23,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -62,7 +62,7 @@ public class DynSqlTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelect() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -83,7 +83,7 @@ public class DynSqlTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectSimple() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -104,7 +104,7 @@ public class DynSqlTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectLike() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -120,7 +120,7 @@ public class DynSqlTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testNumerics() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -145,7 +145,7 @@ public class DynSqlTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testOgnlStaticMethodCall() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -158,7 +158,7 @@ public class DynSqlTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testBindNull() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

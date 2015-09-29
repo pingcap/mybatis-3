@@ -27,8 +27,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class RawSqlSourceTest {
 
@@ -52,17 +52,17 @@ public class RawSqlSourceTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldUseRawSqlSourceForAnStaticStatement() {
     test("getUser1", RawSqlSource.class);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldUseDynamicSqlSourceForAnStatementWithInlineArguments() {
     test("getUser2", DynamicSqlSource.class);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldUseDynamicSqlSourceForAnStatementWithXmlTags() {
     test("getUser3", DynamicSqlSource.class);
   }

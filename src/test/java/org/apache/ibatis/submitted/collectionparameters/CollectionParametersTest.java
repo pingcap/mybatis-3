@@ -28,8 +28,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class CollectionParametersTest {
 
@@ -53,7 +53,7 @@ public class CollectionParametersTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetTwoUsersPassingAList() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -68,7 +68,7 @@ public class CollectionParametersTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetTwoUsersPassingAnArray() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -83,7 +83,7 @@ public class CollectionParametersTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetTwoUsersPassingACollection() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

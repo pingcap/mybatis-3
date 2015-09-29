@@ -33,14 +33,14 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class BatchKeysTest {
 
   private SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     // create an SqlSessionFactory
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/batch_keys/Config.xml");
@@ -58,7 +58,7 @@ public class BatchKeysTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testInsert() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
     try {
@@ -100,7 +100,7 @@ public class BatchKeysTest {
 
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testInsertJdbc3() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
     try {

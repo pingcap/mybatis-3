@@ -20,7 +20,11 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.*;
+import org.junit.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
 
 import java.io.Reader;
 import java.sql.Connection;
@@ -46,14 +50,14 @@ public class FooMapperTest {
     }
   }
 
-  @Before
+  @BeforeMethod
   public void setUp() {
     final FooMapper mapper = session.getMapper(FooMapper.class);
     mapper.deleteAllFoo();
     session.commit();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testNullAssociation() {
     final FooMapper mapper = session.getMapper(FooMapper.class);
     final Foo foo = new Foo(1L, null, true);
@@ -65,7 +69,7 @@ public class FooMapperTest {
     Assert.assertTrue("Invalid mapping", read.isField3());
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testNotNullAssociation() {
     final FooMapper mapper = session.getMapper(FooMapper.class);
     final Bar bar = new Bar(1L, 2L, 3L);

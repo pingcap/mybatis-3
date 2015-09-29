@@ -26,11 +26,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class EnumWithOgnlTest {
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testConfiguration() {
         UnpooledDataSourceFactory dataSourceFactory = new UnpooledDataSourceFactory();
         Properties dataSourceProperties = new Properties();
@@ -47,7 +47,8 @@ public class EnumWithOgnlTest {
         configuration.addMapper(PersonMapper2.class);
         new DefaultSqlSessionFactory(configuration);
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testMixedConfiguration() throws Exception {
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/xml_references/ibatisConfig.xml");
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

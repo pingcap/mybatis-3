@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 
 public class UnpooledDataSourceTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotRegisterTheSameDriverMultipleTimes() throws Exception {
     // https://code.google.com/p/mybatis/issues/detail?id=430
     UnpooledDataSource dataSource = null;
@@ -39,7 +39,7 @@ public class UnpooledDataSourceTest {
     assertEquals(before, countRegisteredDrivers());
   }
 
-  @Test(enabled = false) // "Requires MySQL server and a driver."
+  @Test(groups = {"tidb"}, enabled = false) // "Requires MySQL server and a driver."
   public void shouldRegisterDynamicallyLoadedDriver() throws Exception {
     int before = countRegisteredDrivers();
     ClassLoader driverClassLoader = null;

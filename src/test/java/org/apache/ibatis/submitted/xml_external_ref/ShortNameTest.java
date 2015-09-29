@@ -25,10 +25,10 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ShortNameTest {
-    @Test
+    @Test(groups={"tidb"})
     public void getStatementByShortName() throws Exception {
         Configuration configuration = getConfiguration();
         // statement can be referenced by its short name.
@@ -36,7 +36,7 @@ public class ShortNameTest {
         assertNotNull(selectPet);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(groups={"tidb"}, expectedExceptions= IllegalArgumentException.class)
     public void ambiguousShortNameShouldFail() throws Exception {
         Configuration configuration = getConfiguration();
         // ambiguous short name should throw an exception.

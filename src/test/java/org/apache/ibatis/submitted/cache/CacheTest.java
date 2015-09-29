@@ -24,15 +24,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 // issue #524
 public class CacheTest {
 
   private static SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     // create a SqlSessionFactory
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/cache/mybatis-config.xml");
@@ -60,7 +60,7 @@ public class CacheTest {
    * Assert:
    *   Step 4 returns 1 row. (This case fails when caching is enabled.)
    */
-  @Test
+  @Test(groups={"tidb"})
   public void testplan1() {
     SqlSession sqlSession1 = sqlSessionFactory.openSession(false);
     try {
@@ -95,7 +95,7 @@ public class CacheTest {
    * Assert:
    *   Step 6 returns 2 rows. 
    */
-  @Test
+  @Test(groups={"tidb"})
   public void testplan2() {
     SqlSession sqlSession1 = sqlSessionFactory.openSession(false);
     try {
@@ -138,7 +138,7 @@ public class CacheTest {
    * Assert:
    *   Step 6 returns 1 row. 
    */
-  @Test
+  @Test(groups={"tidb"})
   public void testplan3() {
     SqlSession sqlSession1 = sqlSessionFactory.openSession(true);
     try {

@@ -30,9 +30,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class DynSqlTest {
 
@@ -65,7 +64,7 @@ public class DynSqlTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testDynamicSelectWithTypeHandler() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -92,7 +91,7 @@ public class DynSqlTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   @SuppressWarnings("unchecked")
   public void testSimpleSelect() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
