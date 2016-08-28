@@ -14,8 +14,10 @@
 --    limitations under the License.
 --
 
-create schema ibtest authorization dba;
+drop schema if exists ibtest;
+create schema ibtest;
 
+drop table if exists ibtest.names;
 create table ibtest.names (
 id int,
 firstName varchar(20),

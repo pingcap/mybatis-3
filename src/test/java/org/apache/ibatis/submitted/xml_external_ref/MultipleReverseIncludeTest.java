@@ -32,16 +32,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class MultipleReverseIncludeTest {
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMultipleReverseIncludeXmlConfig() throws Exception {
     testMultipleReverseIncludes(getSqlSessionFactoryXmlConfig());
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMultipleReverseIncludeJavaConfig() throws Exception {
     testMultipleReverseIncludes(getSqlSessionFactoryJavaConfig());
   }

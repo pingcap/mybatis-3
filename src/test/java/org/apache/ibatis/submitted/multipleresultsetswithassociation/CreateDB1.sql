@@ -12,9 +12,9 @@
 --       See the License for the specific language governing permissions and
 --       limitations under the License.
 
-    DROP PROCEDURE GetOrderDetailsAndHeaders IF EXISTS;
-    DROP TABLE order_detail IF EXISTS;
-    DROP TABLE order_header IF EXISTS;
+--    DROP PROCEDURE GetOrderDetailsAndHeaders IF EXISTS;
+    DROP TABLE IF EXISTS order_detail;
+    DROP TABLE IF EXISTS order_header;
 
     CREATE TABLE order_detail
     (

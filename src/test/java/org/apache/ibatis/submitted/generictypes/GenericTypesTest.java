@@ -27,20 +27,20 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class GenericTypesTest {
 
   private SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:generictypes", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/generictypes/CreateDB.sql");
 
@@ -61,7 +61,7 @@ public class GenericTypesTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldGetAListOfMaps() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

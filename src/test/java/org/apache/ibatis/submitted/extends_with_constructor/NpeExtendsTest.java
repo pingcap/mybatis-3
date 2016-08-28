@@ -32,8 +32,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 /*
  * Test for NPE when using extends.
@@ -46,9 +46,8 @@ public class NpeExtendsTest {
         Connection conn = null;
 
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:extends_with_constructor", "sa",
-                    "");
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
             Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/extends_with_constructor/CreateDB.sql");
 
@@ -64,15 +63,16 @@ public class NpeExtendsTest {
             }
         }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testNoConstructorConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addMapper(StudentMapper.class);
         configuration.addMapper(TeacherMapper.class);
         configuration.getMappedStatementNames();
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testWithConstructorConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addMapper(StudentConstructorMapper.class);
@@ -83,9 +83,10 @@ public class NpeExtendsTest {
     private SqlSessionFactory getSqlSessionFactoryWithConstructor() {
         UnpooledDataSourceFactory unpooledDataSourceFactory = new UnpooledDataSourceFactory();
         Properties properties = new Properties();
-        properties.setProperty("driver", "org.hsqldb.jdbcDriver");
-        properties.setProperty("url", "jdbc:hsqldb:mem:extends_with_constructor");
-        properties.setProperty("username", "sa");
+        properties.setProperty("driver", "com.mysql.jdbc.Driver");
+        properties.setProperty("url", "jdbc:mysql://127.0.0.1:4000/test");
+        properties.setProperty("username", "root");
+        properties.setProperty("password", "");
         unpooledDataSourceFactory.setProperties(properties);
         Environment environment = new Environment("extends_with_constructor", new JdbcTransactionFactory(), unpooledDataSourceFactory.getDataSource());
         
@@ -98,7 +99,8 @@ public class NpeExtendsTest {
         
         return new DefaultSqlSessionFactory(configuration);
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testSelectWithTeacher() {
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryWithConstructor();
         SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -111,7 +113,8 @@ public class NpeExtendsTest {
             sqlSession.close();
         }
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testSelectNoName() {
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryWithConstructor();
         SqlSession sqlSession = sqlSessionFactory.openSession();

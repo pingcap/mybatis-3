@@ -14,8 +14,8 @@
 --    limitations under the License.
 --
 
-drop table car if exists;
-drop table part if exists;
+drop table if exists car;
+drop table if exists part;
 
 create table car (
   car_id int,

@@ -35,21 +35,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class XmlExternalRefTest {
 
-  @Test
+  @Test(groups={"tidb"})
   public void testCrossReferenceXmlConfig() throws Exception {
     testCrossReference(getSqlSessionFactoryXmlConfig());
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testCrossReferenceJavaConfig() throws Exception {
     testCrossReference(getSqlSessionFactoryJavaConfig());
   }
 
-  @Test(expected = BuilderException.class)
+  @Test(groups={"tidb"}, expectedExceptions = BuilderException.class)
   public void testFailFastOnBuildAll() throws Exception {
     Configuration configuration = new Configuration();
     try {
@@ -59,8 +59,8 @@ public class XmlExternalRefTest {
     }
     configuration.getMappedStatementNames();
   }
-  
-  @Test(expected = BuilderException.class)
+
+  @Test(groups={"tidb"}, expectedExceptions = BuilderException.class)
   public void testFailFastOnBuildAllWithInsert() throws Exception {
     Configuration configuration = new Configuration();
     try {
@@ -72,7 +72,7 @@ public class XmlExternalRefTest {
     configuration.getMappedStatementNames();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMappedStatementCache() throws Exception {
     Reader configReader = Resources
     .getResourceAsReader("org/apache/ibatis/submitted/xml_external_ref/MapperConfig.xml");

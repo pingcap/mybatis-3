@@ -24,7 +24,7 @@
 <configuration>
 
   <properties resource="org/apache/ibatis/submitted/nested_query_cache/mapper.properties">
-    <property name="driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+    <property name="driver" value="com.mysql.jdbc.Driver"/>
   </properties>
 
   <settings>

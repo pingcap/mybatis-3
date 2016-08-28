@@ -27,20 +27,20 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class ColumnPrefixTest {
 
   protected SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:clmpfx", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/column_prefix/CreateDB.sql");
       ScriptRunner runner = new ScriptRunner(conn);
       runner.setLogWriter(null);
@@ -60,7 +60,7 @@ public class ColumnPrefixTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectPetAndRoom() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -74,7 +74,7 @@ public class ColumnPrefixTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testComplexPerson() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

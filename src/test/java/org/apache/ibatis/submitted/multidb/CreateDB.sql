@@ -14,11 +14,13 @@
 --    limitations under the License.
 --
 
+drop table if exists common;
 create table common (
 id int,
 name varchar(20)
 );
 
+drop table if exists hsql;
 create table hsql (
 id int,
 name varchar(20)

@@ -25,8 +25,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class CglibNPETest {
 
@@ -37,9 +37,8 @@ public class CglibNPETest {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:cglib_lazy_eager_no_error", "sa",
-          "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/cglib_lazy_error/CreateDB.sql");
 
@@ -60,7 +59,7 @@ public class CglibNPETest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testNoParent() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -71,7 +70,7 @@ public class CglibNPETest {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testAncestorSelf() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -82,7 +81,7 @@ public class CglibNPETest {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testGrandParent() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -95,7 +94,7 @@ public class CglibNPETest {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testAncestor() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -106,7 +105,7 @@ public class CglibNPETest {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testAncestorAfterQueryingParents() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -120,7 +119,7 @@ public class CglibNPETest {
     sqlSession.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testInsertBetweenTwoSelects() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -145,7 +144,7 @@ public class CglibNPETest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSelectWithStringSQLInjection() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

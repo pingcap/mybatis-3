@@ -14,8 +14,7 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
-
+drop table if exists users;
 create table users (
   id int,
   name varchar(20),
@@ -23,6 +22,7 @@ create table users (
   state varchar(20)
 );
 
+drop table if exists groups;
 create table groups (
   id int,
   state varchar(20)

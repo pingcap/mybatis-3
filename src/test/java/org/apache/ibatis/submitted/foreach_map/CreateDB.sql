@@ -14,38 +14,46 @@
 --    limitations under the License.
 --
 
-drop table string_string if exists;
+drop table if exists string_string;
 
 create table string_string (
-    id identity,
-    key varchar(255),
-    value varchar(255)
+    id int NOT NULL AUTO_INCREMENT,
+    kkey varchar(255),
+    vvalue varchar(255),
+
+    PRIMARY KEY (id)
 );
 
-drop table int_bool if exists;
+drop table if exists int_bool;
 
 create table int_bool (
-    id identity,
-    key integer,
-    value boolean
+    id int NOT NULL AUTO_INCREMENT,
+    kkey int,
+    vvalue boolean,
+
+    PRIMARY KEY (id)
 );
 
-drop table nested_bean if exists;
+drop table if exists nested_bean;
 
 create table nested_bean (
-    id identity,
-    keya integer,
+    id int NOT NULL AUTO_INCREMENT,
+    keya int,
     keyb boolean,
-    valuea integer,
-    valueb boolean
+    valuea int,
+    valueb boolean,
+
+    PRIMARY KEY (id)
 );
 
-drop table key_cols if exists;
+drop table if exists key_cols;
 
 create table key_cols (
-    id identity,
-    col_a integer,
-    col_b integer
+    id int NOT NULL AUTO_INCREMENT,
+    col_a int,
+    col_b int,
+
+    PRIMARY KEY (id)
 );
 
 insert into key_cols (id, col_a, col_b) values (1, 11, 222);

@@ -24,8 +24,8 @@ import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.*;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class FlushTest {
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
     }
 
-    @Test
+    @Test(groups = {"tidb"})
     public void invokeFlushStatementsViaMapper() {
 
         SqlSession session = sqlSessionFactory.openSession();

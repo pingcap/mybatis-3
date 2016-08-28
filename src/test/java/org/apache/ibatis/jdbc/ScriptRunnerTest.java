@@ -21,8 +21,7 @@ import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
 import org.apache.ibatis.io.Resources;
 import static org.junit.Assert.*;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -38,8 +37,7 @@ import java.util.Properties;
 
 public class ScriptRunnerTest extends BaseDataTest {
 
-  @Test
-  @Ignore("This fails with HSQLDB 2.0 due to the create index statements in the schema script")
+  @Test(groups = {"tidb"})
   public void shouldRunScriptsBySendingFullScriptAtOnce() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -49,11 +47,12 @@ public class ScriptRunnerTest extends BaseDataTest {
     runner.setStopOnError(false);
     runner.setErrorLogWriter(null);
     runner.setLogWriter(null);
+
     runJPetStoreScripts(runner);
     assertProductsTableExistsAndLoaded();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRunScriptsUsingConnection() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -66,7 +65,7 @@ public class ScriptRunnerTest extends BaseDataTest {
     assertProductsTableExistsAndLoaded();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRunScriptsUsingProperties() throws Exception {
     Properties props = Resources.getResourceAsProperties(JPETSTORE_PROPERTIES);
     DataSource dataSource = new UnpooledDataSource(
@@ -83,7 +82,7 @@ public class ScriptRunnerTest extends BaseDataTest {
     assertProductsTableExistsAndLoaded();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldReturnWarningIfEndOfLineTerminatorNotFound() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -104,7 +103,7 @@ public class ScriptRunnerTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void commentAferStatementDelimiterShouldNotCauseRunnerFail() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -125,7 +124,7 @@ public class ScriptRunnerTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldReturnWarningIfNotTheCurrentDelimiterUsed() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -146,7 +145,7 @@ public class ScriptRunnerTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void changingDelimiterShouldNotCauseRunnerFail() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -167,7 +166,7 @@ public class ScriptRunnerTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void testLogging() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -185,11 +184,11 @@ public class ScriptRunnerTest extends BaseDataTest {
 
     assertEquals(
             "select userid from account where userid = 'j2ee'" + System.getProperty("line.separator")
-                    + System.getProperty("line.separator") + "USERID\t" + System.getProperty("line.separator")
+                    + System.getProperty("line.separator") + "userid\t" + System.getProperty("line.separator")
                     + "j2ee\t" + System.getProperty("line.separator"), sw.toString());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void testLoggingFullScipt() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection conn = ds.getConnection();
@@ -207,7 +206,7 @@ public class ScriptRunnerTest extends BaseDataTest {
 
     assertEquals(
             "select userid from account where userid = 'j2ee';" + System.getProperty("line.separator")
-                    + System.getProperty("line.separator") + "USERID\t" + System.getProperty("line.separator")
+                    + System.getProperty("line.separator") + "userid\t" + System.getProperty("line.separator")
                     + "j2ee\t" + System.getProperty("line.separator"), sw.toString());
   }
 
@@ -221,7 +220,7 @@ public class ScriptRunnerTest extends BaseDataTest {
     try {
       Connection conn = ds.getConnection();
       SqlRunner executor = new SqlRunner(conn);
-      List<Map<String, Object>> products = executor.selectAll("SELECT * FROM PRODUCT");
+      List<Map<String, Object>> products = executor.selectAll("SELECT * FROM product");
       assertEquals(16, products.size());
     } finally {
       ds.forceCloseAll();

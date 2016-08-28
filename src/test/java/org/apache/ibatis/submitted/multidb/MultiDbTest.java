@@ -26,8 +26,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class MultiDbTest {
 
@@ -39,8 +39,8 @@ public class MultiDbTest {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:multidb", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/multidb/CreateDB.sql");
 
@@ -61,7 +61,7 @@ public class MultiDbTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not support _databaseId.
   public void shouldExecuteHsqlQuery() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -73,7 +73,7 @@ public class MultiDbTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldExecuteCommonQuery() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -84,8 +84,8 @@ public class MultiDbTest {
       sqlSession.close();
     }
   }
-  
-  @Test
+
+  @Test(groups={"tidb-todo"}, enabled = false) // Not support _databaseId.
   public void shouldExecuteHsqlQueryWithDynamicIf() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -97,7 +97,7 @@ public class MultiDbTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not support _databaseId.
   public void shouldExecuteHsqlQueryWithInclude() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -109,7 +109,7 @@ public class MultiDbTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldInsertInCommonWithSelectKey() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -120,9 +120,9 @@ public class MultiDbTest {
     } finally {
       sqlSession.close();
     }
-  }  
-  
-  @Test
+  }
+
+  @Test(groups={"tidb"})
   public void shouldInsertInCommonWithSelectKey2() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

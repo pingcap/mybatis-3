@@ -28,7 +28,7 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class CustomCollectionHandlingTest {
 
@@ -37,7 +37,7 @@ public class CustomCollectionHandlingTest {
      *
      * @throws Exception
      */
-    @Test
+    @Test(groups={"tidb"})
     public void testSelectListWithNestedResultMap() throws Exception {
         String xmlConfig = "org/apache/ibatis/submitted/custom_collection_handling/MapperConfig.xml";
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryXmlConfig(xmlConfig);
@@ -58,7 +58,7 @@ public class CustomCollectionHandlingTest {
      *
      * @throws Exception
      */
-    @Test
+    @Test(groups={"tidb"})
     public void testSelectListWithNestedSelect() throws Exception {
         String xmlConfig = "org/apache/ibatis/submitted/custom_collection_handling/MapperConfig.xml";
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactoryXmlConfig(xmlConfig);

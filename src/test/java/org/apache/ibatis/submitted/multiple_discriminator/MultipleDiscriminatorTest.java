@@ -25,8 +25,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class MultipleDiscriminatorTest {
     
@@ -37,9 +37,8 @@ public class MultipleDiscriminatorTest {
         Connection conn = null;
 
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:multiple_discriminator", "sa",
-                    "");
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
             Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/multiple_discriminator/CreateDB.sql");
 
@@ -59,8 +58,8 @@ public class MultipleDiscriminatorTest {
             }
         }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testMultipleDiscriminator() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -69,7 +68,8 @@ public class MultipleDiscriminatorTest {
         Assert.assertEquals("Person must be a director", Director.class, person.getClass());
       sqlSession.close();
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testMultipleDiscriminator2() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -78,7 +78,8 @@ public class MultipleDiscriminatorTest {
         Assert.assertEquals("Person must be a director", Director.class, person.getClass());
       sqlSession.close();
     }
-    @Test(timeout=20000)
+
+    @Test(groups={"tidb"}, timeOut = 20000)
     public void testMultipleDiscriminatorLoop() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);

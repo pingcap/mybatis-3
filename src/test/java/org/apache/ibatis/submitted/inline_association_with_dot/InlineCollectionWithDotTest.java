@@ -25,8 +25,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.After;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 public class InlineCollectionWithDotTest {
 
@@ -56,7 +56,7 @@ public class InlineCollectionWithDotTest {
     sqlSession = sqlSessionFactory.openSession();
   }
 
-  @After
+  @AfterMethod
   public void closeSession() {
     if (sqlSession != null) {
       sqlSession.close();
@@ -67,7 +67,7 @@ public class InlineCollectionWithDotTest {
    * Load an element with an element with and element with a value. Expect that this is
    * possible bij using an inline 'association' map.
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectElementValueInContainerUsingInline()
   throws Exception {
     openSession("inline");
@@ -81,7 +81,7 @@ public class InlineCollectionWithDotTest {
    * Load an element with an element with and element with a value. Expect that this is
    * possible bij using an sub-'association' map.
    */
-  @Test
+  @Test(groups={"tidb"})
   public void selectElementValueInContainerUsingSubMap() throws Exception {
    openSession("submap");
 

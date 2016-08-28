@@ -25,11 +25,11 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.BaseDataTest;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class SqlRunnerTest extends BaseDataTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOne() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     runScript(ds, JPETSTORE_DDL);
@@ -41,7 +41,7 @@ public class SqlRunnerTest extends BaseDataTest {
     assertEquals("FI-SW-01", row.get("PRODUCTID"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectList() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     runScript(ds, JPETSTORE_DDL);
@@ -53,7 +53,7 @@ public class SqlRunnerTest extends BaseDataTest {
     assertEquals(16, rows.size());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldInsert() throws Exception {
     DataSource ds = createUnpooledDataSource(BLOG_PROPERTIES);
     runScript(ds, BLOG_DDL);
@@ -62,13 +62,12 @@ public class SqlRunnerTest extends BaseDataTest {
     exec.setUseGeneratedKeySupport(true);
     int id = exec.insert("INSERT INTO author (username, password, email, bio) VALUES (?,?,?,?)", "someone", "******", "someone@apache.org", Null.LONGVARCHAR);
     Map<String,Object> row = exec.selectOne("SELECT * FROM author WHERE username = ?", "someone");
-    connection.rollback();
     connection.close();
     assertTrue(SqlRunner.NO_GENERATED_KEY != id);
     assertEquals("someone", row.get("USERNAME"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUpdateCategory() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     runScript(ds, JPETSTORE_DDL);
@@ -82,7 +81,7 @@ public class SqlRunnerTest extends BaseDataTest {
     assertEquals(1, count);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDeleteOne() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     runScript(ds, JPETSTORE_DDL);
@@ -96,7 +95,7 @@ public class SqlRunnerTest extends BaseDataTest {
     assertEquals(0, rows.size());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateDDLThroughRunMethod() throws Exception {
     DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
     Connection connection = ds.getConnection();

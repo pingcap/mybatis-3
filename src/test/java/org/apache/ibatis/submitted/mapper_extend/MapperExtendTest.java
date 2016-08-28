@@ -24,8 +24,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class MapperExtendTest {
 
@@ -49,7 +49,7 @@ public class MapperExtendTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAUserWithAnExtendedXMLMethod() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -62,7 +62,7 @@ public class MapperExtendTest {
   }
 
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAUserWithAnExtendedAnnotatedMethod() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -86,7 +86,7 @@ public class MapperExtendTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAUserWithAnOverloadedAnnotatedMethod() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

@@ -29,8 +29,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ValueInMapTest {
 
@@ -54,7 +54,7 @@ public class ValueInMapTest {
     session.close();
   }
 
-  @Test // issue #165
+  @Test(groups={"tidb"})
   public void shouldWorkWithAPropertyNamedValue() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -69,7 +69,7 @@ public class ValueInMapTest {
     }
   }
 
-  @Test(expected=PersistenceException.class)
+  @Test(groups={"tidb"},expectedExceptions=PersistenceException.class)
   public void shouldWorkWithAList() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

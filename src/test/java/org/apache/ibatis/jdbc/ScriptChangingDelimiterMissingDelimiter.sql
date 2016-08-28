@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
-drop table signon;
+drop table if exists signon;
 
 --//@DELIMITER /
 create table signon (

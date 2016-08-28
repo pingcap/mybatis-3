@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
-drop table car if exists;
+drop table if exists car;
 
 create table car (
   name varchar(20),

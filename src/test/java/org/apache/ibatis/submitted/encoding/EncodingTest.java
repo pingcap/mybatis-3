@@ -27,8 +27,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class EncodingTest {
 
@@ -42,8 +42,8 @@ public class EncodingTest {
     Charset charset = Resources.getCharset();
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:encoding", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       // make sure that the SQL file has been saved in UTF-8!
       Resources.setCharset(Charset.forName("utf-8"));
@@ -70,7 +70,7 @@ public class EncodingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testEncoding1() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -82,7 +82,7 @@ public class EncodingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testEncoding2() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

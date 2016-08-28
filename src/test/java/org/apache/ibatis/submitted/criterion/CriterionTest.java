@@ -19,7 +19,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.Reader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +27,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class CriterionTest {
 
@@ -37,33 +36,23 @@ public class CriterionTest {
 
   @BeforeClass
   public static void setUp() throws Exception {
-    Connection conn = null;
+    // create a SqlSessionFactory
+    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/criterion/MapperConfig.xml");
+    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+    reader.close();
 
-    try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:aname", "sa",
-          "");
-
-      Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/criterion/CreateDB.sql");
-
-      ScriptRunner runner = new ScriptRunner(conn);
-      runner.setLogWriter(null);
-      runner.setErrorLogWriter(null);
-      runner.runScript(reader);
-      conn.commit();
-      reader.close();
-
-      reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/criterion/MapperConfig.xml");
-      sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      reader.close();
-    } finally {
-      if (conn != null) {
-        conn.close();
-      }
-    }
+    // populate in-memory database
+    SqlSession session = sqlSessionFactory.openSession();
+    Connection conn = session.getConnection();
+    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/criterion/CreateDB.sql");
+    ScriptRunner runner = new ScriptRunner(conn);
+    runner.setLogWriter(null);
+    runner.runScript(reader);
+    reader.close();
+    session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testSimpleSelect() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

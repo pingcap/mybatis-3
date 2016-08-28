@@ -26,8 +26,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ResultsIdTest {
 
@@ -51,7 +51,7 @@ public class ResultsIdTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testNamingResults() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -64,7 +64,7 @@ public class ResultsIdTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testResultsOnlyForNaming() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -77,7 +77,7 @@ public class ResultsIdTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testReuseNamedResultsFromAnotherMapper() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -93,7 +93,7 @@ public class ResultsIdTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testReuseNamedResultsFromXmlMapper() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

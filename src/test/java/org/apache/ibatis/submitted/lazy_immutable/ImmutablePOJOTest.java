@@ -26,8 +26,8 @@ import java.sql.DriverManager;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import static org.junit.Assert.*;
 
@@ -41,8 +41,8 @@ public final class ImmutablePOJOTest {
         Connection conn = null;
 
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:lazy_immutable", "sa", "");
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
             Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/lazy_immutable/CreateDB.sql");
 
@@ -63,7 +63,7 @@ public final class ImmutablePOJOTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testLoadLazyImmutablePOJO() {
         final SqlSession session = factory.openSession();
         try {

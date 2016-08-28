@@ -27,10 +27,10 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
-public class OrderPrefixRemoved {
+public class OrderPrefixRemovedTest {
 
   private static SqlSessionFactory sqlSessionFactory;
 
@@ -39,8 +39,8 @@ public class OrderPrefixRemoved {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:order_prefix_removed", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/order_prefix_removed/CreateDB.sql");
 
@@ -61,7 +61,7 @@ public class OrderPrefixRemoved {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testOrderPrefixNotRemoved() {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
     try {

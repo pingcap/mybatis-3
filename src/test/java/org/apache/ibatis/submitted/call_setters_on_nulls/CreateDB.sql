@@ -14,9 +14,9 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
+drop table if exists users;
 
-drop table users2 if exists;
+drop table if exists users2;
 
 create table users (
   id int,
@@ -26,7 +26,7 @@ create table users (
 create table users2(
   id int,
   name varchar(20)
-)
+);
 
 insert into users (id, name) values(1, NULL);
 

@@ -14,6 +14,7 @@
 --    limitations under the License.
 --
 
+DROP TABLE IF EXISTS FOO;
 CREATE TABLE FOO
 (
 field1 integer,

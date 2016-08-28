@@ -66,16 +66,16 @@
       columnPrefix="pet_" />
   </resultMap>
 
-  <select id="selectPets" resultMap="petMapper"><![CDATA[
+  <select id="selectPets" resultMap="petMapper">
     select
       id,
       name,
       room_id
     from pet
     order by id
-  ]]></select>
+  </select>
 
-  <select id="selectPersons" resultMap="personMapper"><![CDATA[
+  <select id="selectPersons" resultMap="personMapper">
     select
       person.id as person_id,
       person.name as person_name,
@@ -116,29 +116,29 @@
       on shipping_address.id = person.shipping_address_id
     left join pet on pet.owner_id = person.id
     order by person.id, pet.id
-  ]]></select>
+  </select>
 
   <select id="selectPhone" parameterType="int"
-    resultType="org.apache.ibatis.submitted.column_prefix.Phone"><![CDATA[
+          resultType="org.apache.ibatis.submitted.column_prefix.Phone">
     select
       id,
       phone,
       area_code
     from phone
     where id = #{id}
-  ]]></select>
+  </select>
 
   <select id="selectRoom" resultType="org.apache.ibatis.submitted.column_prefix.Room"
-    parameterType="int"><![CDATA[
+          parameterType="int">
     select
       room_id,
       room_name
     from room
     where room_id = #{id}
-  ]]></select>
+  </select>
 
   <select id="selectZip" resultType="org.apache.ibatis.submitted.column_prefix.Zip"
-    parameterType="org.apache.ibatis.submitted.column_prefix.Zip"><![CDATA[
+          parameterType="org.apache.ibatis.submitted.column_prefix.Zip">
     select
       state,
       city,
@@ -146,13 +146,13 @@
     from zip
     where state = #{state}
       and city = #{city}
-  ]]></select>
+  </select>
 
-  <select id="selectStateBird" resultType="string" parameterType="string"><![CDATA[
+  <select id="selectStateBird" resultType="string" parameterType="string">
     select
       bird
     from state_bird
     where state = #{state}
-  ]]></select>
+  </select>
 
 </mapper>

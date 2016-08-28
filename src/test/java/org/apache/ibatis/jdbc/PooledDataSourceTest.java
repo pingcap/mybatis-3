@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.hsqldb.jdbc.JDBCConnection;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import java.util.Properties;
 
 public class PooledDataSourceTest extends BaseDataTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldProperlyMaintainPoolOf3ActiveAnd2IdleConnections() throws Exception {
     PooledDataSource ds = createPooledDataSource(JPETSTORE_PROPERTIES);
     try {
@@ -38,7 +38,9 @@ public class PooledDataSourceTest extends BaseDataTest {
       ds.setDefaultAutoCommit(false);
       ds.setDriverProperties(new Properties() {
         {
-          setProperty("username", "sa");
+          setProperty("driver", "com.mysql.jdbc.Driver");
+          setProperty("url", "jdbc:mysql://127.0.0.1:4000/test");
+          setProperty("username", "root");
           setProperty("password", "");
         }
       });
@@ -71,15 +73,16 @@ public class PooledDataSourceTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotFailCallingToStringOverAnInvalidConnection() throws Exception {
     PooledDataSource ds = createPooledDataSource(JPETSTORE_PROPERTIES);
     Connection c = ds.getConnection();
     c.close();
     c.toString();
   }
-  
-  @Test
+
+  // TODO: java.lang.ClassCastException: com.mysql.jdbc.JDBC4Connection cannot be cast to org.hsqldb.jdbc.JDBCConnection
+  @Test(groups = {"tidb-todo"}, enabled = false)
   public void ShouldReturnRealConnection() throws Exception {
     PooledDataSource ds = createPooledDataSource(JPETSTORE_PROPERTIES);
     Connection c = ds.getConnection();

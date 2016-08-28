@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
-drop table cars if exists;
+drop table if exists cars;
 
 create table cars (
   carid integer,

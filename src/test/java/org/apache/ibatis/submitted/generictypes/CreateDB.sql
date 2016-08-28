@@ -14,8 +14,7 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
-
+drop table if exists groups;
 create table groups (
 id int,
 owner varchar(16),

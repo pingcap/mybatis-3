@@ -14,6 +14,7 @@
 --    limitations under the License.
 --
 
+drop table if exists person;
 create table person (
   id int,
   firstName varchar(100),

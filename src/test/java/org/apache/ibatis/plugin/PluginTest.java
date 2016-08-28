@@ -15,9 +15,10 @@
  */
 package org.apache.ibatis.plugin;
 
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,14 +26,14 @@ import java.util.Properties;
 
 public class PluginTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void mapPluginShouldInterceptGet() {
     Map map = new HashMap();
     map = (Map) new AlwaysMapPlugin().plugin(map);
     assertEquals("Always", map.get("Anything"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotInterceptToString() {
     Map map = new HashMap();
     map = (Map) new AlwaysMapPlugin().plugin(map);

@@ -21,24 +21,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ForEachTest {
 
   private static SqlSessionFactory sqlSessionFactory;
-
-  @Rule
-  public ExpectedException ex = ExpectedException.none();
 
   @BeforeClass
   public static void setUp() throws Exception {
@@ -58,7 +52,7 @@ public class ForEachTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAUser() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -77,7 +71,7 @@ public class ForEachTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldHandleComplexNullItem() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -95,7 +89,7 @@ public class ForEachTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldHandleMoreComplexNullItem() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -114,7 +108,7 @@ public class ForEachTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void nullItemInContext() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -131,11 +125,8 @@ public class ForEachTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"}, expectedExceptions = org.apache.ibatis.exceptions.PersistenceException.class)
   public void shouldReportMissingPropertyName() {
-    ex.expect(PersistenceException.class);
-    ex.expectMessage("There is no getter for property named 'idd' in 'class org.apache.ibatis.submitted.foreach.User'");
-
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
       Mapper mapper = sqlSession.getMapper(Mapper.class);

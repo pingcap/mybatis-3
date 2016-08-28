@@ -32,8 +32,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class NestedResultHandlerAssociationTest {
 
@@ -57,7 +57,7 @@ public class NestedResultHandlerAssociationTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldHandleRowBounds() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     final SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
@@ -79,7 +79,7 @@ public class NestedResultHandlerAssociationTest {
     assertEquals("Bob3", accounts.get(1).getAccountName());
   }
 
-  @Test
+  @Test(groups={"tidb"}, enabled = false)
   public void shouldHandleStop() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     final SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");

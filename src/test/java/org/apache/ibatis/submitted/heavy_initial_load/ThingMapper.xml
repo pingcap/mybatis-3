@@ -1029,6 +1029,6 @@
 		<if test="@org.apache.ibatis.submitted.heavy_initial_load.Code@_998.equals(code)">998</if>
 		<if test="@org.apache.ibatis.submitted.heavy_initial_load.Code@_999.equals(code)">999</if>
 		<if test="@org.apache.ibatis.submitted.heavy_initial_load.Code@_1000.equals(code)">1000</if>
-		AS Thing_id FROM (VALUES(0))
+		AS Thing_id FROM dual
   </select>
 </mapper>

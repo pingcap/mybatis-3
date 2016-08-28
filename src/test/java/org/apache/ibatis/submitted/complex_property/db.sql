@@ -14,6 +14,7 @@
 --    limitations under the License.
 --
 
+drop table if exists user;
 create table user (
 id int,
 username varchar(32) not null,

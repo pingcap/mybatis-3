@@ -30,10 +30,10 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
-public class CommonPropertyDeferLoadError {
+public class CommonPropertyDeferLoadErrorTest {
 
     private static SqlSessionFactory sqlSessionFactory;
     private static SqlSessionFactory lazyLoadSqlSessionFactory;
@@ -43,9 +43,8 @@ public class CommonPropertyDeferLoadError {
         Connection conn = null;
 
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:deferload_common_property", "sa",
-                    "");
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
             Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/deferload_common_property/CreateDB.sql");
 
@@ -68,7 +67,7 @@ public class CommonPropertyDeferLoadError {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testDeferLoadAfterResultHandler() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
@@ -89,7 +88,7 @@ public class CommonPropertyDeferLoadError {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testDeferLoadDuringResultHandler() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
@@ -105,7 +104,7 @@ public class CommonPropertyDeferLoadError {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testDeferLoadAfterResultHandlerWithLazyLoad() {
         SqlSession sqlSession = lazyLoadSqlSessionFactory.openSession();
         try {
@@ -126,7 +125,7 @@ public class CommonPropertyDeferLoadError {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testDeferLoadDuringResultHandlerWithLazyLoad() {
         SqlSession sqlSession = lazyLoadSqlSessionFactory.openSession();
         try {

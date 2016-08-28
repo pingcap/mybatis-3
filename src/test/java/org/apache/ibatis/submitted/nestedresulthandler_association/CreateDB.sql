@@ -14,8 +14,8 @@
 --    limitations under the License.
 --
 
-DROP TABLE t_account_address if exists;
-DROP TABLE t_account if exists;
+DROP TABLE if exists t_account_address;
+DROP TABLE if exists t_account;
 CREATE TABLE t_account(
   account_uuid CHAR(36) PRIMARY KEY
   ,account_name VARCHAR(256)

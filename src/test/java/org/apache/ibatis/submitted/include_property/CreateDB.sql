@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
-drop table table1 if exists;
+drop table if exists table1;
 
 create table table1 (
   id int,

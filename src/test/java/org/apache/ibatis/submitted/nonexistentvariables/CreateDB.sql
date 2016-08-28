@@ -15,6 +15,7 @@
 --
 
 -- WARNING: this file MUST be saved in UTF-8
+drop table if exists names;
 create table names (
 id int,
 firstName varchar(20),

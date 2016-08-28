@@ -15,7 +15,7 @@
  */
 package org.apache.ibatis.jdbc;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import static org.apache.ibatis.jdbc.SqlBuilder.*;
 import static org.junit.Assert.assertEquals;

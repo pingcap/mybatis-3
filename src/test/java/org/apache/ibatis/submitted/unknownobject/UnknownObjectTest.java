@@ -24,13 +24,13 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class UnknownObjectTest {
 
   private static SqlSessionFactory sqlSessionFactory;
 
-  @Test(expected=PersistenceException.class)
+  @Test(groups={"tidb"}, expectedExceptions=PersistenceException.class)
   public void shouldFailBecauseThereIsAPropertyWithoutTypeHandler() throws Exception {
     // create a SqlSessionFactory
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/unknownobject/mybatis-config.xml");

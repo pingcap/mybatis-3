@@ -27,8 +27,8 @@ import org.apache.ibatis.domain.blog.Author;
 import org.apache.ibatis.domain.blog.mappers.AuthorMapper;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.io.Resources;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class SqlSessionManagerTest extends BaseDataTest {
 
@@ -42,7 +42,7 @@ public class SqlSessionManagerTest extends BaseDataTest {
     manager = SqlSessionManager.newInstance(reader);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldThrowExceptionIfMappedStatementDoesNotExistAndSqlSessionIsOpen() throws Exception {
     try {
       manager.startManagedSession();
@@ -55,7 +55,7 @@ public class SqlSessionManagerTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCommitInsertedAuthor() throws Exception {
     try {
       manager.startManagedSession();
@@ -70,7 +70,7 @@ public class SqlSessionManagerTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRollbackInsertedAuthor() throws Exception {
     try {
       manager.startManagedSession();
@@ -85,7 +85,7 @@ public class SqlSessionManagerTest extends BaseDataTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldImplicitlyRollbackInsertedAuthor() throws Exception {
     manager.startManagedSession();
     AuthorMapper mapper = manager.getMapper(AuthorMapper.class);

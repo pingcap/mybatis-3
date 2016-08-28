@@ -24,13 +24,14 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import org.apache.ibatis.session.Configuration;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 import static org.junit.Assert.*;
 
 /**
@@ -53,8 +54,8 @@ public final class LazyDeserializeTest {
         Connection conn = null;
 
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:lazy_deserialize", "sa", "");
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
             Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/lazy_deserialize/CreateDB.sql");
 
@@ -75,7 +76,7 @@ public final class LazyDeserializeTest {
         }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testLoadLazyDeserialize() throws Exception {
         final SqlSession session = factory.openSession();
         try {

@@ -41,7 +41,7 @@ import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import static org.hamcrest.core.Is.*;
 import static org.hamcrest.core.IsInstanceOf.*;
@@ -49,7 +49,7 @@ import static org.junit.Assert.*;
 
 public class XmlConfigBuilderTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSuccessfullyLoadMinimalXMLConfigFile() throws Exception {
     String resource = "org/apache/ibatis/builder/MinimalMapperConfig.xml";
     InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -116,7 +116,7 @@ public class XmlConfigBuilderTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void registerJavaTypeInitializingTypeHandler() {
     final String MAPPER_CONFIG = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
         + "<!DOCTYPE configuration PUBLIC \"-//mybatis.org//DTD Config 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-config.dtd\">\n" 
@@ -137,7 +137,7 @@ public class XmlConfigBuilderTest {
     assertArrayEquals(MyEnum.values(), ((EnumOrderTypeHandler) typeHandler).constants);
   }
 
-    @Test
+    @Test(groups = {"tidb"})
     public void shouldSuccessfullyLoadXMLConfigFile() throws Exception {
       String resource = "org/apache/ibatis/builder/CustomizedSettingsMapperConfig.xml";
       InputStream inputStream = Resources.getResourceAsStream(resource);

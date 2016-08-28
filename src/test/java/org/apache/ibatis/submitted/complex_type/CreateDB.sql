@@ -14,7 +14,7 @@
 --    limitations under the License.
 --
 
-drop table properties if exists;
+drop table if exists properties;
 
 create table properties (
 	item_id int, 

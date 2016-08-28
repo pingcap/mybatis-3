@@ -90,18 +90,18 @@
       columnPrefix="pet_" />
   </resultMap>
 
-  <select id="selectPets" resultMap="petMapper"><![CDATA[
+  <select id="selectPets" resultMap="petMapper">
     select
       pet.id,
       pet.name,
-      room_id,
+      pet.room_id,
       room_name
     from pet
     left join room on room.room_id = pet.room_id
     order by pet.id
-  ]]></select>
+  </select>
 
-  <select id="selectPersons" resultMap="personMapper"><![CDATA[
+  <select id="selectPersons" resultMap="personMapper">
     select
       person.id as person_id,
       person.name as person_name,
@@ -180,6 +180,5 @@
     left join pet on pet.owner_id = person.id
     left join room pet_room on pet_room.room_id = pet.room_id
     order by person.id, pet.id
-  ]]></select>
-
+  </select>
 </mapper>

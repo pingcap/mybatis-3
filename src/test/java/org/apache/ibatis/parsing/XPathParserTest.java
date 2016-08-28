@@ -20,11 +20,11 @@ import static org.junit.Assert.assertEquals;
 import java.io.InputStream;
 
 import org.apache.ibatis.io.Resources;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class XPathParserTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldTestXPathParserMethods() throws Exception {
     String resource = "resources/nodelet_test.xml";
     InputStream inputStream = Resources.getResourceAsStream(resource);

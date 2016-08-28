@@ -18,9 +18,10 @@ package org.apache.ibatis.datasource.jndi;
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.datasource.DataSourceException;
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -39,12 +40,12 @@ public class JndiDataSourceFactoryTest extends BaseDataTest {
   private static final String TEST_DATA_SOURCE = "myDataSource";
   private UnpooledDataSource expectedDataSource;
 
-  @Before
+  @BeforeMethod
   public void setup() throws Exception {
     expectedDataSource = createUnpooledDataSource(BLOG_PROPERTIES);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRetrieveDataSourceFromJNDI() throws Exception {
     createJndiDataSource();
     JndiDataSourceFactory factory = new JndiDataSourceFactory();

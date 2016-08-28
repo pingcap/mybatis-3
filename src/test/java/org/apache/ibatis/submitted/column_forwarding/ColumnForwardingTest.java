@@ -24,8 +24,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ColumnForwardingTest {
 
@@ -49,7 +49,7 @@ public class ColumnForwardingTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetUserWithGroup() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -66,7 +66,7 @@ public class ColumnForwardingTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetUserWithoutGroup() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

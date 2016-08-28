@@ -14,8 +14,8 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
-drop table groups if exists;
+drop table if exists users;
+drop table if exists groups;
 
 create table users (
   id int,

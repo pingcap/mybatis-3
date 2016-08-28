@@ -23,25 +23,23 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.util.Enumeration;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class UnpooledDataSourceTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotRegisterTheSameDriverMultipleTimes() throws Exception {
     // https://code.google.com/p/mybatis/issues/detail?id=430
     UnpooledDataSource dataSource = null;
-    dataSource = new UnpooledDataSource("org.hsqldb.jdbcDriver", "jdbc:hsqldb:mem:multipledrivers", "sa", "");
+    dataSource = new UnpooledDataSource("com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1:4000/test", "root", "");
     dataSource.getConnection();
     int before = countRegisteredDrivers();
-    dataSource = new UnpooledDataSource("org.hsqldb.jdbcDriver", "jdbc:hsqldb:mem:multipledrivers", "sa", "");
+    dataSource = new UnpooledDataSource("com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1:4000/test", "root", "");
     dataSource.getConnection();
     assertEquals(before, countRegisteredDrivers());
   }
 
-  @Ignore("Requires MySQL server and a driver.")
-  @Test
+  @Test(groups = {"tidb"}, enabled = false) // "Requires MySQL server and a driver."
   public void shouldRegisterDynamicallyLoadedDriver() throws Exception {
     int before = countRegisteredDrivers();
     ClassLoader driverClassLoader = null;

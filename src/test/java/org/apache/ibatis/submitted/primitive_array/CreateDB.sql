@@ -14,12 +14,13 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
-
+drop table if exists users;
 create table users (
   id int,
   name varchar(20)
 );
+
+drop table if exists udata;
 create table udata (
   user_id int,
   num int

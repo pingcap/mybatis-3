@@ -14,8 +14,7 @@
 --    limitations under the License.
 --
 
-drop table SomeTable if exists;
-
+drop table if exists SomeTable;
 create table SomeTable (
   id int,
   field1 varchar(20),

@@ -24,9 +24,9 @@
 
 	<select id="doSelect" resultType="java.util.HashMap">
 		select
-			ID as "id",
-			FIRST_NAME as "firstName",
-			LAST_NAME as "lastName"
+			ID as id,
+			FIRST_NAME as firstName,
+			LAST_NAME as lastName
 		from names
 	</select>
 

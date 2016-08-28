@@ -27,8 +27,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class QuotedColumnNamesTest {
 
@@ -39,8 +39,9 @@ public class QuotedColumnNamesTest {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:gname", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
+
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/quotedcolumnnames/CreateDB.sql");
       ScriptRunner runner = new ScriptRunner(conn);
       runner.setLogWriter(null);
@@ -60,7 +61,7 @@ public class QuotedColumnNamesTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testIt() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -72,7 +73,7 @@ public class QuotedColumnNamesTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testItWithResultMap() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

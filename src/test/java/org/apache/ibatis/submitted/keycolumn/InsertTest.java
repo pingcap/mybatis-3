@@ -27,8 +27,7 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 /*
  * This class contains tests for issue #84 - where the Jdbc3KeyGenerator
@@ -40,10 +39,9 @@ import org.junit.Test;
 
  * @author Jeff Butler
  */
-@Ignore("See setupdb.txt for instructions on how to run the tests in this class")
 public class InsertTest {
 
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not test PostgreSQL
   public void testInsertAnnotated() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/keycolumn/MapperConfig.xml");
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
@@ -63,7 +61,7 @@ public class InsertTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not test PostgreSQL
   public void testInsertMapped() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/keycolumn/MapperConfig.xml");
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
@@ -83,8 +81,7 @@ public class InsertTest {
     }
   }
 
-  @Ignore // Not supported yet in PostgreSQL
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not test PostgreSQL
   public void testInsertMappedBatch() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/keycolumn/MapperConfig.xml");
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

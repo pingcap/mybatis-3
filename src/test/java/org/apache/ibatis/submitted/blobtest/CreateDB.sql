@@ -14,13 +14,12 @@
 --    limitations under the License.
 --
 
-drop table blobtest.blobs is exists;
-drop schema blobtest if exists;
-
+drop schema if exists blobtest;
 create schema blobtest;
 
+drop table if exists blobtest.blobs;
 create table blobtest.blobs (
   id int not null,
-  blob longvarbinary,
+  b blob,
   primary key (id)
 );

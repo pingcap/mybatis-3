@@ -14,8 +14,7 @@
 --    limitations under the License.
 --
 
-drop table test if exists;
-
+drop table if exists test;
 create table test (
 	A VARCHAR(32) not null,
 	B VARCHAR(32) not null

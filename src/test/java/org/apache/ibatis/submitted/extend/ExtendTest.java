@@ -26,8 +26,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ExtendTest {
 
@@ -38,8 +38,8 @@ public class ExtendTest {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:extend", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/extend/CreateDB.sql");
 
@@ -60,7 +60,7 @@ public class ExtendTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testExtend() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -71,5 +71,4 @@ public class ExtendTest {
       sqlSession.close();
     }
   }
-
 }

@@ -26,8 +26,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class UUIDTest {
 
@@ -51,7 +51,7 @@ public class UUIDTest {
     session.close();
   }
 
-  @Test(expected=PersistenceException.class)
+  @Test(groups={"tidb"}, expectedExceptions=PersistenceException.class)
   public void shouldGetAUser() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -63,7 +63,7 @@ public class UUIDTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldInsertAUser() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

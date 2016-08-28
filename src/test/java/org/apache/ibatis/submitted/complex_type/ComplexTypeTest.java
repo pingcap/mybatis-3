@@ -25,8 +25,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ComplexTypeTest {
 
@@ -51,7 +51,7 @@ public class ComplexTypeTest {
   }
 
   // see https://issues.apache.org/jira/browse/IBATIS-653
-  @Test
+  @Test(groups={"tidb"})
   public void shouldUpdateProps() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

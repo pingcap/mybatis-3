@@ -17,7 +17,6 @@ package org.apache.ibatis.executor.loader;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayInputStream;
@@ -28,22 +27,21 @@ import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import org.apache.ibatis.domain.blog.Author;
 import org.apache.ibatis.domain.blog.Section;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.session.Configuration;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public abstract class SerializableProxyTest {
 
   protected Author author = new Author(999, "someone", "!@#@!#!@#", "someone@somewhere.com", "blah", Section.NEWS);
   
   protected ProxyFactory proxyFactory;
-  
-  @Test
+
+  @Test(groups = {"tidb"})
   public void shouldKeepGenericTypes() throws Exception {
     for (int i = 0; i < 10000; i++) {
       Author pc = new Author();
@@ -53,14 +51,14 @@ public abstract class SerializableProxyTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSerializeAProxyForABeanWithDefaultConstructor() throws Exception {
     Object proxy = proxyFactory.createProxy(author, new ResultLoaderMap(), new Configuration(), new DefaultObjectFactory(), new ArrayList<Class<?>>(), new ArrayList<Object>());
     Object proxy2 = deserialize(serialize((Serializable) proxy));
     assertEquals(author, proxy2);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSerializeAProxyForABeanWithoutDefaultConstructor() throws Exception {
     AuthorWithoutDefaultConstructor author = new AuthorWithoutDefaultConstructor(999, "someone", "!@#@!#!@#", "someone@somewhere.com", "blah", Section.NEWS);
     ArrayList<Class<?>> argTypes = new ArrayList<Class<?>>();
@@ -82,7 +80,7 @@ public abstract class SerializableProxyTest {
     assertEquals(author, proxy2);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSerializeAProxyForABeanWithoutDefaultConstructorAndUnloadedProperties() throws Exception {
     AuthorWithoutDefaultConstructor author = new AuthorWithoutDefaultConstructor(999, "someone", "!@#@!#!@#", "someone@somewhere.com", "blah", Section.NEWS);
     ArrayList<Class<?>> argTypes = new ArrayList<Class<?>>();
@@ -106,14 +104,14 @@ public abstract class SerializableProxyTest {
     assertEquals(author, proxy2);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSerizaliceAFullLoadedObjectToOriginalClass() throws Exception {
     Object proxy = proxyFactory.createProxy(author, new ResultLoaderMap(), new Configuration(), new DefaultObjectFactory(), new ArrayList<Class<?>>(), new ArrayList<Object>());
     Object proxy2 = deserialize(serialize((Serializable) proxy));
     assertEquals(author.getClass(), proxy2.getClass());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGenerateWriteReplace() throws Exception {
     try {
       author.getClass().getDeclaredMethod("writeReplace");
@@ -125,7 +123,7 @@ public abstract class SerializableProxyTest {
     Method m = proxy.getClass().getDeclaredMethod("writeReplace");
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotGenerateWriteReplaceItThereIsAlreadyOne() throws Exception {
     AuthorWithWriteReplaceMethod beanWithWriteReplace = new AuthorWithWriteReplaceMethod(999, "someone", "!@#@!#!@#", "someone@somewhere.com", "blah", Section.NEWS);
     try {
@@ -145,14 +143,14 @@ public abstract class SerializableProxyTest {
     assertFalse(ownInterfaceFound);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotCreateAProxyForAFullyLoadedBean() throws Exception {
     Object proxy = proxyFactory.createProxy(author, new ResultLoaderMap(), new Configuration(), new DefaultObjectFactory(), new ArrayList<Class<?>>(), new ArrayList<Object>());
     Author author2 = (Author) deserialize(serialize((Serializable) proxy));
     assertEquals(author.getClass(), author2.getClass());
   }
 
-  @Test(expected = ExecutorException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = {ExecutorException.class})
   public void shouldNotLetReadUnloadedPropertyAfterSerialization() throws Exception {
     ResultLoaderMap loader = new ResultLoaderMap();
     loader.addLoader("id", null, null);
@@ -161,7 +159,7 @@ public abstract class SerializableProxyTest {
     author2.getId();
   }
 
-  @Test(expected = ExecutorException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = {ExecutorException.class})
   public void shouldNotLetReadUnloadedPropertyAfterTwoSerializations() throws Exception {
     ResultLoaderMap loader = new ResultLoaderMap();
     loader.addLoader("id", null, null);
@@ -170,7 +168,7 @@ public abstract class SerializableProxyTest {
     author2.getId();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldLetReadALoadedPropertyAfterSerialization() throws Exception {
     Object proxy = proxyFactory.createProxy(author, new ResultLoaderMap(), new Configuration(), new DefaultObjectFactory(), new ArrayList<Class<?>>(), new ArrayList<Object>());
     byte[] ser = serialize((Serializable) proxy);

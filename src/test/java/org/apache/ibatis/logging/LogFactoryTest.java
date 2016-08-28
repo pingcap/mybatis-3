@@ -28,11 +28,11 @@ import org.apache.ibatis.logging.nologging.NoLoggingImpl;
 import org.apache.ibatis.logging.slf4j.Slf4jImpl;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class LogFactoryTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUseCommonsLogging() {
     LogFactory.useCommonsLogging();
     Log log = LogFactory.getLog(Object.class);
@@ -40,7 +40,7 @@ public class LogFactoryTest {
     assertEquals(log.getClass().getName(), JakartaCommonsLoggingImpl.class.getName());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUseLog4J() {
     LogFactory.useLog4JLogging();
     Log log = LogFactory.getLog(Object.class);
@@ -48,15 +48,15 @@ public class LogFactoryTest {
     assertEquals(log.getClass().getName(), Log4jImpl.class.getName());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUseLog4J2() {
     LogFactory.useLog4J2Logging();
     Log log = LogFactory.getLog(Object.class);
     logSomething(log);
     assertEquals(log.getClass().getName(), Log4j2Impl.class.getName());
   }
-  
-  @Test
+
+  @Test(groups = {"tidb"})
   public void shouldUseJdKLogging() {
     LogFactory.useJdkLogging();
     Log log = LogFactory.getLog(Object.class);
@@ -64,7 +64,7 @@ public class LogFactoryTest {
     assertEquals(log.getClass().getName(), Jdk14LoggingImpl.class.getName());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUseSlf4j() {
     LogFactory.useSlf4jLogging();
     Log log = LogFactory.getLog(Object.class);
@@ -72,7 +72,7 @@ public class LogFactoryTest {
     assertEquals(log.getClass().getName(), Slf4jImpl.class.getName());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUseStdOut() {
     LogFactory.useStdOutLogging();
     Log log = LogFactory.getLog(Object.class);
@@ -80,7 +80,7 @@ public class LogFactoryTest {
     assertEquals(log.getClass().getName(), StdOutImpl.class.getName());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUseNoLogging() {
     LogFactory.useNoLogging();
     Log log = LogFactory.getLog(Object.class);
@@ -88,7 +88,7 @@ public class LogFactoryTest {
     assertEquals(log.getClass().getName(), NoLoggingImpl.class.getName());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldReadLogImplFromSettings() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/logging/mybatis-config.xml");
     new SqlSessionFactoryBuilder().build(reader);

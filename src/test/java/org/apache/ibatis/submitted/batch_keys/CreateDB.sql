@@ -14,8 +14,8 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
-drop table users2 if exists;
+drop table if exists users;
+drop table if exists users2;
 
 create table users (
 id int,
@@ -23,6 +23,6 @@ name varchar(16)
 );
 
 create table users2 (
-id int IDENTITY,
+id int,
 name varchar(16)
 );

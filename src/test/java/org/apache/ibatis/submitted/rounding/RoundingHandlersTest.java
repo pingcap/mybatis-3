@@ -27,8 +27,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class RoundingHandlersTest {
 
@@ -52,7 +52,7 @@ public class RoundingHandlersTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldGetAUser() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -68,7 +68,7 @@ public class RoundingHandlersTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldInsertUser2() {
     SqlSession session = sqlSessionFactory.openSession();
     try {

@@ -29,7 +29,7 @@ import org.apache.ibatis.domain.blog.Author;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.session.Configuration;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class CglibProxyTest extends SerializableProxyTest {
 
@@ -37,7 +37,7 @@ public class CglibProxyTest extends SerializableProxyTest {
     proxyFactory = new CglibProxyFactory();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCreateAProxyForAPartiallyLoadedBean() throws Exception {
     ResultLoaderMap loader = new ResultLoaderMap();
     loader.addLoader("id", null, null);
@@ -46,7 +46,7 @@ public class CglibProxyTest extends SerializableProxyTest {
     assertTrue(author2 instanceof Factory);
   }
 
-  @Test(expected = ExecutorException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = {ExecutorException.class})
   public void shouldFailCallingAnUnloadedProperty() throws Exception {
     // yes, it must go in uppercase
     HashMap<String, ResultLoaderMap.LoadPair> unloadedProperties = new HashMap<String, ResultLoaderMap.LoadPair>();

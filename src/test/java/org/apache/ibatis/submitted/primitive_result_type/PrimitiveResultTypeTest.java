@@ -18,9 +18,10 @@ package org.apache.ibatis.submitted.primitive_result_type;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 import static org.junit.Assert.assertTrue;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -40,7 +41,7 @@ public class PrimitiveResultTypeTest {
     runner.runScript(reader);
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldReturnProperPrimitiveType() {
     List<Integer> codes = ProductDAO.selectProductCodes();
     for (Object code : codes) {
@@ -55,7 +56,8 @@ public class PrimitiveResultTypeTest {
       assertTrue(bcode instanceof BigDecimal);
     }
   }
-  @Test
+
+  @Test(groups={"tidb"})
   public void noErrorThrowOut(){
       List<Product> products=ProductDAO.selectAllProducts();
       assertTrue("should return 4 results", 4==products.size());

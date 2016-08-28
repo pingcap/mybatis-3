@@ -26,17 +26,18 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class EnumWithOgnlTest {
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testConfiguration() {
         UnpooledDataSourceFactory dataSourceFactory = new UnpooledDataSourceFactory();
         Properties dataSourceProperties = new Properties();
-        dataSourceProperties.put("driver", "org.hsqldb.jdbcDriver");
-        dataSourceProperties.put("url", "jdbc:hsqldb:mem:xml_references");
-        dataSourceProperties.put("username", "sa");
+        dataSourceProperties.put("driver", "com.mysql.jdbc.Driver");
+        dataSourceProperties.put("url", "jdbc:mysql://127.0.0.1:4000/test");
+        dataSourceProperties.put("username", "root");
+        dataSourceProperties.put("password", "");
         dataSourceFactory.setProperties(dataSourceProperties);
         Environment environment = new Environment("test", new JdbcTransactionFactory(), dataSourceFactory.getDataSource());
         Configuration configuration = new Configuration();
@@ -46,7 +47,8 @@ public class EnumWithOgnlTest {
         configuration.addMapper(PersonMapper2.class);
         new DefaultSqlSessionFactory(configuration);
     }
-    @Test
+
+    @Test(groups={"tidb"})
     public void testMixedConfiguration() throws Exception {
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/xml_references/ibatisConfig.xml");
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

@@ -17,11 +17,11 @@ package org.apache.ibatis.submitted.include_property;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.Configuration;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class IncludePropertyErrorTest {
 
-  @Test(expected = PersistenceException.class)
+  @Test(groups={"tidb"}, expectedExceptions = PersistenceException.class)
   public void shouldFailForDuplicatedPropertyNames() throws Exception {
     Configuration configuration = new Configuration();
     configuration.addMapper(DuplicatedIncludePropertiesMapper.class);

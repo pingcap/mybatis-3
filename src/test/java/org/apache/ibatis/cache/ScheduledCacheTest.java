@@ -18,12 +18,13 @@ package org.apache.ibatis.cache;
 import org.apache.ibatis.cache.decorators.LoggingCache;
 import org.apache.ibatis.cache.decorators.ScheduledCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.*;
-import org.junit.Test;
 
 public class ScheduledCacheTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateHowAllObjectsAreFlushedAfterBasedOnTime() throws Exception {
     Cache cache = new PerpetualCache("DefaultCache");
     cache = new ScheduledCache(cache);
@@ -37,7 +38,7 @@ public class ScheduledCacheTest {
     assertEquals(0, cache.getSize());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRemoveItemOnDemand() {
     Cache cache = new PerpetualCache("DefaultCache");
     cache = new ScheduledCache(cache);
@@ -49,7 +50,7 @@ public class ScheduledCacheTest {
     assertNull(cache.getObject(0));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFlushAllItemsOnDemand() {
     Cache cache = new PerpetualCache("DefaultCache");
     cache = new ScheduledCache(cache);

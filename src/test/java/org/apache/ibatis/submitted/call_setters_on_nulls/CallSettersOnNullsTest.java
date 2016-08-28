@@ -21,8 +21,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 import java.io.Reader;
 import java.sql.Connection;
@@ -53,7 +53,7 @@ public class CallSettersOnNullsTest {
     session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldCallNullOnMappedProperty() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -65,7 +65,7 @@ public class CallSettersOnNullsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldCallNullOnAutomaticMapping() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -77,19 +77,19 @@ public class CallSettersOnNullsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldCallNullOnMap() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
       Mapper mapper = sqlSession.getMapper(Mapper.class);
       Map user = mapper.getUserInMap(1);
-      Assert.assertTrue(user.containsKey("NAME"));
+      Assert.assertTrue(user.containsKey("name"));
     } finally {
       sqlSession.close();
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldCallNullOnMapForSingleColumn() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -101,7 +101,7 @@ public class CallSettersOnNullsTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldCallNullOnMapForSingleColumnWithResultMap() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

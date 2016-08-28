@@ -14,6 +14,7 @@
 --    limitations under the License.
 --
 
+drop table if exists immutables;
 CREATE TABLE immutables (
     id          INTEGER PRIMARY KEY,
     description VARCHAR (30) NOT NULL

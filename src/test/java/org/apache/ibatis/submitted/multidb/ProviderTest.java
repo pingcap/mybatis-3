@@ -23,11 +23,11 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ProviderTest {
 
-  @Test
+  @Test(groups={"tidb-todo"}, enabled = false) // Not support _databaseId.
   public void shouldUseDefaultId() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/multidb/MultiDbConfig.xml");
     DefaultSqlSessionFactory sqlSessionFactory = (DefaultSqlSessionFactory) new SqlSessionFactoryBuilder().build(reader);
@@ -35,7 +35,7 @@ public class ProviderTest {
     assertEquals("hsql", c.getDatabaseId());
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void shouldUseProvider() throws Exception {
     Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/multidb/ProviderConfig.xml");
     DefaultSqlSessionFactory sqlSessionFactory = (DefaultSqlSessionFactory) new SqlSessionFactoryBuilder().build(reader);

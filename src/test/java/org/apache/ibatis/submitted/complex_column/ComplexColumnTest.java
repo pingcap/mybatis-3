@@ -17,7 +17,6 @@ package org.apache.ibatis.submitted.complex_column;
 
 import java.io.Reader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 
 import org.junit.Assert;
 
@@ -26,8 +25,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class ComplexColumnTest {
     
@@ -35,33 +34,23 @@ public class ComplexColumnTest {
     
     @BeforeClass
     public static void initDatabase() throws Exception {
-        Connection conn = null;
+        // create a SqlSessionFactory
+        Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/complex_column/ibatisConfig.xml");
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        reader.close();
 
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:complex_column", "sa",
-                    "");
-
-            Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/complex_column/CreateDB.sql");
-
-            ScriptRunner runner = new ScriptRunner(conn);
-            runner.setLogWriter(null);
-            runner.setErrorLogWriter(null);
-            runner.runScript(reader);
-            conn.commit();
-            reader.close();
-
-            reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/complex_column/ibatisConfig.xml");
-            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-            reader.close();
-        } finally {
-            if (conn != null) {
-                conn.close();
-            }
-        }
+        // populate in-memory database
+        SqlSession session = sqlSessionFactory.openSession();
+        Connection conn = session.getConnection();
+        reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/complex_column/CreateDB.sql");
+        ScriptRunner runner = new ScriptRunner(conn);
+        runner.setLogWriter(null);
+        runner.runScript(reader);
+        reader.close();
+        session.close();
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testWithoutComplex() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -75,8 +64,8 @@ public class ComplexColumnTest {
         Assert.assertEquals("Smith", parent.getLastName());
       sqlSession.close();
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testWithComplex() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -92,7 +81,7 @@ public class ComplexColumnTest {
 
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testWithComplex2() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -108,7 +97,7 @@ public class ComplexColumnTest {
 
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testWithComplex3() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
@@ -124,7 +113,7 @@ public class ComplexColumnTest {
 
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testWithComplex4() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);

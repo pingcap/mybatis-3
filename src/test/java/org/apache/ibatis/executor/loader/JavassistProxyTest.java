@@ -29,7 +29,7 @@ import org.apache.ibatis.domain.blog.Author;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.session.Configuration;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class JavassistProxyTest extends SerializableProxyTest {
 
@@ -37,7 +37,7 @@ public class JavassistProxyTest extends SerializableProxyTest {
     proxyFactory = new JavassistProxyFactory();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCreateAProxyForAPartiallyLoadedBean() throws Exception {
     ResultLoaderMap loader = new ResultLoaderMap();
     loader.addLoader("id", null, null);
@@ -46,7 +46,7 @@ public class JavassistProxyTest extends SerializableProxyTest {
     assertTrue(author2 instanceof Proxy);
   }
 
-  @Test(expected = ExecutorException.class)
+  @Test(groups = {"tidb"}, expectedExceptions = {ExecutorException.class})
   public void shouldFailCallingAnUnloadedProperty() throws Exception {
     // yes, it must go in uppercase
     HashMap<String, ResultLoaderMap.LoadPair> unloadedProperties = new HashMap<String, ResultLoaderMap.LoadPair> ();
@@ -55,13 +55,13 @@ public class JavassistProxyTest extends SerializableProxyTest {
     author2.getId();
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldLetCallALoadedProperty() throws Exception {
     Author author2 = (Author) ((JavassistProxyFactory)proxyFactory).createDeserializationProxy(author, new HashMap<String, ResultLoaderMap.LoadPair>(), new DefaultObjectFactory(), new ArrayList<Class<?>>(), new ArrayList<Object>());
     assertEquals(999, author2.getId());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSerizalizeADeserlizaliedProxy() throws Exception {
     Object proxy = ((JavassistProxyFactory)proxyFactory).createDeserializationProxy(author, new HashMap<String, ResultLoaderMap.LoadPair> (), new DefaultObjectFactory(), new ArrayList<Class<?>>(), new ArrayList<Object>());
     Author author2 = (Author) deserialize(serialize((Serializable) proxy));

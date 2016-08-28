@@ -17,12 +17,12 @@ package org.apache.ibatis.submitted.blobtest;
 
 public class BlobRecord {
     private int id;
-    private byte[] blob;
+    private byte[] b;
 
-    public BlobRecord(int id, byte[] blob) {
+    public BlobRecord(int id, byte[] b) {
         super();
         this.id = id;
-        this.blob = blob;
+        this.b = b;
     }
 
     public BlobRecord(int id, Byte[] blob) {
@@ -33,14 +33,14 @@ public class BlobRecord {
           Byte b = blob[i];
           newBytes[i] = b;
         }
-        this.blob = newBytes;
+        this.b = newBytes;
     }
 
     public int getId() {
         return id;
     }
 
-    public byte[] getBlob() {
-        return blob;
+    public byte[] getB() {
+        return b;
     }
 }

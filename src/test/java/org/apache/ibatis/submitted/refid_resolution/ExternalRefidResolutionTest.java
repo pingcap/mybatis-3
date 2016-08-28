@@ -20,13 +20,13 @@ import java.io.Reader;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 /**
  * @see http://code.google.com/p/mybatis/issues/detail?id=291
  */
 public class ExternalRefidResolutionTest {
-  @Test
+  @Test(groups={"tidb"})
   public void testExternalRefAfterSelectKey() throws Exception {
     String resource = "org/apache/ibatis/submitted/refid_resolution/ExternalMapperConfig.xml";
     Reader reader = Resources.getResourceAsReader(resource);

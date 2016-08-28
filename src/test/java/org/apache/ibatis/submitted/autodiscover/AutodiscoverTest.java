@@ -26,8 +26,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.submitted.autodiscover.mappers.DummyMapper;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.apache.ibatis.type.TypeHandlerRegistry;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class AutodiscoverTest {
 
@@ -40,19 +40,19 @@ public class AutodiscoverTest {
     reader.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testTypeAlias() {
     TypeAliasRegistry typeAliasRegistry = sqlSessionFactory.getConfiguration().getTypeAliasRegistry();
     typeAliasRegistry.resolveAlias("testAlias");
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testTypeHandler() {
     TypeHandlerRegistry typeHandlerRegistry = sqlSessionFactory.getConfiguration().getTypeHandlerRegistry();
     assertTrue(typeHandlerRegistry.hasTypeHandler(BigInteger.class));
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testMapper() {
     assertTrue(sqlSessionFactory.getConfiguration().hasMapper(DummyMapper.class));
   }

@@ -17,12 +17,13 @@ package org.apache.ibatis.cache;
 
 import org.apache.ibatis.cache.decorators.*;
 import org.apache.ibatis.cache.impl.PerpetualCache;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 public class SuperCacheTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrate5LevelSuperCacheHandlesLotsOfEntriesWithoutCrashing() {
     final int N = 100000;
     Cache cache = new PerpetualCache("default");

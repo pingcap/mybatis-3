@@ -17,10 +17,8 @@ package org.apache.ibatis.submitted.batch_keys;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -35,41 +33,32 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class BatchKeysTest {
 
   private SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
-    Connection conn = null;
+    // create an SqlSessionFactory
+    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/batch_keys/Config.xml");
+    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+    reader.close();
 
-    try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:batch_keys", "sa", "");
-
-      Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/batch_keys/CreateDB.sql");
-
-      ScriptRunner runner = new ScriptRunner(conn);
-      runner.setLogWriter(null);
-      runner.setErrorLogWriter(new PrintWriter(System.err));
-      runner.runScript(reader);
-      conn.commit();
-      reader.close();
-
-      reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/batch_keys/Config.xml");
-      sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      reader.close();
-    } finally {
-      if (conn != null) {
-        conn.close();
-      }
-    }
+    // populate in-memory database
+    SqlSession session = sqlSessionFactory.openSession();
+    Connection conn = session.getConnection();
+    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/batch_keys/CreateDB.sql");
+    ScriptRunner runner = new ScriptRunner(conn);
+    runner.setLogWriter(null);
+    runner.runScript(reader);
+    reader.close();
+    session.close();
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testInsert() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
     try {
@@ -78,8 +67,8 @@ public class BatchKeysTest {
       User user2 = new User(null, "Valentina");
       sqlSession.insert("insert", user2);
       sqlSession.flushStatements();
-      assertEquals(new Integer(50), user1.getId());
-      assertEquals(new Integer(50), user2.getId());
+      assertEquals(new Integer(1), user1.getId());
+      assertEquals(new Integer(1), user2.getId());
       sqlSession.commit();
     } finally {
       sqlSession.close();
@@ -111,7 +100,7 @@ public class BatchKeysTest {
 
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testInsertJdbc3() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
     try {
@@ -120,8 +109,8 @@ public class BatchKeysTest {
       User user2 = new User(null, "Valentina");
       sqlSession.insert("insertIdentity", user2);
       sqlSession.flushStatements();
-      assertEquals(Integer.valueOf(0), user1.getId());
-      assertEquals(Integer.valueOf(1), user2.getId());
+      assertEquals(null, user1.getId());
+      assertEquals(null, user2.getId());
       sqlSession.commit();
     } finally {
       sqlSession.close();

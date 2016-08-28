@@ -32,11 +32,11 @@ import org.apache.ibatis.domain.blog.Section;
 import org.apache.ibatis.domain.misc.CustomBeanWrapper;
 import org.apache.ibatis.domain.misc.CustomBeanWrapperFactory;
 import org.apache.ibatis.domain.misc.RichType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class MetaObjectTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetField() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -44,7 +44,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richField"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetNestedField() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -52,7 +52,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richType.richField"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetProperty() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -60,7 +60,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richProperty"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetNestedProperty() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -68,7 +68,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richType.richProperty"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetMapPair() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -76,7 +76,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richMap.key"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetMapPairUsingArraySyntax() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -84,7 +84,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richMap[key]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetNestedMapPair() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -92,7 +92,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richType.richMap.key"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetNestedMapPairUsingArraySyntax() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -100,7 +100,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richType.richMap[key]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetListItem() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -108,7 +108,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richList[0]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSetAndGetSelfListItem() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -116,7 +116,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richList[0]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetAndSetNestedListItem() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -124,7 +124,7 @@ public class MetaObjectTest {
     assertEquals("foo", meta.getValue("richType.richList[0]"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetReadablePropertyNames() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -137,7 +137,7 @@ public class MetaObjectTest {
     assertTrue(meta.hasGetter("richType"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetWriteablePropertyNames() {
     RichType rich = new RichType();
     MetaObject meta = SystemMetaObject.forObject(rich);
@@ -150,27 +150,27 @@ public class MetaObjectTest {
     assertTrue(meta.hasSetter("richType"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSetPropertyOfNullNestedProperty() {
     MetaObject richWithNull = SystemMetaObject.forObject(new RichType());
     richWithNull.setValue("richType.richProperty", "foo");
     assertEquals("foo", richWithNull.getValue("richType.richProperty"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSetPropertyOfNullNestedPropertyWithNull() {
     MetaObject richWithNull = SystemMetaObject.forObject(new RichType());
     richWithNull.setValue("richType.richProperty", null);
     assertEquals(null, richWithNull.getValue("richType.richProperty"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetPropertyOfNullNestedProperty() {
     MetaObject richWithNull = SystemMetaObject.forObject(new RichType());
     assertNull(richWithNull.getValue("richType.richProperty"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldVerifyHasReadablePropertiesReturnedByGetReadablePropertyNames() {
     MetaObject object = SystemMetaObject.forObject(new Author());
     for (String readable : object.getGetterNames()) {
@@ -178,7 +178,7 @@ public class MetaObjectTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldVerifyHasWriteablePropertiesReturnedByGetWriteablePropertyNames() {
     MetaObject object = SystemMetaObject.forObject(new Author());
     for (String writeable : object.getSetterNames()) {
@@ -186,7 +186,7 @@ public class MetaObjectTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSetAndGetProperties() {
     MetaObject object = SystemMetaObject.forObject(new Author());
     object.setValue("email", "test");
@@ -194,7 +194,7 @@ public class MetaObjectTest {
 
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldVerifyPropertyTypes() {
     MetaObject object = SystemMetaObject.forObject(new Author());
     assertEquals(6, object.getSetterNames().length);
@@ -206,7 +206,7 @@ public class MetaObjectTest {
     assertEquals(Section.class, object.getGetterType("favouriteSection"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateDeeplyNestedMapProperties() {
     HashMap<String, String> map = new HashMap<String, String>();
     MetaObject metaMap = SystemMetaObject.forObject(map);
@@ -241,7 +241,7 @@ public class MetaObjectTest {
     assertEquals("1 Some Street", address.get("street"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateNullValueInMap() {
     HashMap<String, String> map = new HashMap<String, String>();
     MetaObject metaMap = SystemMetaObject.forObject(map);
@@ -264,13 +264,13 @@ public class MetaObjectTest {
     assertNull(metaMap.getValue("phone.home"));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldNotUseObjectWrapperFactoryByDefault() {
     MetaObject meta = SystemMetaObject.forObject(new Author());
     assertTrue(!meta.getObjectWrapper().getClass().equals(CustomBeanWrapper.class));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldUseObjectWrapperFactoryWhenSet() {
     MetaObject meta = MetaObject.forObject(new Author(), SystemMetaObject.DEFAULT_OBJECT_FACTORY, new CustomBeanWrapperFactory(), new DefaultReflectorFactory());
     assertTrue(meta.getObjectWrapper().getClass().equals(CustomBeanWrapper.class));
@@ -280,7 +280,7 @@ public class MetaObjectTest {
     assertFalse(meta.getObjectWrapper().getClass().equals(CustomBeanWrapper.class));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldMethodHasGetterReturnTrueWhenListElementSet() {
     List<Object> param1 = new ArrayList<Object>();
     param1.add("firstParam");

@@ -30,7 +30,7 @@ import org.apache.ibatis.type.TypeException;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.doThrow;
@@ -44,7 +44,7 @@ import static org.mockito.Mockito.when;
  */
 public class DefaultParameterHandlerTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void setParametersThrowsProperException() throws SQLException {
     final MappedStatement mappedStatement = getMappedStatement();
     final Object parameterObject = null;

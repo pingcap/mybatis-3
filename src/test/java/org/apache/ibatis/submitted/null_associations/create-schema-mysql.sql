@@ -14,6 +14,7 @@
 --    limitations under the License.
 --
 
+DROP TABLE IF EXISTS FOO;
 CREATE TABLE FOO (
 F_FIELD1 BIGINT NOT NULL,
 F_FIELD2_FIELD1 BIGINT,

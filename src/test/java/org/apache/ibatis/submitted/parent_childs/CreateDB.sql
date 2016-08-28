@@ -14,14 +14,14 @@
 --    limitations under the License.
 --
 
-drop table users if exists;
-
+drop table if exists Parent;
 create table Parent (
   id int,
   Name varchar(20),
   SurName varchar(20)
 );
 
+drop table if exists Child;
 create table Child (
   id int,
   Name varchar(20),

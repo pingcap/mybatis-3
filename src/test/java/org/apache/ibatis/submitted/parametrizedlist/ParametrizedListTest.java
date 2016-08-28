@@ -29,20 +29,20 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class ParametrizedListTest {
 
   private SqlSessionFactory sqlSessionFactory;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     Connection conn = null;
 
     try {
-      Class.forName("org.hsqldb.jdbcDriver");
-      conn = DriverManager.getConnection("jdbc:hsqldb:mem:parametrizedlist", "sa", "");
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
       Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/parametrizedlist/CreateDB.sql");
 
@@ -63,7 +63,7 @@ public class ParametrizedListTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldDetectUsersAsParameterInsideAList() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -75,7 +75,7 @@ public class ParametrizedListTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldDetectUsersAsParameterInsideAMap() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -87,25 +87,25 @@ public class ParametrizedListTest {
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldGetAUserAsAMap() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
       Mapper mapper = sqlSession.getMapper(Mapper.class);
       Map<String, Object> map = mapper.getUserAsAMap();
-      Assert.assertEquals(1, map.get("ID"));
+      Assert.assertEquals(1, map.get("id"));
     } finally {
       sqlSession.close();
     }
   }
 
-  @Test
+  @Test(groups={"tidb"})
   public void testShouldGetAListOfMaps() throws Exception {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
       Mapper mapper = sqlSession.getMapper(Mapper.class);
       List<Map<String, Object>> map = mapper.getAListOfMaps();
-      Assert.assertEquals(1, map.get(0).get("ID"));
+      Assert.assertEquals(1, map.get(0).get("id"));
     } finally {
       sqlSession.close();
     }

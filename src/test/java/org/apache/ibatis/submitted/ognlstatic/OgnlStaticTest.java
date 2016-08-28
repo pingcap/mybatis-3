@@ -24,9 +24,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class OgnlStaticTest {
 
@@ -57,7 +56,8 @@ public class OgnlStaticTest {
    * DEBUG [main] - ==> Parameters: 1(Integer), 1(Integer)
    * There are two parameter mappings but DefaulParameterHandler maps them both to input paremeter (integer)
    */
-  @Test // see issue #448
+  // see issue #448
+  @Test(groups={"tidb"})
   public void shouldGetAUserStatic() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
@@ -70,7 +70,8 @@ public class OgnlStaticTest {
     }
   }
 
-  @Test // see issue #61 (gh)
+  // see issue #61 (gh)
+  @Test(groups={"tidb"})
   public void shouldGetAUserWithIfNode() {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

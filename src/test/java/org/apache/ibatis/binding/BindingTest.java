@@ -50,9 +50,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class BindingTest {
   private static SqlSessionFactory sqlSessionFactory;
@@ -74,7 +73,7 @@ public class BindingTest {
     sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectBlogWithPostsUsingSubSelect() throws Exception {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -92,7 +91,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostsInList() throws Exception {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -109,7 +108,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFindPostsInArray() throws Exception {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -123,7 +122,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldfindThreeSpecificPosts() throws Exception {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -137,7 +136,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldInsertAuthorWithSelectKey() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -151,7 +150,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldInsertAuthorWithSelectKeyAndDynamicParams() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -169,7 +168,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectRandom() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -181,7 +180,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectListOfBlogsStatement() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -192,8 +191,8 @@ public class BindingTest {
       session.close();
     }
   }
-  
-  @Test
+
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectMapOfBlogsById() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -208,7 +207,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteMultipleBoundSelectOfBlogsByIdInWithProvidedResultHandlerBetweenSessions() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -230,7 +229,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteMultipleBoundSelectOfBlogsByIdInWithProvidedResultHandlerInSameSession() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -248,7 +247,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteMultipleBoundSelectMapOfBlogsByIdInSameSessionWithoutClearingLocalCache() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -268,7 +267,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteMultipleBoundSelectMapOfBlogsByIdBetweenTwoSessionsWithGlobalCacheEnabled() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -293,7 +292,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectListOfBlogsUsingXMLConfig() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -305,7 +304,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectListOfBlogsStatementUsingProvider() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -317,7 +316,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectListOfBlogsAsMaps() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -329,7 +328,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectListOfPostsLike() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -341,7 +340,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectListOfPostsLikeTwoParameters() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -353,7 +352,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectOneBlogStatement() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -366,7 +365,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectOneBlogStatementWithConstructor() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -382,7 +381,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectBlogUsingConstructorWithResultMap() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -398,7 +397,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectBlogUsingConstructorWithResultMapAndProperties() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -418,9 +417,8 @@ public class BindingTest {
       session.close();
     }
   }
-  
-  @Ignore
-  @Test // issue #480 and #101
+
+  @Test(groups = {"tidb-todo"}, enabled = false) // issue #480 and #101
   public void shouldExecuteBoundSelectBlogUsingConstructorWithResultMapCollection() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -435,8 +433,8 @@ public class BindingTest {
       session.close();
     }
   }
-  
-  @Test
+
+  @Test(groups = {"tidb"})
   public void shouldExecuteBoundSelectOneBlogStatementWithConstructorUsingXMLConfig() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -452,7 +450,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOneBlogAsMap() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -462,14 +460,14 @@ public class BindingTest {
           put("id", 1);
         }
       });
-      assertEquals(1, blog.get("ID"));
-      assertEquals("Jim Business", blog.get("TITLE"));
+      assertEquals(1, blog.get("id"));
+      assertEquals("Jim Business", blog.get("title"));
     } finally {
       session.close();
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOneAuthor() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -485,7 +483,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOneAuthorFromCache() {
     Author author1 = selectOneAuthor();
     Author author2 = selectOneAuthor();
@@ -502,7 +500,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectOneAuthorByConstructor() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -518,7 +516,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectDraftTypedPosts() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -535,7 +533,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectDraftTypedPostsWithResultMap() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -552,7 +550,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldReturnANotNullToString() throws Exception {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -563,7 +561,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldReturnANotNullHashCode() throws Exception {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -574,7 +572,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCompareTwoMappers() throws Exception {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -586,7 +584,7 @@ public class BindingTest {
     }
   }
 
-  @Test(expected = Exception.class)
+  @Test(groups = {"tidb"}, expectedExceptions = {Exception.class})
   public void shouldFailWhenSelectingOneBlogWithNonExistentParam() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -597,7 +595,7 @@ public class BindingTest {
     }
   }
 
-  @Test(expected = Exception.class)
+  @Test(groups = {"tidb"})
   public void shouldFailWhenSelectingOneBlogWithNullParam() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -608,7 +606,7 @@ public class BindingTest {
     }
   }
 
-  @Test // Decided that maps are dynamic so no existent params do not fail
+  @Test(groups = {"tidb"}) // Decided that maps are dynamic so no existent params do not fail
   public void shouldFailWhenSelectingOneBlogWithNonExistentNestedParam() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -619,7 +617,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectBlogWithDefault30ParamNames() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -631,7 +629,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectBlogWithDefault31ParamNames() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -643,7 +641,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldSelectBlogWithAParamNamedValue() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -655,7 +653,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldCacheMapperMethod() throws Exception {
     final SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -695,7 +693,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetBlogsWithAuthorsAndPosts() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
@@ -715,7 +713,7 @@ public class BindingTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldGetBlogsWithAuthorsAndPostsEagerly() {
     SqlSession session = sqlSessionFactory.openSession();
     try {

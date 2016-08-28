@@ -26,8 +26,8 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
 
 public class NotNullColumnTest {
     
@@ -38,9 +38,8 @@ public class NotNullColumnTest {
         Connection conn = null;
 
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:not_null_column", "sa",
-                    "");
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/test", "root", "");
 
             Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/not_null_column/CreateDB.sql");
 
@@ -60,8 +59,8 @@ public class NotNullColumnTest {
             }
         }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testNotNullColumnWithChildrenNoFid() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       try {
@@ -75,8 +74,8 @@ public class NotNullColumnTest {
         sqlSession.close();
       }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testNotNullColumnWithoutChildrenNoFid() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       try {
@@ -91,7 +90,7 @@ public class NotNullColumnTest {
       }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testNotNullColumnWithoutChildrenFid() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       try {
@@ -105,8 +104,8 @@ public class NotNullColumnTest {
         sqlSession.close();
       }
     }
-  
-    @Test
+
+    @Test(groups={"tidb"})
     public void testNotNullColumnWithoutChildrenWithInternalResultMap() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       try {
@@ -120,8 +119,8 @@ public class NotNullColumnTest {
         sqlSession.close();
       }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testNotNullColumnWithoutChildrenWithRefResultMap() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       try {
@@ -135,8 +134,8 @@ public class NotNullColumnTest {
         sqlSession.close();
       }
     }
-    
-    @Test
+
+    @Test(groups={"tidb"})
     public void testNotNullColumnWithoutChildrenFidMultipleNullColumns() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       try {
@@ -151,7 +150,7 @@ public class NotNullColumnTest {
       }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testNotNullColumnWithoutChildrenFidMultipleNullColumnsAndBrackets() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       try {
@@ -166,7 +165,7 @@ public class NotNullColumnTest {
       }
     }
 
-    @Test
+    @Test(groups={"tidb"})
     public void testNotNullColumnWithoutChildrenFidWorkaround() {
       SqlSession sqlSession = sqlSessionFactory.openSession();
       try {

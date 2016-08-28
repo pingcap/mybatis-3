@@ -18,12 +18,13 @@ package org.apache.ibatis.cache;
 import org.apache.ibatis.cache.decorators.SerializedCache;
 import org.apache.ibatis.cache.decorators.SynchronizedCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
+import org.testng.annotations.Test;
+
 import static org.junit.Assert.*;
-import org.junit.Test;
 
 public class PerpetualCacheTest {
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateHowAllObjectsAreKept() {
     Cache cache = new PerpetualCache("default");
     cache = new SynchronizedCache(cache);
@@ -34,7 +35,7 @@ public class PerpetualCacheTest {
     assertEquals(100000, cache.getSize());
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldDemonstrateCopiesAreEqual() {
     Cache cache = new PerpetualCache("default");
     cache = new SerializedCache(cache);
@@ -44,7 +45,7 @@ public class PerpetualCacheTest {
     }
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldRemoveItemOnDemand() {
     Cache cache = new PerpetualCache("default");
     cache = new SynchronizedCache(cache);
@@ -54,7 +55,7 @@ public class PerpetualCacheTest {
     assertNull(cache.getObject(0));
   }
 
-  @Test
+  @Test(groups = {"tidb"})
   public void shouldFlushAllItemsOnDemand() {
     Cache cache = new PerpetualCache("default");
     cache = new SynchronizedCache(cache);
