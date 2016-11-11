@@ -24,6 +24,7 @@ create table users (
   roundingMode int
 );
 
+set sql_mode='';
 insert into users (id, name, funkyNumber, roundingMode) 
 values(1, 'User1', 123456789.9876543212345678987654321, 0);
 
